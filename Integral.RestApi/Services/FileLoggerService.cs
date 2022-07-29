@@ -2,17 +2,20 @@
 {
     public class FileLoggerService : ILogger
     {
-        public static readonly string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/Log.txt");
+        public static readonly string ErrorLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/ErrorLog.txt");
+        public static readonly string InformationLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/InformationLog.txt");
 
-        private static bool EnsureLogFileExists()
+        private static bool EnsureLogFileExists(string path)
         {
-            if (File.Exists(LogFilePath))
+            if (File.Exists(path))
                 return false;
 
-            if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral")))
-                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral"));
+            string? dir = Path.GetDirectoryName(path);
 
-            File.Create(LogFilePath).Close();
+            if (dir is not null && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            File.Create(path);
             
             return true;
         }
@@ -34,11 +37,25 @@
             {
                 if (formatter != null)
                 {
-                    EnsureLogFileExists();
+                    string path = InformationLogFilePath;
+
+                    switch (logLevel)
+                    {
+                        case LogLevel.Information:
+                            path = InformationLogFilePath;
+                            break;
+                        case >= LogLevel.Error:
+                            path = ErrorLogFilePath;
+                            break;
+
+                    }
+
+                    EnsureLogFileExists(path);
+
 
                     string content = formatter.Invoke(state, exception);
 
-                    File.AppendAllText(LogFilePath, content);
+                    File.AppendAllText(path, content);
                 }
             }
             catch (Exception ex)
