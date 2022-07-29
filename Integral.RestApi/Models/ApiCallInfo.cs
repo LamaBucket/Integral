@@ -1,41 +1,42 @@
 ﻿using Integral.Domain.Models.Enums;
 using System.Text;
+using System.Text.Json;
 
 namespace Integral.RestApi.Models
 {
     public class ApiCallInfo
     {
-        public ApiCallInfo(string? username, Role? userRole, string controllerName, string targetControllerMethod)
+        public ApiCallInfo(string? username, Role? userRole, string? userIp, string? method, string? endpoint, int statusCode, Exception? exception = null)
         {
             Username = username;
             UserRole = userRole;
-            ControllerName = controllerName;
-            TargetControllerMethod = targetControllerMethod;
+            UserIp = userIp;
+            Method = method;
+            Endpoint = endpoint;
+            Exception = exception;
+            StatusCode = statusCode;
         }
 
         public string? Username { get; set; }
         
         public Role? UserRole { get; set; }
 
-        public string ControllerName { get; set; }
+        public string? UserIp { get; set; }
 
-        public string TargetControllerMethod { get; set; }
+        public string? Method { get; set; }
 
+        public string? Endpoint { get; set; }
 
-        protected DateTime _timeOccured { get; set; } = DateTime.UtcNow;
+        public int StatusCode { get; set; }
+
+        public Exception? Exception { get; set; }
+
+        public DateTime UtcTimeOccured { get; private set; } = DateTime.UtcNow;
 
 
         public override string ToString()
         {
-            StringBuilder sb = new();
-
-            sb.AppendLine($"Time:{_timeOccured.ToString("dd-MM-yyyy/hh-mm-ss")}");
-            sb.AppendLine($"User:{Username},");
-            sb.AppendLine($"Role:{UserRole},");
-            sb.AppendLine($"Controller:{ControllerName},");
-            sb.AppendLine($"ControllerMethod:{TargetControllerMethod};");
-            
-            return sb.ToString();
+            return JsonSerializer.Serialize<ApiCallInfo>(this, new JsonSerializerOptions() { });
         }
     }
 }

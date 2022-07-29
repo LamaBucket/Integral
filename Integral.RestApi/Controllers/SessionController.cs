@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Integral.RestApi;
 using System.Security.Claims;
 using AuthorizationResult = Integral.Domain.Models.Enums.AuthorizationResult;
 using IAuthenticationService = Integral.Domain.Services.IAuthenticationService;
@@ -17,7 +18,7 @@ namespace Integral.RestApi.Controllers
     {
         private IAuthenticationService _authenticationService;
         private IAuthorizationService _authorizationService;
-        
+
         public SessionController(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
         {
             _authenticationService = authenticationService;

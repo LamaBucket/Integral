@@ -72,7 +72,6 @@ namespace Integral.RestApi.Controllers
                 return BadRequest(ApiErrorCodes.UserAlreadyExists);
 
             User entity = new(username, _passwordHasher.HashPassword(password));
-
             User result = await _usersDataService.Create(entity);
 
             return Ok(result);

@@ -2,7 +2,7 @@ using Integral.Domain.Models;
 using Integral.Domain.Services;
 using Integral.EntityFramework;
 using Integral.EntityFramework.Services;
-using Integral.RestApi.Models;
+using Integral.RestApi.Middlewares;
 using Integral.RestApi.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -14,7 +14,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 builder.Services.AddAuthorization();
@@ -42,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<LoggerMiddleware>();
 
 app.UseHttpsRedirection();
 
