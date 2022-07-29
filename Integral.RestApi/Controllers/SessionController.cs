@@ -17,7 +17,7 @@ namespace Integral.RestApi.Controllers
     {
         private IAuthenticationService _authenticationService;
         private IAuthorizationService _authorizationService;
-
+        
         public SessionController(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
         {
             _authenticationService = authenticationService;
