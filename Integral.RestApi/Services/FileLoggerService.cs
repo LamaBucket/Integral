@@ -9,7 +9,10 @@
             if (File.Exists(LogFilePath))
                 return false;
 
-            File.Create(LogFilePath);
+            if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral")))
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral"));
+
+            File.Create(LogFilePath).Close();
             
             return true;
         }
@@ -35,7 +38,7 @@
 
                     string content = formatter.Invoke(state, exception);
 
-                    File.AppendAllText(content, LogFilePath);
+                    File.AppendAllText(LogFilePath, content);
                 }
             }
             catch (Exception ex)
