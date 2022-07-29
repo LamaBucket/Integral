@@ -47,7 +47,7 @@ namespace Integral.RestApi.Middlewares
                 
                 int statusCode = context.Response.StatusCode;
 
-                ApiCallInfo info = new(username, role, clientIp, method, endpoint, statusCode, ex);
+                ApiCallInfo info = new(username, role, clientIp, method, endpoint, statusCode, ex.Message);
 
                 _logger.Log(LogLevel.Error, info);
             });

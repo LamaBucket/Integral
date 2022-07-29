@@ -6,14 +6,14 @@ namespace Integral.RestApi.Models
 {
     public class ApiCallInfo
     {
-        public ApiCallInfo(string? username, Role? userRole, string? userIp, string? method, string? endpoint, int statusCode, Exception? exception = null)
+        public ApiCallInfo(string? username, Role? userRole, string? userIp, string? method, string? endpoint, int statusCode, string? exceptionString = null)
         {
             Username = username;
             UserRole = userRole;
             UserIp = userIp;
             Method = method;
             Endpoint = endpoint;
-            Exception = exception;
+            ExceptionString = exceptionString;
             StatusCode = statusCode;
         }
 
@@ -29,7 +29,7 @@ namespace Integral.RestApi.Models
 
         public int StatusCode { get; set; }
 
-        public Exception? Exception { get; set; }
+        public string? ExceptionString { get; set; }
 
         public DateTime UtcTimeOccured { get; private set; } = DateTime.UtcNow;
 
