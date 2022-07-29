@@ -33,7 +33,7 @@
                 {
                     EnsureLogFileExists();
 
-                    string content = formatter(state, exception) + Environment.NewLine;
+                    string content = formatter.Invoke(state, exception);
 
                     File.AppendAllText(content, LogFilePath);
                 }
