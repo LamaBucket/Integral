@@ -5,6 +5,7 @@ using Integral.Domain.Services;
 using Integral.RestApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Integral.RestApi.Controllers
 {
@@ -85,7 +86,7 @@ namespace Integral.RestApi.Controllers
 
         [Authorize(Roles = "Admin, Teacher")]
         [HttpPost]
-        public async Task<ActionResult> CreateGroup(string name, int grade, int leaderId, GroupType groupType)
+        public async Task<ActionResult> CreateGroup(string name, [Range(1, 11)] int grade, int leaderId, GroupType groupType)
         {
             Role? requiredRole = null;
 

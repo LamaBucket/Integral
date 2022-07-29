@@ -5,6 +5,7 @@ using Integral.Domain.Services;
 using Integral.RestApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Integral.RestApi.Controllers
 {
@@ -66,7 +67,7 @@ namespace Integral.RestApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult> CreateUser(string username, string password)
+        public async Task<ActionResult> CreateUser(string username, [MinLength(9)] string password)
         {
             if (await _usersDataService.ItemExists(await _usersDataService.GetId(username)))
                 return BadRequest(ApiErrorCodes.UserAlreadyExists);
