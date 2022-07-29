@@ -10,7 +10,7 @@ namespace Integral.RestApi.Models
         {
             Username = username;
             UserRole = userRole;
-            UserIp = userIp;
+            UserIP = userIp;
             Method = method;
             Endpoint = endpoint;
             ExceptionString = exceptionString;
@@ -21,7 +21,7 @@ namespace Integral.RestApi.Models
         
         public Role? UserRole { get; set; }
 
-        public string? UserIp { get; set; }
+        public string? UserIP { get; set; }
 
         public string? Method { get; set; }
 
@@ -36,7 +36,7 @@ namespace Integral.RestApi.Models
 
         public override string ToString()
         {
-            return JsonSerializer.Serialize<ApiCallInfo>(this, new JsonSerializerOptions() { });
+            return $"\"{Username}\", \"{UserRole}\", \"{UserIP}\", \"{Method}\", \"{Endpoint}\", \"{StatusCode}\", \"{ExceptionString}\", \"{UtcTimeOccured:dd-MM-yyyy/hh:mm:ss}\"";
         }
     }
 }

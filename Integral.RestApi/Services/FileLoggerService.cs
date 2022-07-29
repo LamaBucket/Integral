@@ -2,8 +2,8 @@
 {
     public class FileLoggerService : ILogger
     {
-        public static readonly string ErrorLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/ErrorLog.txt");
-        public static readonly string InformationLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/InformationLog.txt");
+        public static readonly string ErrorLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/ErrorLog.csv");
+        public static readonly string InformationLogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral/InformationLog.csv");
 
         private static bool EnsureLogFileExists(string path)
         {
@@ -15,7 +15,9 @@
             if (dir is not null && !Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            File.Create(path);
+            File.Create(path).Close();
+
+            File.WriteAllText(path, "Username, UserRole, UserIP, HttpMethod, Endpoint, ReturnedStatusCode, Exception, UtcTime" + Environment.NewLine);
             
             return true;
         }
