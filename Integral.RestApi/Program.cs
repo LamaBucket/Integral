@@ -3,6 +3,7 @@ using Integral.Domain.Services;
 using Integral.EntityFramework;
 using Integral.EntityFramework.Services;
 using Integral.RestApi.Models;
+using Integral.RestApi.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ builder.Services.AddSingleton<IGroupDataService, GroupDataService>();
 builder.Services.AddSingleton<IDataService<Student>, StudentDataService>();
 
 builder.Services.AddSingleton<IntegralDbContextFactory>();
+
+builder.Services.AddSingleton<ILogger, FileLoggerService>();
 
 var app = builder.Build();
 
