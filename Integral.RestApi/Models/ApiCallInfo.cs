@@ -21,14 +21,19 @@ namespace Integral.RestApi.Models
 
         public string TargetControllerMethod { get; set; }
 
+
+        protected DateTime _timeOccured { get; set; } = DateTime.UtcNow;
+
+
         public override string ToString()
         {
             StringBuilder sb = new();
 
-            sb.Append($"User:{Username},");
-            sb.Append($"Role:{UserRole},");
-            sb.Append($"Controller:{ControllerName},");
-            sb.Append($"ControllerMethod:{TargetControllerMethod};");
+            sb.AppendLine($"Time:{_timeOccured.ToString("dd-MM-yyyy/hh-mm-ss")}");
+            sb.AppendLine($"User:{Username},");
+            sb.AppendLine($"Role:{UserRole},");
+            sb.AppendLine($"Controller:{ControllerName},");
+            sb.AppendLine($"ControllerMethod:{TargetControllerMethod};");
             
             return sb.ToString();
         }
