@@ -62,7 +62,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.HelpLink);
+                Console.WriteLine(ex);
             }
         }
     }
