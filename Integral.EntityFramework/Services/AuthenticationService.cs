@@ -8,9 +8,9 @@ namespace Integral.EntityFramework.Services
     {
 
         private IUserDataService _userDataService;
-        private IPasswordHasher _passwordHasher;
+        private IPasswordHashService _passwordHasher;
 
-        public AuthenticationService(IUserDataService userDataService, IPasswordHasher passwordHasher)
+        public AuthenticationService(IUserDataService userDataService, IPasswordHashService passwordHasher)
         {
             _userDataService = userDataService;
             _passwordHasher = passwordHasher;

@@ -1,6 +1,6 @@
 ﻿namespace Integral.Domain.Services
 {
-    public interface IPasswordHasher
+    public interface IPasswordHashService
     {
         string HashPassword(string password);
 

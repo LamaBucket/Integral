@@ -16,9 +16,9 @@ namespace Integral.RestApi.Controllers
         private IUserDataService _usersDataService;
         private IGroupDataService _groupsDataService;
 
-        private IPasswordHasher _passwordHasher;
+        private IPasswordHashService _passwordHasher;
 
-        public UsersController(IUserDataService usersDataService, IPasswordHasher passwordHasher, IGroupDataService groupsDataService)
+        public UsersController(IUserDataService usersDataService, IPasswordHashService passwordHasher, IGroupDataService groupsDataService)
         {
             _usersDataService = usersDataService;
             _passwordHasher = passwordHasher;
@@ -80,7 +80,7 @@ namespace Integral.RestApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult> UpdateUserPassword(int id, string password)
+        public async Task<ActionResult> UpdateUserPassword(int id, [MinLength(9)] string password)
         {
             User? user = await _usersDataService.Get(id);
 

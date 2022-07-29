@@ -22,7 +22,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IAuthorizationService, AuthorizationService>();
 builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
-builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+builder.Services.AddSingleton<IPasswordHashService, PasswordHashService>();
 
 builder.Services.AddSingleton<IUserDataService, UserDataService>();
 builder.Services.AddSingleton<IMeetingDataService, MeetingDataService>();
