@@ -6,11 +6,71 @@
     <Color x:Key="ColorPrimary2">#d1d9ff</Color>
     <Color x:Key="ColorPrimary3">#6f79a8</Color>
     <Color x:Key="ColorPrimary4">#000000</Color>
+    <Color x:Key="ColorPrimary5">#ffffff</Color>
 
     <!--Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}"/>
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}"/>
     <SolidColorBrush x:Key="BrushPrimary3" Color="{StaticResource ColorPrimary3}"/>
     <SolidColorBrush x:Key="BrushPrimary4" Color="{StaticResource ColorPrimary4}"/>
+    <SolidColorBrush x:Key="BrushPrimary5" Color="{StaticResource ColorPrimary5}"/>
+    
+    <!--Buttons-->    
+    <Style TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary3}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="3"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="{TemplateBinding Margin}">
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="SecondaryButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary1}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="3"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="{TemplateBinding Margin}">
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <!--TextBlocks-->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
     
 </ResourceDictionary>

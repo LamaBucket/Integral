@@ -13,23 +13,23 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type vm:SessionViewModel}">
-                <v:SessionView/>
+                <v:SessionView DataContext="{Binding}"/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:UsersViewModel}">
-                <v:UsersView/>
+                <v:UsersView DataContext="{Binding}"/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:MeetingsViewModel}">
-                <v:MeetingsView/>
+                <v:MeetingsView DataContext="{Binding}"/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:StudentsViewModel}">
-                <v:StudentsView/>
+                <v:StudentsView DataContext="{Binding}"/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:GroupsViewModel}">
-                <v:GroupsView/>
+                <v:GroupsView DataContext="{Binding}"/>
             </DataTemplate>
 
         </ResourceDictionary>

@@ -5,8 +5,94 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Integral.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
+             d:DesignHeight="250" d:DesignWidth="250"
+             Background="{StaticResource BrushPrimary5}"
+             Margin="10"
+             MinWidth="250"
+             MinHeight="250"
+             MaxWidth="250"
+             MaxHeight="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Top">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"
+                                  MaxWidth="100"/>
+                <ColumnDefinition Width="5*"
+                                  MaxWidth="150"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Server Address"/>
+
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Margin="0 5 0 0"
+                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Username"/>
             
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Margin="0 5 0 0"
+                     Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+ 
+
+            <TextBlock Grid.Row="2" 
+                       Grid.Column="0" 
+                       Text="Password"/>
+            
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Margin="0 5 0 0"
+                     Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+           
+            <TextBlock Grid.Row="3" 
+                       Grid.Column="0"
+                       Text="Role"/>
+            
+            <ComboBox Grid.Row="3" 
+                      Grid.Column="1"
+                      Margin="0 5 0 0"
+                      SelectedItem="{Binding UserRole, Mode=TwoWay}"
+                      ItemsSource="{Binding UserRoles, Mode=OneTime}"/>
+
+
+        </Grid>
+
+        
+        <WrapPanel Grid.Row="1"
+                   Orientation="Horizontal"
+                   HorizontalAlignment="Right"
+                   Margin="5">
+            
+            <Button Content="Logoff"
+                    Padding="5"
+                    Style="{StaticResource SecondaryButton}"/>
+            
+            <Button Content="Logon"
+                    Padding="5"
+                    Margin="3 0 0 0"/>
+        </WrapPanel>
+
     </Grid>
 </UserControl>
