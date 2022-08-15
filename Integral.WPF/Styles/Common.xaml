@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--Colors-->
-    <Color x:Key="ColorPrimary1">#ab47bc</Color>
-    <Color x:Key="ColorPrimary2">#df78ef</Color>
-    <Color x:Key="ColorPrimary3">#790e8b</Color>
-    <Color x:Key="ColorPrimary4">#ffffff</Color>
+    <Color x:Key="ColorPrimary1">#9fa8da</Color>
+    <Color x:Key="ColorPrimary2">#d1d9ff</Color>
+    <Color x:Key="ColorPrimary3">#6f79a8</Color>
+    <Color x:Key="ColorPrimary4">#000000</Color>
 
     <!--Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}"/>
