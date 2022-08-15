@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integral.EntityFramework", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integral.RestApi", "Integral.RestApi\Integral.RestApi.csproj", "{B55E3144-F36D-4600-BC23-0D679161BEC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integral.WPF", "Integral.WPF\Integral.WPF.csproj", "{DD57B95F-2D91-435E-8055-D9E0087C8492}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B55E3144-F36D-4600-BC23-0D679161BEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B55E3144-F36D-4600-BC23-0D679161BEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B55E3144-F36D-4600-BC23-0D679161BEC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD57B95F-2D91-435E-8055-D9E0087C8492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD57B95F-2D91-435E-8055-D9E0087C8492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD57B95F-2D91-435E-8055-D9E0087C8492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD57B95F-2D91-435E-8055-D9E0087C8492}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
