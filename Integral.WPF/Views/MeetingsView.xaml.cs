@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Integral.WPF.Controls
+namespace Integral.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for NavgiationBar.xaml
+    /// Interaction logic for MeetingsView.xaml
     /// </summary>
-    public partial class NavgiationBar : UserControl
+    public partial class MeetingsView : UserControl
     {
-        public NavgiationBar()
+        public MeetingsView()
         {
             InitializeComponent();
         }

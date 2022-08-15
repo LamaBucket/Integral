@@ -1,5 +1,4 @@
-﻿using Integral.WPF.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Integral.WPF
+namespace Integral.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UsersView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UsersView : UserControl
     {
-        public MainWindow()
+        public UsersView()
         {
             InitializeComponent();
-
-            MainViewModel vm = new();
-
-            DataContext = vm;
         }
     }
 }

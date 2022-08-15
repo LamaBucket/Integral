@@ -7,18 +7,20 @@
         xmlns:local="clr-namespace:Integral.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="50"/>
             <RowDefinition MinHeight="1"/>
         </Grid.RowDefinitions>
 
-        <controls:NavgiationBar Grid.Row="0"/>
+        <controls:NavigationBar Grid.Row="0"
+                                CurrentViewModel="{Binding CurrentViewModel, Mode=TwoWay}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding SelectedViewModel}"/>
+            <ContentControl Content="{Binding CurrentViewModel}"/>
         </ScrollViewer>
 
     </Grid>
