@@ -1,15 +1,38 @@
 ﻿using Integral.Domain.Models.Enums;
+using Integral.WPF.Commands;
+using Integral.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Integral.WPF.ViewModels
 {
     public class SessionViewModel : BaseViewModel
     {
-        public static IEnumerable<Role> UserRoles => Enum.GetValues<Role>(); 
+
+        public static IEnumerable<Role> UserRoles => Enum.GetValues<Role>();
+
+
+        public SessionViewModel(IAuthenticator authenticator)
+        {
+            _loginCommand = new LoginCommand(this, authenticator);
+        }
+
+
+        private ICommand _loginCommand;
+
+        public ICommand LoginCommand
+        {
+            get => _loginCommand;
+            set
+            {
+                _loginCommand = value;
+                OnPropertyChanged(nameof(LoginCommand));
+            }
+        }
 
 
         private string _serverAddress = String.Empty;
@@ -62,7 +85,6 @@ namespace Integral.WPF.ViewModels
                 OnPropertyChanged(nameof(UserRole));
             }
         }
-
 
     }
 }
