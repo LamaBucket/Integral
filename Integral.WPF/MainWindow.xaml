@@ -15,12 +15,19 @@
         </Grid.RowDefinitions>
 
         <controls:NavigationBar Grid.Row="0"
-                                CurrentViewModel="{Binding CurrentViewModel, Mode=TwoWay}"/>
+                                DataContext="{Binding Navigator}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding CurrentViewModel}"/>
+            <Border CornerRadius="3"
+                    BorderBrush="{StaticResource BrushPrimary1}"
+                    BorderThickness="1"
+                    Margin="5">
+                
+                <ContentControl Content="{Binding Navigator.CurrentViewModel}"/>
+            </Border>
+            
         </ScrollViewer>
 
     </Grid>

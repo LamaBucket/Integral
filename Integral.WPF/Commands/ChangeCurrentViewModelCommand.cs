@@ -1,5 +1,7 @@
 ﻿using Integral.WPF.Controls;
 using Integral.WPF.Models.Enums;
+using Integral.WPF.Services.Navigators;
+using Integral.WPF.Services.ViewModelFactories;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,16 @@ namespace Integral.WPF.Commands
 {
     public class ChangeCurrentViewModelCommand : ICommand
     {
-        public ChangeCurrentViewModelCommand(NavigationBar navigBar)
+        public ChangeCurrentViewModelCommand(INavigator navigator, IRootViewModelFactory viewModelFactory)
         {
-            _navigBar = navigBar;
+            Navigator = navigator;
+            ViewModelFactory = viewModelFactory;
         }
 
+        public INavigator Navigator { get; set; }
 
-        private NavigationBar _navigBar;
+        public IRootViewModelFactory ViewModelFactory { get; set; }
+
 
         public event EventHandler? CanExecuteChanged;
 
@@ -31,24 +36,7 @@ namespace Integral.WPF.Commands
         {
             if(parameter is ViewModelType type)
             {
-                switch (type)
-                {
-                    case ViewModelType.Session:
-                        _navigBar.CurrentViewModel = new SessionViewModel();
-                        break;
-                    case ViewModelType.Users:
-                        _navigBar.CurrentViewModel = new UsersViewModel();
-                        break;
-                    case ViewModelType.Students:
-                        _navigBar.CurrentViewModel = new StudentsViewModel();
-                        break;
-                    case ViewModelType.Groups:
-                        _navigBar.CurrentViewModel = new GroupsViewModel();
-                        break;
-                    case ViewModelType.Meetings:
-                        _navigBar.CurrentViewModel = new MeetingsViewModel();
-                        break;
-                }
+                Navigator.CurrentViewModel = ViewModelFactory.CreateViewModel(type);
             }
         }
     }

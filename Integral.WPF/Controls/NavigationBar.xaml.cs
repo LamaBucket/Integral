@@ -22,33 +22,8 @@ namespace Integral.WPF.Controls
     /// </summary>
     public partial class NavigationBar : UserControl
     {
-        public BaseViewModel CurrentViewModel
-        {
-            get { return (BaseViewModel)GetValue(CurrentViewModelProperty); }
-            set { SetValue(CurrentViewModelProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CurrentViewModel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentViewModelProperty =
-            DependencyProperty.Register("CurrentViewModel", typeof(BaseViewModel), typeof(NavigationBar), new PropertyMetadata());
-
-
-
-        public ICommand ChangeCurrentViewModelCommand
-        {
-            get { return (ICommand)GetValue(ChangeCurrentViewModelCommandProperty); }
-            set { SetValue(ChangeCurrentViewModelCommandProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ChangeCurrentViewModelCommand.  This enables animation, styling, binding, etc...
-        private static readonly DependencyProperty ChangeCurrentViewModelCommandProperty =
-            DependencyProperty.Register("ChangeCurrentViewModelCommand", typeof(ICommand), typeof(NavigationBar), new PropertyMetadata());
-
-
         public NavigationBar()
         {
-            ChangeCurrentViewModelCommand = new ChangeCurrentViewModelCommand(this);
-
             InitializeComponent();
         }
     }
