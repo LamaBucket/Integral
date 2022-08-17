@@ -5,94 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Integral.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="250"
              Background="{StaticResource BrushPrimary5}"
-             Margin="10"
-             MinWidth="250"
-             MinHeight="250"
-             MaxWidth="250"
-             MaxHeight="250"
-             HorizontalAlignment="Left"
-             VerticalAlignment="Top">
+             Padding="10">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <WrapPanel Orientation="Vertical">
 
-        <Grid Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+        <TextBlock Text="Server Address"/>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"
-                                  MaxWidth="100"/>
-                <ColumnDefinition Width="5*"
-                                  MaxWidth="150"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="Server Address"/>
-
-            <TextBox Grid.Row="0"
-                     Grid.Column="1"
-                     Margin="0 5 0 0"
-                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Width="300"
+                     Margin="0 5 0 0"/>
 
 
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="Username"/>
-            
-            <TextBox Grid.Row="1"
-                     Grid.Column="1"
-                     Margin="0 5 0 0"
-                     Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
- 
+        <TextBlock Text="Username"
+                   Margin="0 15 0 0"/>
 
-            <TextBlock Grid.Row="2" 
-                       Grid.Column="0" 
-                       Text="Password"/>
-            
-            <TextBox Grid.Row="2"
-                     Grid.Column="1"
-                     Margin="0 5 0 0"
-                     Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-           
-            <TextBlock Grid.Row="3" 
-                       Grid.Column="0"
-                       Text="Role"/>
-            
-            <ComboBox Grid.Row="3" 
-                      Grid.Column="1"
-                      Margin="0 5 0 0"
-                      SelectedItem="{Binding UserRole, Mode=TwoWay}"
-                      ItemsSource="{Binding UserRoles, Mode=OneTime}"/>
+        <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Width="300"
+                     Margin="0 5 0 0"/>
 
 
-        </Grid>
+        <TextBlock Text="Password"
+                       Margin="0 5 0 0"/>
 
-        
+        <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Width="300"
+                     Margin="0 5 0 0"/>
+
+        <TextBlock Text="Role"
+                   Margin="0 15 0 0"/>
+
+        <ComboBox SelectedItem="{Binding UserRole, Mode=TwoWay}"
+                      ItemsSource="{Binding UserRoles, Mode=OneTime}"
+                      Width="300"
+                      Margin="0 5 0 0"/>
+
+
         <WrapPanel Grid.Row="1"
-                   Orientation="Horizontal"
-                   HorizontalAlignment="Right"
-                   Margin="5">
-            
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Margin="0 15 0 0">
+
             <Button Content="Logoff"
-                    Padding="5"
-                    Style="{StaticResource SecondaryButton}"/>
-            
+                Padding="5"
+                Style="{StaticResource SecondaryButton}"/>
+
             <Button Content="Logon"
                     Padding="5"
-                    Margin="3 0 0 0"/>
+                    Margin="3 0 0 0"
+                    Command="{Binding LoginCommand}"/>
         </WrapPanel>
 
-    </Grid>
+    </WrapPanel>
+
 </UserControl>

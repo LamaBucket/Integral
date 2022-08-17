@@ -7,6 +7,7 @@
     <Color x:Key="ColorPrimary3">#6f79a8</Color>
     <Color x:Key="ColorPrimary4">#000000</Color>
     <Color x:Key="ColorPrimary5">#ffffff</Color>
+    <Color x:Key="ColorPrimary6">#7986cb</Color>
 
     <!--Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}"/>
@@ -14,7 +15,8 @@
     <SolidColorBrush x:Key="BrushPrimary3" Color="{StaticResource ColorPrimary3}"/>
     <SolidColorBrush x:Key="BrushPrimary4" Color="{StaticResource ColorPrimary4}"/>
     <SolidColorBrush x:Key="BrushPrimary5" Color="{StaticResource ColorPrimary5}"/>
-    
+    <SolidColorBrush x:Key="BrushPrimary6" Color="{StaticResource ColorPrimary6}"/>
+
     <!--Buttons-->    
     <Style TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
@@ -43,7 +45,7 @@
 
     <Style x:Key="SecondaryButton" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
-        <Setter Property="Background" Value="{StaticResource BrushPrimary1}"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary6}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -72,5 +74,11 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     
-    
+    <!--TextBoxes-->
+    <Style TargetType="TextBox">
+        <Setter Property="BorderBrush" Value="{StaticResource BrushPrimary1}"/>
+        <Setter Property="MinWidth" Value="175"/>
+        <Setter Property="MinHeight" Value="22"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>
