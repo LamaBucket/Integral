@@ -12,17 +12,27 @@ namespace Integral.WPF.Services
 {
     public class Authenticator : IAuthenticator
     {
-        public HttpClient Client { get; private set; } = new();
+        public HttpClient Client { get; private set; }
 
-        public async Task<bool> Authenticate(string serverAddress, string username, string password, Role role)
+        public Authenticator(HttpClient client)
         {
-            Client.BaseAddress = new Uri(serverAddress);
+            Client = client;
+        }
 
-            UriBuilder ub = new();
+        public async Task<bool> Authenticate(Uri serverAddress, string username, string password, Role role)
+        {
+            Client.BaseAddress = serverAddress;
 
-            ub.Query = $"username={username}&password={password}&role={role}";
+            string _uri = $"Session?username={username}&password={password}&role={role}";
 
-            var response = await Client.SendAsync(new(HttpMethod.Post, ub.Uri));
+            Uri uri = new(_uri, UriKind.Relative);
+
+            var response = await Client.SendAsync(new(HttpMethod.Post, uri));
+
+            if(response.Headers.TryGetValues("set-cookie", out IEnumerable<string>? vals))
+            {
+                Client.DefaultRequestHeaders.Add("Cookie", vals);
+            }
 
             return true;
         }

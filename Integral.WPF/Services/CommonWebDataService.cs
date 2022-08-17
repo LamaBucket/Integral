@@ -15,7 +15,6 @@ namespace Integral.WPF.Services
     {
         public HttpClient Client { get; }
 
-
         protected virtual string ControllerName => String.Empty;
 
         public virtual string CreateEndpoint => ControllerName;
@@ -31,33 +30,23 @@ namespace Integral.WPF.Services
 
         public async Task<bool> Delete(int id)
         {
-            
-            UriBuilder ub = new();
+            Uri uri = new(DeleteEndpoint + $"Id={id}", UriKind.Relative);
 
-            ub.Path = CreateEndpoint;
-            ub.Query = $"Id={id}";
-
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Delete);
+            return await SendRequest<bool>(uri, HttpMethod.Delete);
         }
 
         public async Task<T?> Get(int id)
         {
-            UriBuilder ub = new();
+            Uri uri = new(GetEndpoint + $"?Id={id}", UriKind.Relative);
 
-            ub.Path = GetEndpoint;
-            ub.Query = $"Id={id}";
-
-            return await SendRequest<T>(ub.Uri, HttpMethod.Get);
+            return await SendRequest<T>(uri, HttpMethod.Get);
         }
 
         public async Task<IEnumerable<T>?> GetAll()
         {
-            
-            UriBuilder ub = new();
+            Uri uri = new(GetAllEndpoint, UriKind.Relative);
 
-            ub.Path = GetAllEndpoint;
-
-            return await SendRequest<List<T>?>(ub.Uri, HttpMethod.Get);
+            return await SendRequest<List<T>?>(uri, HttpMethod.Get);
         }
 
 
@@ -71,10 +60,10 @@ namespace Integral.WPF.Services
 
             var response = await Client.SendAsync(msg);
 
-            if(!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
                 throw new WebRequestException(response.Content.ToString(), response.StatusCode);
 
-            TResult? result = JsonConvert.DeserializeObject<TResult>(response.Content.ToString() ?? String.Empty);
+            TResult? result = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
 
             return result;
         }

@@ -21,46 +21,30 @@ namespace Integral.WPF.Services
 
         public async Task<bool> AssignStudent(int groupId, int studentId)
         {
-            UriBuilder ub = new()
-            {
-                Path = StudentPath,
-                Query = $"groupId={groupId}&studentId={studentId}"
-            };
+            Uri uri = new(StudentPath + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
 
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<bool>(uri, HttpMethod.Post);
         }
 
         public async Task<bool> ChangeLeader(int groupId, int leaderId)
         {
-            UriBuilder ub = new()
-            {
-                Path = StudentPath,
-                Query = $"groupId={groupId}&leaderId={leaderId}"
-            };
+            Uri uri = new(LeaderPath + $"?groupId={groupId}&leaderId={leaderId}", UriKind.Relative);
 
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Put);
+            return await SendRequest<bool>(uri, HttpMethod.Put);
         }
 
         public async Task<Group?> CreateGroup(string name, int grade, int leaderId, GroupType groupType)
         {
-            UriBuilder ub = new()
-            {
-                Path = ControllerName,
-                Query = $"name={name}&grade={grade}&leaderId={leaderId}&groupType={groupType}"
-            };
+            Uri uri = new(ControllerName + $"?name={name}&grade={grade}&leaderId={leaderId}&groupType={groupType}", UriKind.Relative);
 
-            return await SendRequest<Group>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<Group>(uri, HttpMethod.Post);
         }
 
         public async Task<bool> UnassignStudent(int groupId, int studentId)
         {
-            UriBuilder ub = new()
-            {
-                Path = LeaderPath,
-                Query = $"groupId={groupId}&studentId={studentId}"
-            };
+            Uri uri = new(StudentPath + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
 
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Delete);
+            return await SendRequest<bool>(uri, HttpMethod.Delete);
         }
     }
 }

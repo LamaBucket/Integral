@@ -23,46 +23,30 @@ namespace Integral.WPF.Services
 
         public async Task<bool> AddUserRole(int id, Role role)
         {
-            UriBuilder ub = new()
-            {
-                Path = RoleEndpoint,
-                Query = $"id={id}&userRole={role}"
-            };
+            Uri uri = new(RoleEndpoint + $"?id={id}&userRole={role}", UriKind.Relative);
 
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<bool>(uri, HttpMethod.Post);
         }
 
         public async Task<bool> RemoveUserRole(int id, Role role)
         {
-            UriBuilder ub = new()
-            {
-                Path = RoleEndpoint,
-                Query = $"id={id}&userRole={role}"
-            };
+            Uri uri = new(RoleEndpoint + $"?id={id}&userRole={role}", UriKind.Relative);
 
-            return await SendRequest<bool>(ub.Uri, HttpMethod.Delete);
+            return await SendRequest<bool>(uri, HttpMethod.Delete);
         }
 
         public async Task<User?> CreateUser(string username, string password)
         {
-            UriBuilder ub = new()
-            {
-                Path = RoleEndpoint,
-                Query = $"id={username}&password={password}"
-            };
+            Uri uri = new(CreateEndpoint + $"?id={username}&password={password}", UriKind.Relative);
 
-            return await SendRequest<User>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<User>(uri, HttpMethod.Post);
         }
 
         public async Task<User?> UpdatePassword(int id, string password)
         {
-            UriBuilder ub = new()
-            {
-                Path = ControllerName,
-                Query = $"id={id}&userRole={password}"
-            };
+            Uri uri = new(UpdateEndpoint + $"?id={id}&userRole={password}", UriKind.Relative);
 
-            return await SendRequest<User>(ub.Uri, HttpMethod.Put);
+            return await SendRequest<User>(uri, HttpMethod.Put);
         }
     }
 }

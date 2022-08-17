@@ -19,24 +19,16 @@ namespace Integral.WPF.Services
 
         public async Task<Student?> CreateStudent(string firstName, string secondName, string? thirdName = null)
         {
-            UriBuilder ub = new()
-            {
-                Path = CreateEndpoint,
-                Query = $"firstName={firstName}&secondName={secondName}&thirdName={thirdName}"
-            };
+            Uri uri = new(ControllerName + $"?firstName={firstName}&secondName={secondName}&thirdName={thirdName}", UriKind.Relative);
 
-            return await SendRequest<Student>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<Student>(uri, HttpMethod.Post);
         }
 
         public async Task<Student?> UpdateStudent(int id, string firstName, string secondName, string? thirdName = null)
         {
-            UriBuilder ub = new()
-            {
-                Path = CreateEndpoint,
-                Query = $"id={id}&firstName={firstName}&secondName={secondName}&thirdName={thirdName}"
-            };
+            Uri uri = new(ControllerName + $"?id={id}&firstName={firstName}&secondName={secondName}&thirdName={thirdName}", UriKind.Relative);
 
-            return await SendRequest<Student>(ub.Uri, HttpMethod.Put);
+            return await SendRequest<Student>(uri, HttpMethod.Put);
         }
     }
 }

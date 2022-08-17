@@ -19,24 +19,16 @@ namespace Integral.WPF.Services
 
         public async Task<Meeting?> ChangeMeetingNote(int meetingId, string? note = null)
         {
-            UriBuilder ub = new()
-            {
-                Path = ControllerName,
-                Query = $"meetingId={meetingId}&note={note}"
-            };
+            Uri uri = new(ControllerName + $"?meetingId={meetingId}&note={note}", UriKind.Relative);
 
-            return await SendRequest<Meeting>(ub.Uri, HttpMethod.Put);
+            return await SendRequest<Meeting>(uri, HttpMethod.Put);
         }
 
         public async Task<Meeting?> CreateMeeting(int groupId, string theme, string? note = null)
         {
-            UriBuilder ub = new()
-            {
-                Path = ControllerName,
-                Query = $"groupId={groupId}&theme={theme}&note={note}"
-            };
+            Uri uri = new(ControllerName + $"?groupId={groupId}&theme={theme}&note={note}", UriKind.Relative);
 
-            return await SendRequest<Meeting>(ub.Uri, HttpMethod.Post);
+            return await SendRequest<Meeting>(uri, HttpMethod.Post);
         }
     }
 }

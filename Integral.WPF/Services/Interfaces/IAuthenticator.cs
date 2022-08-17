@@ -12,6 +12,6 @@ namespace Integral.WPF.Services.Interfaces
     {
         HttpClient Client { get; }
 
-        Task<bool> Authenticate(string serverAddress, string username, string password, Role role);
+        Task<bool> Authenticate(Uri serverAddress, string username, string password, Role role);
     }
 }
