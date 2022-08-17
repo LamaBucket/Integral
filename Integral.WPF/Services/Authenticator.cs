@@ -19,7 +19,7 @@ namespace Integral.WPF.Services
             Client = client;
         }
 
-        public async Task<bool> Authenticate(Uri serverAddress, string username, string password, Role role)
+        public async Task<bool> Login(Uri serverAddress, string username, string password, Role role)
         {
             Client.BaseAddress = serverAddress;
 
