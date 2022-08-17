@@ -1,4 +1,5 @@
 ﻿using Integral.WPF.Commands;
+using Integral.WPF.Services.Navigators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,21 @@ namespace Integral.WPF.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        
-        private BaseViewModel _currentViewModel = new SessionViewModel();
+        private INavigator _navigator;
 
-        public BaseViewModel CurrentViewModel
+        public INavigator Navigator
         {
-            get => _currentViewModel;
+            get => _navigator;
             set
             {
-                _currentViewModel = value;
-                OnPropertyChanged(nameof(CurrentViewModel));
+                _navigator = value;
+                OnPropertyChanged(nameof(Navigator));
             }
+        }
+
+        public MainViewModel(INavigator navigator)
+        {
+            _navigator = navigator;
         }
 
     }
