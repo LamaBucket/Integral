@@ -27,13 +27,17 @@ namespace Integral.WPF.Services
 
             Uri uri = new(_uri, UriKind.Relative);
 
-            var response = await Client.SendAsync(new(HttpMethod.Post, uri));
+            HttpRequestMessage msg = new(HttpMethod.Post, uri);
+
+            var response = await Client.SendAsync(msg);
 
             if(response.Headers.TryGetValues("set-cookie", out IEnumerable<string>? vals))
             {
                 Client.DefaultRequestHeaders.Add("Cookie", vals);
             }
 
+            msg.Dispose();
+            
             return true;
         }
 
