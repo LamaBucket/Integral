@@ -65,6 +65,8 @@ namespace Integral.WPF.Services
 
             TResult? result = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
 
+            msg.Dispose();
+
             return result;
         }
 
