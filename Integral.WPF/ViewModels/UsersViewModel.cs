@@ -56,7 +56,7 @@ namespace Integral.WPF.ViewModels
             }
         }
 
-        private async void TryRefreshUser(int id)
+        private async void TryLoadUser(int id)
         {
             User? _user = await _userWebDataService.Get(id);
 
@@ -97,7 +97,7 @@ namespace Integral.WPF.ViewModels
                 _selectedUser = value;
 
                 if (value != null)
-                    TryRefreshUser(value.Id);
+                    TryLoadUser(value.Id);
 
                 
                 OnPropertyChanged(nameof(SelectedUser));
