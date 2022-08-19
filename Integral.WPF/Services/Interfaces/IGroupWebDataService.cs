@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Integral.WPF.Services.Interfaces
 {
-    public interface IGroupWebDataService
+    public interface IGroupWebDataService : ICommonWebDataService<Group>
     {
         Task<Group?> CreateGroup(string name, int grade, int leaderId, GroupType groupType);
 
