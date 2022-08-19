@@ -21,18 +21,18 @@ namespace Integral.WPF.Services
         public string RoleEndpoint => ControllerName + "/Role";
 
 
-        public async Task<bool> AddUserRole(int id, Role role)
+        public async Task<User?> AddUserRole(int id, Role role)
         {
             Uri uri = new(RoleEndpoint + $"?id={id}&userRole={role}", UriKind.Relative);
 
-            return await SendRequest<bool>(uri, HttpMethod.Post);
+            return await SendRequest<User?>(uri, HttpMethod.Post);
         }
 
-        public async Task<bool> RemoveUserRole(int id, Role role)
+        public async Task<User?> RemoveUserRole(int id, Role role)
         {
             Uri uri = new(RoleEndpoint + $"?id={id}&userRole={role}", UriKind.Relative);
 
-            return await SendRequest<bool>(uri, HttpMethod.Delete);
+            return await SendRequest<User?>(uri, HttpMethod.Delete);
         }
 
         public async Task<User?> CreateUser(string username, string password)

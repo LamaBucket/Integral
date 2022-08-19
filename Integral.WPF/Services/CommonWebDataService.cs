@@ -63,7 +63,9 @@ namespace Integral.WPF.Services
             if (!response.IsSuccessStatusCode)
                 throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
 
-            TResult? result = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            TResult? result = JsonConvert.DeserializeObject<TResult>(responseContent);
 
             msg.Dispose();
 

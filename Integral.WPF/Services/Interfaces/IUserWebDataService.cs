@@ -11,9 +11,9 @@ namespace Integral.WPF.Services.Interfaces
 {
     public interface IUserWebDataService : ICommonWebDataService<User>
     {
-        Task<bool> AddUserRole(int id, Role role);
+        Task<User?> AddUserRole(int id, Role role);
 
-        Task<bool> RemoveUserRole(int id, Role role);
+        Task<User?> RemoveUserRole(int id, Role role);
 
         Task<User?> CreateUser(string username, string password);
 
