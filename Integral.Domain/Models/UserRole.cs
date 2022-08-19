@@ -2,7 +2,7 @@
 
 namespace Integral.Domain.Models
 {
-    public class UserRole : DomainObject
+    public class UserRole
     {
         public int UserId { get; set; }
 
