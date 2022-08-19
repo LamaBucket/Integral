@@ -30,7 +30,7 @@ namespace Integral.EntityFramework
                 .HasAlternateKey(a => new { a.Name, a.Grade });
 
             modelBuilder.Entity<UserRole>()
-                .HasAlternateKey(a => new { a.UserId, a.Role });
+                .HasKey(a => new { a.UserId, a.Role });
 
 
             base.OnModelCreating(modelBuilder);
