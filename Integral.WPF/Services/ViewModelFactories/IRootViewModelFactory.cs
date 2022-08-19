@@ -11,5 +11,7 @@ namespace Integral.WPF.Services.ViewModelFactories
     public interface IRootViewModelFactory
     {
         BaseViewModel CreateViewModel(ViewModelType type);
+
+        BaseViewModel RecreateViewModel(ViewModelType type);
     }
 }

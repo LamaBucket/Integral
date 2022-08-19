@@ -1,4 +1,5 @@
-﻿using Integral.WPF.ViewModels;
+﻿using Integral.WPF.Models.Enums;
+using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace Integral.WPF.Services.Navigators
     {
         BaseViewModel? CurrentViewModel { get; set; }
 
+        ViewModelType CurrentViewModelType { get; set; }
+
         ICommand ChangeCurrentViewModelCommand { get; }
+
+        ICommand RefreshCurrentViewModelCommand { get; }
     }
 }

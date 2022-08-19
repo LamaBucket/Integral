@@ -35,6 +35,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <RadioButton Grid.Column="0"
@@ -62,6 +63,10 @@
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Session}"/>
 
+            <Button Grid.Column="6"
+                    Content="Refresh"
+                    Command="{Binding RefreshCurrentViewModelCommand}"
+                    CommandParameter="{Binding CurrentViewModelType}"/>
         </Grid>
     </Grid>
 </UserControl>

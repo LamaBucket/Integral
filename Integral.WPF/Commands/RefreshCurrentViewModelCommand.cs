@@ -1,8 +1,6 @@
-﻿using Integral.WPF.Controls;
-using Integral.WPF.Models.Enums;
+﻿using Integral.WPF.Models.Enums;
 using Integral.WPF.Services.Navigators;
 using Integral.WPF.Services.ViewModelFactories;
-using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +10,9 @@ using System.Windows.Input;
 
 namespace Integral.WPF.Commands
 {
-    public class ChangeCurrentViewModelCommand : ICommand
+    public class RefreshCurrentViewModelCommand : ICommand
     {
-        public ChangeCurrentViewModelCommand(INavigator navigator, IRootViewModelFactory viewModelFactory)
+        public RefreshCurrentViewModelCommand(INavigator navigator, IRootViewModelFactory viewModelFactory)
         {
             Navigator = navigator;
             ViewModelFactory = viewModelFactory;
@@ -36,8 +34,7 @@ namespace Integral.WPF.Commands
         {
             if(parameter is ViewModelType type)
             {
-                Navigator.CurrentViewModelType = type;
-                Navigator.CurrentViewModel = ViewModelFactory.CreateViewModel(type);
+                Navigator.CurrentViewModel = ViewModelFactory.RecreateViewModel(type);
             }
         }
     }

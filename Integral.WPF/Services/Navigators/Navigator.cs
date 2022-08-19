@@ -1,4 +1,5 @@
 ﻿using Integral.WPF.Commands;
+using Integral.WPF.Models.Enums;
 using Integral.WPF.Services.ViewModelFactories;
 using Integral.WPF.ViewModels;
 using System;
@@ -29,11 +30,30 @@ namespace Integral.WPF.Services.Navigators
             }
         }
 
+
+
+        private ViewModelType _currentViewModelType;
+
+        public ViewModelType CurrentViewModelType
+        {
+            get => _currentViewModelType;
+            set
+            {
+                _currentViewModelType = value;
+                PropertyChanged?.Invoke(this, new(nameof(CurrentViewModelType)));
+            }
+        }
+
+
+
         public ICommand ChangeCurrentViewModelCommand { get; init; }
+
+        public ICommand RefreshCurrentViewModelCommand { get; init; }
 
         public Navigator(IRootViewModelFactory rootViewModelFactory)
         {
             ChangeCurrentViewModelCommand = new ChangeCurrentViewModelCommand(this, rootViewModelFactory);
+            RefreshCurrentViewModelCommand = new RefreshCurrentViewModelCommand(this, rootViewModelFactory);
         }
 
     }
