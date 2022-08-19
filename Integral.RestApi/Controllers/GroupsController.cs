@@ -58,7 +58,7 @@ namespace Integral.RestApi.Controllers
             }
 
             if (data is null)
-                return NotFound();
+                return NoContent();
             else
                 return Json(data);
         }

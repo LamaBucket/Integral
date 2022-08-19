@@ -36,7 +36,7 @@ namespace Integral.RestApi.Controllers
             IEnumerable<Meeting>? meetings = await _meetingsDataService.GetAllInGroup(groupId);
 
             if (meetings is null)
-                return NotFound();
+                return NoContent();
 
             return Json(meetings);
         }

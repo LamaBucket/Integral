@@ -30,7 +30,7 @@ namespace Integral.RestApi.Controllers
                 data = await _studentsDataService.Get(id.Value);
 
             if (data is null)
-                return NotFound();
+                return NoContent();
             else
                 return Json(data);
         }
@@ -42,12 +42,8 @@ namespace Integral.RestApi.Controllers
             if (!await _studentsDataService.ItemExists(id))
                 return BadRequest(ApiErrorCodes.StudentNotExist);
 
-            if (await _studentsDataService.Delete(id))
-            {
-                return Ok();
-            }
 
-            return StatusCode(500);
+            return Ok(await _studentsDataService.Delete(id));
         }
 
         [Authorize(Roles = "Admin")]
