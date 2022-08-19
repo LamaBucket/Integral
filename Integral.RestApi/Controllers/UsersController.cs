@@ -57,12 +57,7 @@ namespace Integral.RestApi.Controllers
             if (!await _usersDataService.ItemExists(id))
                 return BadRequest(ApiErrorCodes.UserNotExist);
 
-            bool ok = await _usersDataService.Delete(id);
-
-            if (ok)
-                return Ok();
-
-            return StatusCode(500);
+            return Ok(await _usersDataService.Delete(id));
         }
 
         [Authorize(Roles = "Admin")]

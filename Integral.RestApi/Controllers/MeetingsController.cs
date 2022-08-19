@@ -89,10 +89,7 @@ namespace Integral.RestApi.Controllers
                     return Forbid();
             }
 
-            if (await _meetingsDataService.Delete(id))
-                return Ok();
-
-            return StatusCode(500);
+            return Ok(await _meetingsDataService.Delete(id));
         }
 
         [Authorize(Roles = "Admin, Authority, Teacher, ClassPrincipal")]

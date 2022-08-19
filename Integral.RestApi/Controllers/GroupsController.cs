@@ -78,10 +78,7 @@ namespace Integral.RestApi.Controllers
             if (User.IsInRole("Teacher") && group.LeaderId != userId)
                 return Forbid();
 
-            if (await _groupsDataService.Delete(id))
-                return Ok();
-
-            return StatusCode(500);
+            return Ok(await _groupsDataService.Delete(id));
         }
 
         [Authorize(Roles = "Admin, Teacher")]
