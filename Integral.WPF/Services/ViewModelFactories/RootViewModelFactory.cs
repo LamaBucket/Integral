@@ -13,15 +13,17 @@ namespace Integral.WPF.Services.ViewModelFactories
     {
         private IAuthenticator _authenticator;
         private IUserWebDataService _userWebDataService;
+        private IStudentWebDataService _studentWebDataService;
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
 
-        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService)
+        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService)
         {
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
 
             _viewModels = new();
+            _studentWebDataService = studentWebDataService;
         }
 
         public BaseViewModel CreateViewModel(ViewModelType type)
@@ -39,7 +41,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                         _viewModels.Add(type, usersViewModel);
                         break;
                     case ViewModelType.Students:
-                        StudentsViewModel studentsViewModel = new();
+                        StudentsViewModel studentsViewModel = new(_studentWebDataService);
                         _viewModels.Add(type, studentsViewModel);
                         break;
                     case ViewModelType.Groups:
@@ -76,7 +78,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                     _viewModels.Add(type, usersViewModel);
                     break;
                 case ViewModelType.Students:
-                    StudentsViewModel studentsViewModel = new();
+                    StudentsViewModel studentsViewModel = new(_studentWebDataService);
                     _viewModels.Add(type, studentsViewModel);
                     break;
                 case ViewModelType.Groups:

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,8 +61,15 @@ namespace Integral.WPF.Services
 
             var response = await Client.SendAsync(msg);
 
-            if (!response.IsSuccessStatusCode)
-                throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.OK:
+                    break;
+                case HttpStatusCode.NoContent:
+                    return default(TResult);
+                default:
+                    throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
+            }
 
             string responseContent = await response.Content.ReadAsStringAsync();
 
