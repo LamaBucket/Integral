@@ -18,6 +18,8 @@
         public static readonly int GroupNotExist = 401;
         public static readonly int GroupAlreadyExists = 402;
         public static readonly int GroupNotHasStudents = 403;
+        public static readonly int StudentAlreadyInGroup = 404;
+        public static readonly int StudentNotInGroup = 405;
 
         public static readonly int MeetingNotExist = 501;
 

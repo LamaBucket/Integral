@@ -177,6 +177,9 @@ namespace Integral.RestApi.Controllers
             if(student is null)
                 return BadRequest(ApiErrorCodes.StudentNotExist);
 
+            if (group.Students?.Select(x => x.Id).Contains(student.Id) ?? false)
+                return BadRequest(ApiErrorCodes.StudentAlreadyInGroup);
+
             if (User.IsInRole("Teacher"))
             {
                 int userId = await _userDataService.GetId(_username);
@@ -212,6 +215,9 @@ namespace Integral.RestApi.Controllers
             if (student is null)
                 return BadRequest(ApiErrorCodes.StudentNotExist);
 
+            if (!group.Students?.Select(x => x.Id).Contains(student.Id) ?? true)
+                return BadRequest(ApiErrorCodes.StudentNotInGroup);
+
             if (User.IsInRole("Teacher"))
             {
                 int userId = await _userDataService.GetId(_username);
@@ -223,7 +229,7 @@ namespace Integral.RestApi.Controllers
             if (group.Students is null)
                 return BadRequest(ApiErrorCodes.GroupNotHasStudents);
 
-            group.Students.Remove(student);
+            group.Students.Remove(group.Students.First(x => x.Id == student.Id));
 
             Group result = await _groupsDataService.Update(groupId, group);
 

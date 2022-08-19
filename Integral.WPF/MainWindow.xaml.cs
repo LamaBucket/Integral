@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services;
+﻿using Integral.WPF.Models.Enums;
+using Integral.WPF.Services;
 using Integral.WPF.Services.Navigators;
 using Integral.WPF.Services.ViewModelFactories;
 using Integral.WPF.ViewModels;
@@ -38,6 +39,8 @@ namespace Integral.WPF
             INavigator navigator = new Navigator(vmFactory);
 
             MainViewModel vm = new(navigator);
+
+            vm.Navigator.ChangeCurrentViewModelCommand.Execute(ViewModelType.Session);
 
             DataContext = vm;
         }

@@ -106,18 +106,8 @@ namespace Integral.RestApi.Controllers
             if (await _usersDataService.HasRole(id, userRole))
                 return BadRequest(ApiErrorCodes.UserAlreadyHasRole);
 
-            UserRole role = new()
-            {
-                UserId = id,
-                Role = userRole
-            };
 
-            if (user.UserRoles is null)
-                user.UserRoles = new List<UserRole>() { role };
-            else
-                user.UserRoles.Add(role);
-
-            User result = await _usersDataService.Update(id, user);
+            User? result = await _usersDataService.AssignRole(id, userRole);
 
             return Ok(result);
 
@@ -144,9 +134,7 @@ namespace Integral.RestApi.Controllers
             if (await _groupsDataService.GetOwnedGroups(id, role.Role) is not null)
                 return BadRequest(ApiErrorCodes.UserHasGroups);
 
-            user.UserRoles.Remove(role);
-
-            User result = await _usersDataService.Update(id, user);
+            User? result = await _usersDataService.UnassignRole(id, userRole);
 
             return Ok(result);
         }

@@ -30,7 +30,9 @@ namespace Integral.EntityFramework.Services
                 if (type is null)
                     return null;
 
-                return await context.Groups.Include(x => x.Leader).Include(x => x.Students).Where(x => x.LeaderId == leaderId && x.GroupType == type.Value).ToListAsync();
+                IEnumerable<Group> groups = await context.Groups.Include(x => x.Leader).Include(x => x.Students).Where(x => x.LeaderId == leaderId && x.GroupType == type.Value).ToListAsync();
+
+                return groups.Count() > 0 ? groups : null;
             }
         }
 

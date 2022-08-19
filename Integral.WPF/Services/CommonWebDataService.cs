@@ -30,7 +30,7 @@ namespace Integral.WPF.Services
 
         public async Task<bool> Delete(int id)
         {
-            Uri uri = new(DeleteEndpoint + $"Id={id}", UriKind.Relative);
+            Uri uri = new(DeleteEndpoint + $"?Id={id}", UriKind.Relative);
 
             return await SendRequest<bool>(uri, HttpMethod.Delete);
         }
@@ -61,7 +61,7 @@ namespace Integral.WPF.Services
             var response = await Client.SendAsync(msg);
 
             if (!response.IsSuccessStatusCode)
-                throw new WebRequestException(response.Content.ToString(), response.StatusCode);
+                throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
 
             TResult? result = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
 
