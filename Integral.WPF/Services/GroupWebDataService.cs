@@ -2,6 +2,7 @@
 using Integral.Domain.Models.Enums;
 using Integral.WPF.Services.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,8 +12,12 @@ namespace Integral.WPF.Services
     {
         protected override string ControllerName => "Groups";
 
-        private string StudentPath => ControllerName + "/Students";
-        private string LeaderPath => ControllerName;
+
+        private string StudentEndpoint => ControllerName + "/Students";
+
+        private string LeaderEndpoint => ControllerName;
+
+        private string UsersEndpoint => ControllerName + "/Users";
 
 
         public GroupWebDataService(HttpClient client) : base(client)
@@ -21,14 +26,14 @@ namespace Integral.WPF.Services
 
         public async Task<bool> AssignStudent(int groupId, int studentId)
         {
-            Uri uri = new(StudentPath + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
+            Uri uri = new(StudentEndpoint + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
 
             return await SendRequest<bool>(uri, HttpMethod.Post);
         }
 
         public async Task<bool> ChangeLeader(int groupId, int leaderId)
         {
-            Uri uri = new(LeaderPath + $"?groupId={groupId}&leaderId={leaderId}", UriKind.Relative);
+            Uri uri = new(LeaderEndpoint + $"?groupId={groupId}&leaderId={leaderId}", UriKind.Relative);
 
             return await SendRequest<bool>(uri, HttpMethod.Put);
         }
@@ -42,9 +47,16 @@ namespace Integral.WPF.Services
 
         public async Task<bool> UnassignStudent(int groupId, int studentId)
         {
-            Uri uri = new(StudentPath + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
+            Uri uri = new(StudentEndpoint + $"?groupId={groupId}&studentId={studentId}", UriKind.Relative);
 
             return await SendRequest<bool>(uri, HttpMethod.Delete);
+        }
+
+        public async Task<IEnumerable<User>?> GetUsersThatCanOwnGroup(GroupType type)
+        {
+            Uri uri = new(UsersEndpoint + $"?type={type}");
+
+            return await SendRequest<IEnumerable<User>>(uri, HttpMethod.Get);
         }
     }
 }
