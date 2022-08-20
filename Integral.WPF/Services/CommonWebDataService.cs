@@ -33,7 +33,7 @@ namespace Integral.WPF.Services
         {
             Uri uri = new(DeleteEndpoint + $"?Id={id}", UriKind.Relative);
 
-            return await SendRequest<bool>(uri, HttpMethod.Delete);
+            return await SendRequest<bool>(uri, HttpMethod.Delete, false);
         }
 
         public async Task<T?> Get(int id)
@@ -51,7 +51,7 @@ namespace Integral.WPF.Services
         }
 
 
-        protected async Task<TResult?> SendRequest<TResult>(Uri uri, HttpMethod method)
+        protected async Task<TResult?> SendRequest<TResult>(Uri uri, HttpMethod method, bool HasResponseBody)
         {
             HttpRequestMessage msg = new()
             {
@@ -71,14 +71,21 @@ namespace Integral.WPF.Services
                     throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
             }
 
-            string responseContent = await response.Content.ReadAsStringAsync();
+            TResult? result = default(TResult);
 
-            TResult? result = JsonConvert.DeserializeObject<TResult>(responseContent);
+            if (HasResponseBody)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
 
+                result = JsonConvert.DeserializeObject<TResult>(responseContent);
+            }
+            
             msg.Dispose();
 
             return result;
         }
+
+        protected async Task<TResult?> SendRequest<TResult>(Uri uri, HttpMethod method) => await SendRequest<TResult>(uri, method, true);
 
         public CommonWebDataService(HttpClient client)
         {
