@@ -90,9 +90,10 @@ namespace Integral.WPF.Controls
 
         private void btnOkModal_Click(object sender, RoutedEventArgs e)
         {
-            IsOpen = false;
+            if (Command.CanExecute(CommandParameter))
+                Command.Execute(CommandParameter);
 
-            e.Handled = true;
+            IsOpen = false;
         }
 
         private void btnCancelModal_Click(object sender, RoutedEventArgs e)
