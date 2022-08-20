@@ -22,6 +22,7 @@ namespace Integral.WPF.ViewModels
             DeleteUserCommand = new DeleteItemCommand<User>(_userWebDataService);
             AddUserRoleCommand = new AddUserRoleCommand(_userWebDataService, this);
             RemoveUserRoleCommand = new RemoveUserRoleCommand(_userWebDataService, this);
+            CreateUserCommand = new CreateUserCommand(_userWebDataService, this);
         }
 
 
@@ -36,6 +37,8 @@ namespace Integral.WPF.ViewModels
         public ICommand AddUserRoleCommand { get; set; }
 
         public ICommand RemoveUserRoleCommand { get; set; }
+
+        public ICommand CreateUserCommand { get; set; }
 
 
         public IEnumerable<Role>? UserRoles => SelectedUser?.UserRoles?.Select(x => x.Role);
@@ -132,6 +135,45 @@ namespace Integral.WPF.ViewModels
             }
         }
 
+
+
+        private string _createUserUsername = String.Empty;
+
+        public string CreateUserUsername
+        {
+            get => _createUserUsername;
+            set
+            {
+                _createUserUsername = value;
+                OnPropertyChanged(nameof(CreateUserUsername));
+            }
+        }
+
+
+        private string _createUserPassword = String.Empty;
+
+        public string CreateUserPassword
+        {
+            get => _createUserPassword;
+            set
+            {
+                _createUserPassword = value;
+                OnPropertyChanged(nameof(CreateUserPassword));
+            }
+        }
+
+
+        private bool _createDialogOpen;
+
+        public bool CreateDialogOpen
+        {
+            get => _createDialogOpen;
+            set
+            {
+                _createDialogOpen = value;
+                OnPropertyChanged(nameof(CreateDialogOpen));
+            }
+        }
 
 
     }
