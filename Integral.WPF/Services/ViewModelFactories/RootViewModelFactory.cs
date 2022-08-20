@@ -14,16 +14,18 @@ namespace Integral.WPF.Services.ViewModelFactories
         private IAuthenticator _authenticator;
         private IUserWebDataService _userWebDataService;
         private IStudentWebDataService _studentWebDataService;
+        private IGroupWebDataService _groupWebDataService;
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
 
-        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService)
+        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService, IGroupWebDataService groupWebDataService)
         {
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
 
             _viewModels = new();
             _studentWebDataService = studentWebDataService;
+            _groupWebDataService = groupWebDataService;
         }
 
         public BaseViewModel CreateViewModel(ViewModelType type)
@@ -45,7 +47,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                         _viewModels.Add(type, studentsViewModel);
                         break;
                     case ViewModelType.Groups:
-                        GroupsViewModel groupsViewModel = new();
+                        GroupsViewModel groupsViewModel = new(_groupWebDataService);
                         _viewModels.Add(type, groupsViewModel);
                         break;
                     case ViewModelType.Meetings:
@@ -82,7 +84,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                     _viewModels.Add(type, studentsViewModel);
                     break;
                 case ViewModelType.Groups:
-                    GroupsViewModel groupsViewModel = new();
+                    GroupsViewModel groupsViewModel = new(_groupWebDataService);
                     _viewModels.Add(type, groupsViewModel);
                     break;
                 case ViewModelType.Meetings:
