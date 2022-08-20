@@ -5,6 +5,8 @@ namespace Integral.Domain.Services
 {
     public interface IGroupDataService : IDataService<Group>
     {
+        Task<IEnumerable<User>?> GetUsersThatCanOwnGroup(GroupType type);
+
         Task<IEnumerable<Group>?> GetOwnedGroups(int leaderId, Role role);
 
         Task<Group?> Get(string name, int grade);

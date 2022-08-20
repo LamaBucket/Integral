@@ -63,6 +63,16 @@ namespace Integral.RestApi.Controllers
                 return Json(data);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Users")]
+        public async Task<ActionResult> GetUsersThatCanOwnGroup(GroupType type)
+        {
+            IEnumerable<User>? users = await _groupsDataService.GetUsersThatCanOwnGroup(type);
+
+            return users is null ? NoContent() : Json(users);
+        }
+
+
         [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete]
         public async Task<ActionResult> DeleteGroup(int id)

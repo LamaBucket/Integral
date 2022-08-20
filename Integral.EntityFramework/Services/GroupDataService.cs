@@ -51,5 +51,29 @@ namespace Integral.EntityFramework.Services
                 return await context.Groups.Include(x => x.Leader).Include(x => x.Students).FirstOrDefaultAsync(e => e.Name == name && e.Grade == grade);
             }
         }
+
+        public async Task<IEnumerable<User>?> GetUsersThatCanOwnGroup(GroupType type)
+        {
+            using (IntegralDbContext context = _contextFactory.CreateDbContext())
+            {
+                Role requiredRole;
+
+                switch (type)
+                {
+                    case GroupType.Class:
+                        requiredRole = Role.ClassPrincipal;
+                        break;
+                    case GroupType.ElectiveGroup:
+                        requiredRole = Role.Teacher;
+                        break;
+                    default:
+                        return null;
+                }
+
+                List<User> users = await context.Users.Include(x => x.UserRoles).Where(x => x.UserRoles != null && x.UserRoles.Any(x => x.Role == requiredRole)).ToListAsync();
+
+                return users.Count > 0 ? users : null;
+            }
+        }
     }
 }
