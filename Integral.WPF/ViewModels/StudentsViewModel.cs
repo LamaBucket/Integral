@@ -24,11 +24,14 @@ namespace Integral.WPF.ViewModels
             TryRefreshStudents();
 
             DeleteStudentCommand = new DeleteItemCommand<Student>(_studentWebDataService);
-            ChangeStudentNamesCommand = new ChangeStudentNamesCommand(_studentWebDataService, this); 
+            ChangeStudentNamesCommand = new ChangeStudentNamesCommand(_studentWebDataService, this);
+            CreateStudentCommand = new CreateStudentCommand(_studentWebDataService, this);
         }
 
         public ICommand DeleteStudentCommand { get; init; }
         public ICommand ChangeStudentNamesCommand { get; init; }
+
+        public ICommand CreateStudentCommand { get; set; }
 
 
         private IEnumerable<Student>? _students;
@@ -86,5 +89,58 @@ namespace Integral.WPF.ViewModels
                 OnPropertyChanged(nameof(SelectedStudent));
             }
         }
+
+
+        private bool _createDialogOpen;
+
+        public bool CreateDialogOpen
+        {
+            get => _createDialogOpen;
+            set
+            {
+                _createDialogOpen = value;
+                OnPropertyChanged(nameof(CreateDialogOpen));
+            }
+        }
+
+
+        private string _createStudentFirstName = String.Empty;
+
+        public string CreateStudentFirstName
+        {
+            get => _createStudentFirstName;
+            set
+            {
+                _createStudentFirstName = value;
+                OnPropertyChanged(nameof(CreateStudentFirstName));
+            }
+        }
+
+
+        private string _createStudentSecondName = String.Empty;
+
+        public string CreateStudentSecondName
+        {
+            get => _createStudentSecondName;
+            set
+            {
+                _createStudentSecondName = value;
+                OnPropertyChanged(nameof(CreateStudentSecondName));
+            }
+        }
+
+
+        private string _createStudentThirdName = String.Empty;
+
+        public string CreateStudentThirdName
+        {
+            get => _createStudentThirdName;
+            set
+            {
+                _createStudentThirdName = value;
+                OnPropertyChanged(nameof(CreateStudentThirdName));
+            }
+        }
+
     }
 }
