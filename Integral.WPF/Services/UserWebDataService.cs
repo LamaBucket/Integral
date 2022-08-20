@@ -37,7 +37,7 @@ namespace Integral.WPF.Services
 
         public async Task<User?> CreateUser(string username, string password)
         {
-            Uri uri = new(CreateEndpoint + $"?id={username}&password={password}", UriKind.Relative);
+            Uri uri = new(CreateEndpoint + $"?username={username}&password={password}", UriKind.Relative);
 
             return await SendRequest<User>(uri, HttpMethod.Post);
         }
