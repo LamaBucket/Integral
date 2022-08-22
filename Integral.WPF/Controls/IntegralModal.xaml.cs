@@ -39,7 +39,22 @@ namespace Integral.WPF.Controls
 
         // Using a DependencyProperty as the backing store for IsOpen.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsOpenProperty =
-            DependencyProperty.Register("IsOpen", typeof(bool), typeof(IntegralModal), new PropertyMetadata(false));
+            DependencyProperty.Register("IsOpen", typeof(bool), typeof(IntegralModal), new PropertyMetadata(false, IsOpenChanged));
+
+        private static void IsOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if(d is IntegralModal modal && e.NewValue is bool flag)
+            {
+                if (flag)
+                {
+                    modal.RaiseEvent(new(ModalOpenEvent, d));
+                }
+                else
+                {
+                    modal.RaiseEvent(new(ModalCloseEvent, d));
+                }
+            }
+        }
 
 
 
@@ -74,6 +89,34 @@ namespace Integral.WPF.Controls
         public static readonly DependencyProperty CommandParameterProperty =
             DependencyProperty.Register("CommandParameter", typeof(object), typeof(IntegralModal), new PropertyMetadata());
 
+
+        // Register a custom routed event using the Bubble routing strategy.
+        public static readonly RoutedEvent ModalOpenEvent = EventManager.RegisterRoutedEvent(
+            name: "ModalOpenEvent",
+            routingStrategy: RoutingStrategy.Direct,
+            handlerType: typeof(RoutedEventHandler),
+            ownerType: typeof(IntegralModal));
+
+        // Provide CLR accessors for adding and removing an event handler.
+        public event RoutedEventHandler ModalOpen
+        {
+            add { AddHandler(ModalOpenEvent, value); }
+            remove { RemoveHandler(ModalOpenEvent, value); }
+        }
+
+
+        public static readonly RoutedEvent ModalCloseEvent = EventManager.RegisterRoutedEvent(
+            name: "ModalCloseEvent",
+            routingStrategy: RoutingStrategy.Direct,
+            handlerType: typeof(RoutedEventHandler),
+            ownerType: typeof(IntegralModal));
+
+        // Provide CLR accessors for adding and removing an event handler.
+        public event RoutedEventHandler ModalClose
+        {
+            add { AddHandler(ModalCloseEvent, value); }
+            remove { RemoveHandler(ModalCloseEvent, value); }
+        }
 
 
         public IntegralModal()
