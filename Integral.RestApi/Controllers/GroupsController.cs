@@ -164,6 +164,7 @@ namespace Integral.RestApi.Controllers
 
 
             group.LeaderId = leaderId;
+            group.Leader = null;
 
             Group result = await _groupsDataService.Update(groupId, group);
 
