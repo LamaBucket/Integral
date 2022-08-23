@@ -122,5 +122,26 @@ namespace Integral.EntityFramework.Services
                 return true;
             }
         }
+
+        public async Task<Group?> ChangeLeader(int groupId, int leaderId)
+        {
+            using (IntegralDbContext context = _contextFactory.CreateDbContext())
+            {
+                Group? group = await context.Groups.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == groupId);
+
+                if (group is null)
+                    return null;
+
+                group.LeaderId = leaderId;
+
+                context.Groups.Update(group);
+
+                await context.SaveChangesAsync();
+
+                group = await context.Groups.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == groupId);
+
+                return group;
+            }
+        }
     }
 }

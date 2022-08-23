@@ -9,6 +9,8 @@ namespace Integral.Domain.Services
 
         Task<bool> UnassignStudent(int groupId, int studentId);
 
+        Task<Group?> ChangeLeader(int groupId, int leaderId);
+
         Task<IEnumerable<User>?> GetUsersThatCanOwnGroup(GroupType type);
 
         Task<IEnumerable<Group>?> GetOwnedGroups(int leaderId, Role role);

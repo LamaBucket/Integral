@@ -163,10 +163,7 @@ namespace Integral.RestApi.Controllers
                 return Forbid();
 
 
-            group.LeaderId = leaderId;
-            group.Leader = null;
-
-            Group result = await _groupsDataService.Update(groupId, group);
+            Group? result = await _groupsDataService.ChangeLeader(groupId, leaderId);
 
             return Ok(result);
         }
