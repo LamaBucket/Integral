@@ -6,9 +6,11 @@
              xmlns:local="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="225" d:DesignWidth="400"
-             MaxHeight="225"
-             MaxWidth="400"
-             x:Name="root">
+             MaxHeight="450"
+             MaxWidth="800"
+             x:Name="root"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
