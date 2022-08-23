@@ -75,5 +75,52 @@ namespace Integral.EntityFramework.Services
                 return users.Count > 0 ? users : null;
             }
         }
+
+        public async Task<bool> AssignStudent(int groupId, int studentId)
+        {
+            using (IntegralDbContext context = _contextFactory.CreateDbContext())
+            {
+                Group? group = await context.Groups.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == groupId);
+
+                if (group is null)
+                    return false;
+
+                Student? student = context.Students?.FirstOrDefault(x => x.Id == studentId);
+
+                if (student is null)
+                    return false;
+
+                if (group.Students is null)
+                    group.Students = new List<Student>() { student };
+                else
+                    group.Students.Add(student);
+
+                await context.SaveChangesAsync();
+                
+                return true;
+            }
+        }
+
+        public async Task<bool> UnassignStudent(int groupId, int studentId)
+        {
+            using (IntegralDbContext context = _contextFactory.CreateDbContext())
+            {
+                Group? group = await context.Groups.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == groupId);
+
+                if (group is null)
+                    return false;
+
+                Student? student = group.Students?.FirstOrDefault(x => x.Id == studentId);
+
+                if (student is null)
+                    return true;
+
+                group.Students?.Remove(student);
+
+                await context.SaveChangesAsync();
+
+                return true;
+            }
+        }
     }
 }

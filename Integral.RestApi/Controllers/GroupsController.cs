@@ -196,18 +196,7 @@ namespace Integral.RestApi.Controllers
                     return Forbid();
             }
 
-            if (group.Students is null)
-            {
-                group.Students = new List<Student>() { student };
-            }
-            else
-            {
-                group.Students.Add(student);
-            }
-
-            Group result = await _groupsDataService.Update(groupId, group);
-
-            return Ok(result);
+            return Ok(await _groupsDataService.AssignStudent(groupId, studentId));
         }
 
         [Authorize(Roles = "Admin, Teacher")]
@@ -237,11 +226,7 @@ namespace Integral.RestApi.Controllers
             if (group.Students is null)
                 return BadRequest(ApiErrorCodes.GroupNotHasStudents);
 
-            group.Students.Remove(group.Students.First(x => x.Id == student.Id));
-
-            Group result = await _groupsDataService.Update(groupId, group);
-
-            return Ok(result);
+            return Ok(await _groupsDataService.UnassignStudent(groupId, studentId));
         }
     }
 }
