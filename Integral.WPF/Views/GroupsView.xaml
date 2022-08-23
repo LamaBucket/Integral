@@ -15,12 +15,12 @@
                                 ModalHeaderString="Create Group"
                                 Command="{Binding CreateGroupCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
-                <Grid>
+                <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -28,45 +28,64 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" 
+                    <Label Grid.Column="0" 
                                Grid.Row="0" 
-                               Text="Name"/>
+                               Content="Name"
+                           Style="{StaticResource LabelDefault2}"
+                           Margin="0 0 0 10"/>
 
                     <TextBox Grid.Column="1"
                              Grid.Row="0"
-                             Text="{Binding CreateGroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding CreateGroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 10"/>
 
-                    <TextBlock Grid.Column="0" 
+                    <Label Grid.Column="0" 
                                Grid.Row="1" 
-                               Text="Grade"/>
+                               Content="Grade"
+                           Style="{StaticResource LabelDefault2}"
+                           Margin="0 0 0 10"/>
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="1"
                               ItemsSource="{Binding Grades, Mode=OneTime}"
-                              SelectedValue="{Binding CreateGroupGrade, Mode=TwoWay}"/>
+                              SelectedValue="{Binding CreateGroupGrade, Mode=TwoWay}"
+                              Margin="0 0 0 10"/>
 
-                    <TextBlock Grid.Column="0" 
+                    <Label Grid.Column="0" 
                                Grid.Row="2" 
-                               Text="Type"/>
+                               Content="Type"
+                           Style="{StaticResource LabelDefault2}"
+                           Margin="0 0 0 10"/>
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="2"
                               ItemsSource="{Binding GroupTypes, Mode=OneTime}"
-                              SelectedValue="{Binding CreateGroupGroupType, Mode=TwoWay}"/>
+                              SelectedValue="{Binding CreateGroupGroupType, Mode=TwoWay}"
+                              Margin="0 0 0 10"/>
 
-                    <TextBlock Grid.Column="0" 
+                    <Label Grid.Column="0" 
                                Grid.Row="3" 
-                               Text="Leader"/>
+                               Content="Leader"
+                           Style="{StaticResource LabelDefault2}"
+                           Margin="0 0 0 10"/>
 
-                    <StackPanel Grid.Column="1"
+                    <Grid Grid.Column="1"
                                 Grid.Row="3"
-                                Orientation="Horizontal">
+                                Margin="0 0 0 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
                         
-                        <TextBlock Text="{Binding SetLeaderSelectedUser.Username, Mode=OneWay}"/>
+                        <Label Grid.Column="0" 
+                               Content="{Binding SetLeaderSelectedUser.Username, Mode=OneWay}"
+                               Style="{StaticResource LabelDefault2}"/>
                         
-                        <ToggleButton Content="..."
+                        <ToggleButton Grid.Column="1" 
+                                      Content="..."
                                       IsChecked="{Binding SetLeaderDialogOpen, Mode=TwoWay}"/>
-                    </StackPanel>
+                    </Grid>
                     
 
                 </Grid>
@@ -79,7 +98,9 @@
                                 Command="{Binding SetLeaderCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
                 <ListBox ItemsSource="{Binding SetLeaderUsers, Mode=OneWay}"
-                         SelectedValue="{Binding SetLeaderSelectedUser, Mode=TwoWay}">
+                         SelectedValue="{Binding SetLeaderSelectedUser, Mode=TwoWay}"
+                         BorderThickness="0"
+                         Margin="10">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Username}"/>
@@ -102,46 +123,53 @@
                                 ModalHeaderString="Modify Students"
                                 Command="{Binding ModifyStudentsCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
-                <Grid>
-
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <ListBox Grid.Column="0" 
-                             ItemsSource="{Binding ModifyStudentsAssignedStudents, Mode=OneWay}"
-                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding FirstName}"/>
-                                    <TextBlock Text="{Binding SecondName}"/>
-                                    <TextBlock Text="{Binding ThirdName}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <ScrollViewer Grid.Column="0"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ListBox ItemsSource="{Binding ModifyStudentsAssignedStudents, Mode=OneWay}"
+                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}"
+                             Style="{StaticResource ListboxDefault2}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding FirstName}"/>
+                                        <Label Content="{Binding SecondName}"/>
+                                        <Label Content="{Binding ThirdName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    
 
-                    <StackPanel Grid.Column="1">
+                    <StackPanel Grid.Column="1"
+                                Margin="5 0">
                         <Button Content="Add" Command="{Binding AssignStudentCommand, Mode=OneTime}"/>
                         <Button Content="Remove" Command="{Binding UnassignStudentCommand, Mode=OneTime}"/>
                     </StackPanel>
 
-                    <ListBox Grid.Column="2" 
-                             ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
+                    <ScrollViewer Grid.Column="2" 
+                                  VerticalScrollBarVisibility="Auto">
+                        <ListBox ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
                              SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding FirstName}"/>
-                                    <TextBlock Text="{Binding SecondName}"/>
-                                    <TextBlock Text="{Binding ThirdName}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding FirstName}"/>
+                                        <Label Content="{Binding SecondName}"/>
+                                        <Label Content="{Binding ThirdName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    
                 </Grid>
             </controls:IntegralModal.ModalContent>
 

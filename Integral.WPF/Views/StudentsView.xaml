@@ -14,41 +14,50 @@
                                 Command="{Binding CreateStudentCommand}">
             
             <controls:IntegralModal.ModalContent>
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Column="0" 
+                    <Label Grid.Column="0" 
                            Grid.Row="0" 
-                           Text="First Name"/>
+                           Content="First Name"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource LabelDefault2}"/>
 
                     <TextBox Grid.Column="1" 
-                         Grid.Row="0" 
-                         Text="{Binding CreateStudentFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Grid.Row="0" 
+                             Text="{Binding CreateStudentFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 10"/>
 
-                    <TextBlock Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="1"
-                           Text="Second Name"/>
+                           Content="Second Name"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource LabelDefault2}"/>
 
                     <TextBox Grid.Column="1"
-                         Grid.Row="1"
-                         Text="{Binding CreateStudentSecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Grid.Row="1"
+                             Text="{Binding CreateStudentSecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 10"/>
 
-                    <TextBlock Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="2"
-                           Text="Third Name"/>
+                           Content="Third Name"
+                           Margin="0 0 0 10"
+                           Style="{StaticResource LabelDefault2}"/>
 
                     <TextBox Grid.Column="1" 
-                         Grid.Row="2"
-                         Text="{Binding CreateStudentThirdName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Grid.Row="2"
+                             Text="{Binding CreateStudentThirdName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 10"/>
 
                 </Grid>
             </controls:IntegralModal.ModalContent>
