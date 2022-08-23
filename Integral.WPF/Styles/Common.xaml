@@ -19,6 +19,8 @@
 
     <!--Buttons-->    
     <Style TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
         <Setter Property="Background" Value="{StaticResource BrushPrimary3}"/>
 
@@ -45,6 +47,8 @@
     </Style>
 
     <Style x:Key="SecondaryButton" TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
         <Setter Property="Background" Value="{StaticResource BrushPrimary6}"/>
 
@@ -69,35 +73,29 @@
 
     </Style>
 
-    <!--TextBlocks-->
-    <Style TargetType="TextBlock">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-
-    <Style x:Key="DataTextBlock" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{StaticResource BrushPrimary5}"/>
-    </Style>
-
     <!--TextBoxes-->
     <Style TargetType="TextBox">
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="BorderBrush" Value="{StaticResource BrushPrimary1}"/>
         <Setter Property="MinWidth" Value="175"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
+    
+    <!--Listboxes-->
     <Style x:Key="ListboxDefault2" TargetType="ListBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="MinWidth" Value="150"/>
         <Setter Property="MinHeight" Value="150"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
     </Style>
 
-
+    <!--Labels-->
     <Style TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -105,9 +103,12 @@
     </Style>
 
     <Style x:Key="LabelDefault2" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Background" Value="{StaticResource BrushPrimary5}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
+    
+    
 </ResourceDictionary>

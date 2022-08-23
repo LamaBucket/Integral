@@ -10,30 +10,34 @@
 
     <WrapPanel Orientation="Vertical">
 
-        <TextBlock Text="Server Address"/>
+        <Label Content="Server Address"
+               HorizontalContentAlignment="Left"/>
 
         <TextBox Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Width="300"
                      Margin="0 5 0 0"/>
 
 
-        <TextBlock Text="Username"
-                   Margin="0 15 0 0"/>
+        <Label Content="Username"
+                   Margin="0 15 0 0"
+               HorizontalContentAlignment="Left"/>
 
         <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Width="300"
                      Margin="0 5 0 0"/>
 
 
-        <TextBlock Text="Password"
-                       Margin="0 5 0 0"/>
+        <Label Content="Password"
+                       Margin="0 5 0 0"
+               HorizontalContentAlignment="Left"/>
 
         <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Width="300"
                      Margin="0 5 0 0"/>
 
-        <TextBlock Text="Role"
-                   Margin="0 15 0 0"/>
+        <Label Content="Role"
+                   Margin="0 15 0 0"
+               HorizontalContentAlignment="Left"/>
 
         <ComboBox SelectedItem="{Binding UserRole, Mode=TwoWay}"
                       ItemsSource="{Binding UserRoles, Mode=OneTime}"

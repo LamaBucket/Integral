@@ -6,6 +6,7 @@
         
         <Setter Property="Padding" Value="10 5"/>
         <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
 
         <Setter Property="Template">
             <Setter.Value>

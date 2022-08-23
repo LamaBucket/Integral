@@ -234,49 +234,57 @@
                                    Grid.Row="0" 
                                    Content="Name"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="1" 
                                    Grid.Row="0" 
                                    Content="{Binding SelectedGroup.Name}"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="0"
                                    Grid.Row="1"
                                    Content="Grade"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="1"
                                    Grid.Row="1"
                                    Content="{Binding SelectedGroup.Grade}"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="0"
                                    Grid.Row="2"
                                    Content="Group Type"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="1" 
                                    Grid.Row="2"
                                    Content="{Binding SelectedGroup.GroupType}"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 2"/>
+                                   Margin="0 0 0 2"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="0"
                                    Grid.Row="3"
                                    Content="Leader"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 5"/>
+                                   Margin="0 0 0 5"
+                                   IsEnabled="False"/>
 
                             <Label Grid.Column="1" 
                                    Grid.Row="3"
                                    Content="{Binding SelectedGroup.Leader.Username}"
                                    Style="{StaticResource LabelDefault2}"
-                                   Margin="0 0 0 5"/>
+                                   Margin="0 0 0 5"
+                                   IsEnabled="False"/>
                         </Grid>
 
                         <Grid Grid.Row="1"
