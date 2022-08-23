@@ -86,13 +86,16 @@
                     </Grid.ColumnDefinitions>
 
                     <ListBox Grid.Column="0"
-                     ItemsSource="{Binding Students, Mode=OneWay}"
-                     SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
-                     BorderThickness="0">
+                             ItemsSource="{Binding Students, Mode=OneWay}"
+                             SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
+                             BorderThickness="0"
+                             Margin="2">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding FirstName}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding FirstName}"/>
+                                    <Label Content="{Binding SecondName}"/>
+                                    <Label Content="{Binding ThirdName}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -104,9 +107,18 @@
                           Background="{StaticResource BrushPrimary1}"
                           Width="1"/>
 
-                    <StackPanel Grid.Column="2">
+                    <Grid Grid.Column="2"
+                          Background="{StaticResource BrushPrimary2}"
+                          Margin="5">
 
-                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0"
+                              Margin="5 0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -114,38 +126,79 @@
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto" MinWidth="150"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" 
+                            <Label Grid.Column="0" 
                                    Grid.Row="0" 
-                                   Text="First Name"/>
+                                   Content="First Name"
+                                   Style="{StaticResource LabelDefault2}"
+                                   Margin="0 5 0 2"/>
 
                             <TextBox Grid.Column="1" 
-                                 Grid.Row="0" 
-                                 Text="{Binding SelectedStudent.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Grid.Row="0" 
+                                     Text="{Binding SelectedStudent.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0 5 0 2"
+                                     BorderThickness="0"/>
 
-                            <TextBlock Grid.Column="0"
+                            <Label Grid.Column="0"
                                    Grid.Row="1"
-                                   Text="Second Name"/>
+                                   Content="Second Name"
+                                   Style="{StaticResource LabelDefault2}"
+                                   Margin="0 0 0 2"/>
 
                             <TextBox Grid.Column="1"
-                                 Grid.Row="1"
-                                 Text="{Binding SelectedStudent.SecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Grid.Row="1"
+                                     Text="{Binding SelectedStudent.SecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0 0 0 2"
+                                     BorderThickness="0"/>
 
-                            <TextBlock Grid.Column="0"
+                            <Label Grid.Column="0"
                                    Grid.Row="2"
-                                   Text="Third Name"/>
+                                   Content="Third Name"
+                                   Style="{StaticResource LabelDefault2}"
+                                   Margin="0 0 0 5"/>
 
                             <TextBox Grid.Column="1" 
-                                 Grid.Row="2"
-                                 Text="{Binding SelectedStudent.ThirdName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Grid.Row="2"
+                                     Text="{Binding SelectedStudent.ThirdName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0 0 0 5"
+                                     BorderThickness="0"/>
                         </Grid>
 
-                        <Button Content="Save Changes"
-                            Command="{Binding ChangeStudentNamesCommand}"/>
-                    </StackPanel>
+                        <Grid Grid.Row="1" Margin="5 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Content="Student`s Groups:" 
+                                   Style="{StaticResource LabelDefault2}"
+                                   HorizontalContentAlignment="Center"/>
+
+                            <ListBox Grid.Row="1" 
+                                     ItemsSource="{Binding SelectedStudent.Groups}"
+                                     BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="{Binding Name}"/>
+                                            <Label Content="{Binding Grade}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+
+                        <Button Grid.Row="2" 
+                                Content="Save Changes"
+                                Command="{Binding ChangeStudentNamesCommand}"
+                                HorizontalAlignment="Right"
+                                Padding="5"
+                                Margin="0 2 2 2"/>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
