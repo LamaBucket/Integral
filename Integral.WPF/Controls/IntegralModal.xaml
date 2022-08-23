@@ -36,8 +36,9 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="{Binding ModalHeaderString, ElementName=root}"/>
+                    <Label Grid.Column="0"
+                           Content="{Binding ModalHeaderString, ElementName=root}"
+                           Foreground="{StaticResource BrushPrimary5}"/>
 
                     <Button Grid.Column="2" 
                             Padding="10 5"
