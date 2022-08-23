@@ -161,7 +161,8 @@
                     <ScrollViewer Grid.Column="2" 
                                   VerticalScrollBarVisibility="Auto">
                         <ListBox ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
-                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}">
+                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}"
+                                 Style="{StaticResource ListboxDefault2}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
