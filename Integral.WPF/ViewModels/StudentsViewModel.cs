@@ -3,6 +3,7 @@ using Integral.WPF.Commands;
 using Integral.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,9 +35,9 @@ namespace Integral.WPF.ViewModels
         public ICommand CreateStudentCommand { get; set; }
 
 
-        private IEnumerable<Student>? _students;
+        private ObservableCollection<Student>? _students;
 
-        public IEnumerable<Student>? Students
+        public ObservableCollection<Student>? Students
         {
             get => _students;
             set
@@ -72,7 +73,7 @@ namespace Integral.WPF.ViewModels
 
             lock (_studentsLock)
             {
-                Students = students;
+                Students = new(students);
             }
         }
 

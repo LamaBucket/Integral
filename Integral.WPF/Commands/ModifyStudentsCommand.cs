@@ -39,15 +39,24 @@ namespace Integral.WPF.Commands
                 IEnumerable<Student> removedStudents = ViewModel.SelectedGroup.Students.Except(ViewModel.ModifyStudentsAssignedStudents);
                 IEnumerable<Student> addedStudents = ViewModel.ModifyStudentsAssignedStudents.Except(ViewModel.SelectedGroup.Students);
 
+                ICollection<Student> resultCollection = new List<Student>(ViewModel.SelectedGroup.Students);
+
                 foreach(Student student in removedStudents)
                 {
                     GroupWebDataService.UnassignStudent(groupId, student.Id);
+                    
+                    resultCollection.Remove(student);
                 }
 
                 foreach (Student student in addedStudents)
                 {
                     GroupWebDataService.AssignStudent(groupId, student.Id);
+
+                    resultCollection.Add(student);
                 }
+
+                ViewModel.SelectedGroup.Students = resultCollection;
+                ViewModel.OnPropertyChanged(nameof(ViewModel.SelectedGroup));
             }
         }
     }

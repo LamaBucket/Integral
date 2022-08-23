@@ -127,6 +127,8 @@ namespace Integral.WPF.ViewModels
                 if (value is not null)
                     TryLoadMeetings(value.Id);
 
+                SelectedMeeting = null;
+
                 OnPropertyChanged(nameof(SelectedGroup));
             }
         }

@@ -36,6 +36,10 @@ namespace Integral.WPF.Commands
                 if (!ViewModel.CreateGroupDialogOpen && ViewModel.SelectedGroup is not null && ViewModel.SetLeaderSelectedUser is not null)
                 {
                     await GroupWebDataService.ChangeLeader(ViewModel.SelectedGroup.Id, ViewModel.SetLeaderSelectedUser.Id);
+
+                    ViewModel.SelectedGroup.Leader = ViewModel.SetLeaderSelectedUser;
+                    
+                    ViewModel.OnPropertyChanged(nameof(ViewModel.SelectedGroup));
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,16 @@ namespace Integral.WPF.Commands
 
         public async void Execute(object? parameter)
         {
-            if(ViewModel.SelectedUser is not null)
+            if(ViewModel.SelectedUser is not null && ViewModel.SelectedRoleToAdd.HasValue)
             {
-                await UserWebDataService.AddUserRole(ViewModel.SelectedUser.Id, ViewModel.SelectedRoleToAdd);
+                User? user = await UserWebDataService.AddUserRole(ViewModel.SelectedUser.Id, ViewModel.SelectedRoleToAdd.Value);
+
+                ViewModel.SelectedUser = user;
+                ViewModel.SelectedRoleToAdd = null;
+
+                ViewModel.OnPropertyChanged(nameof(ViewModel.NonUserRoles));
+                ViewModel.OnPropertyChanged(nameof(ViewModel.UserRoles));
+
             }
         }
     }

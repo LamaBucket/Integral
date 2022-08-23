@@ -4,6 +4,7 @@ using Integral.WPF.Commands;
 using Integral.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace Integral.WPF.ViewModels
 
             lock (_usersLock)
             {
-                Users = _users.ToList();
+                Users = new(_users);
             }
         }
 
@@ -77,9 +78,9 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        private List<User>? _users;
+        private ObservableCollection<User>? _users;
 
-        public List<User>? Users
+        public ObservableCollection<User>? Users
         {
             get => _users;
             set
@@ -110,9 +111,9 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        private Role _selectedRoleToAdd;
+        private Role? _selectedRoleToAdd;
 
-        public Role SelectedRoleToAdd
+        public Role? SelectedRoleToAdd
         {
             get => _selectedRoleToAdd;
             set
@@ -123,9 +124,9 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        private Role _selectedRoleToRemove;
+        private Role? _selectedRoleToRemove;
 
-        public Role SelectedRoleToRemove
+        public Role? SelectedRoleToRemove
         {
             get => _selectedRoleToRemove;
             set

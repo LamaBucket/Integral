@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,13 @@ namespace Integral.WPF.Commands
         {
             if(ViewModel.SetLeaderSelectedUser is not null)
             {
-                await GroupWebDataService.CreateGroup(ViewModel.CreateGroupName, ViewModel.CreateGroupGrade, ViewModel.SetLeaderSelectedUser.Id, ViewModel.CreateGroupGroupType);
+                Group? group = await GroupWebDataService.CreateGroup(ViewModel.CreateGroupName, ViewModel.CreateGroupGrade, ViewModel.SetLeaderSelectedUser.Id, ViewModel.CreateGroupGroupType);
+
+                if(group is not null)
+                {
+                    ViewModel.Groups?.Add(group);
+                    ViewModel.SelectedGroup = group;
+                }
             }
         }
     }

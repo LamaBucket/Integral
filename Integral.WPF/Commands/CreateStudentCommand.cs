@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,14 @@ namespace Integral.WPF.Commands
 
         public async void Execute(object? parameter)
         {
-            await StudentWebDataService.CreateStudent(ViewModel.CreateStudentFirstName, ViewModel.CreateStudentSecondName, ViewModel.CreateStudentThirdName);
+            Student? student = await StudentWebDataService.CreateStudent(ViewModel.CreateStudentFirstName, ViewModel.CreateStudentSecondName, ViewModel.CreateStudentThirdName);
+
+            if (student is not null)
+            {
+                ViewModel.Students?.Add(student);
+                ViewModel.SelectedStudent = student;
+            }
+                
         }
     }
 }

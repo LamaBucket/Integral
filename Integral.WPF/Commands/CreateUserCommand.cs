@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,13 @@ namespace Integral.WPF.Commands
 
         public async void Execute(object? parameter)
         {
-            await UserWebDataService.CreateUser(ViewModel.CreateUserUsername, ViewModel.CreateUserPassword);
+            User? user = await UserWebDataService.CreateUser(ViewModel.CreateUserUsername, ViewModel.CreateUserPassword);
+
+            if(user is not null)
+            {
+                ViewModel.Users?.Add(user);
+                ViewModel.SelectedUser = user;
+            }
         }
     }
 }

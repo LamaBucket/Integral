@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,17 @@ namespace Integral.WPF.Commands
             return true;
         }
 
-        public void Execute(object? parameter)
+        public async void Execute(object? parameter)
         {
-            if(ViewModel.SelectedUser is not null)
+            if(ViewModel.SelectedUser is not null && ViewModel.SelectedRoleToRemove.HasValue)
             {
-                UserWebDataService.RemoveUserRole(ViewModel.SelectedUser.Id, ViewModel.SelectedRoleToRemove);
+                User? user = await UserWebDataService.RemoveUserRole(ViewModel.SelectedUser.Id, ViewModel.SelectedRoleToRemove.Value);
+
+                ViewModel.SelectedUser = user;
+                ViewModel.SelectedRoleToAdd = null;
+
+                ViewModel.OnPropertyChanged(nameof(ViewModel.NonUserRoles));
+                ViewModel.OnPropertyChanged(nameof(ViewModel.UserRoles));
             }
         }
     }

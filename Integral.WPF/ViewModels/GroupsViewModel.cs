@@ -63,9 +63,9 @@ namespace Integral.WPF.ViewModels
 
 
 
-        private IEnumerable<Group>? _groups;
+        private ObservableCollection<Group>? _groups;
 
-        public IEnumerable<Group>? Groups
+        public ObservableCollection<Group>? Groups
         {
             get => _groups;
             set
@@ -248,7 +248,7 @@ namespace Integral.WPF.ViewModels
 
             lock (_groupsLock)
             {
-                Groups = groups;
+                Groups = new(groups);
             }
         }
 

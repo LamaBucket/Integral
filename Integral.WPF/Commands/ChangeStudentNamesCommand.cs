@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,14 @@ namespace Integral.WPF.Commands
         {
             if(ViewModel.SelectedStudent is not null)
             {
-                await StudentWebDataService.UpdateStudent(ViewModel.SelectedStudent.Id, ViewModel.SelectedStudent.FirstName, ViewModel.SelectedStudent.SecondName, ViewModel.SelectedStudent.ThirdName);
+                Student? student = await StudentWebDataService.UpdateStudent(ViewModel.SelectedStudent.Id, ViewModel.SelectedStudent.FirstName, ViewModel.SelectedStudent.SecondName, ViewModel.SelectedStudent.ThirdName);
+
+                if(student is not null)
+                {
+                    ViewModel.Students?.Remove(student);
+                    ViewModel.Students?.Add(student);
+                    ViewModel.SelectedStudent = student;
+                }
             }
         }
     }
