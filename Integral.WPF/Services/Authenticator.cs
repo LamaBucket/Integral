@@ -23,7 +23,7 @@ namespace Integral.WPF.Services
         {
             Client.BaseAddress = serverAddress;
 
-            string _uri = $"Session?username={username}&password={password}&role={role}";
+            string _uri = $"Session?username={username}&password={password}&userRole={role}";
 
             Uri uri = new(_uri, UriKind.Relative);
 

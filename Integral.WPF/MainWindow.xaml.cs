@@ -34,7 +34,7 @@ namespace Integral.WPF
 
             client.Timeout = TimeSpan.FromSeconds(5);
 
-            IRootViewModelFactory vmFactory = new RootViewModelFactory(new Authenticator(client), new UserWebDataService(client), new StudentWebDataService(client), new GroupWebDataService(client));
+            IRootViewModelFactory vmFactory = new RootViewModelFactory(new Authenticator(client), new UserWebDataService(client), new StudentWebDataService(client), new GroupWebDataService(client), new MeetingWebDataService(client));
 
             INavigator navigator = new Navigator(vmFactory);
 

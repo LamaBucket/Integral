@@ -15,10 +15,11 @@ namespace Integral.WPF.Services.ViewModelFactories
         private IUserWebDataService _userWebDataService;
         private IStudentWebDataService _studentWebDataService;
         private IGroupWebDataService _groupWebDataService;
+        private IMeetingWebDataService _meetingWebDataService;
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
 
-        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService, IGroupWebDataService groupWebDataService)
+        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService, IGroupWebDataService groupWebDataService, IMeetingWebDataService meetingWebDataService)
         {
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
@@ -26,6 +27,7 @@ namespace Integral.WPF.Services.ViewModelFactories
             _viewModels = new();
             _studentWebDataService = studentWebDataService;
             _groupWebDataService = groupWebDataService;
+            _meetingWebDataService = meetingWebDataService;
         }
 
         public BaseViewModel CreateViewModel(ViewModelType type)
@@ -51,7 +53,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                         _viewModels.Add(type, groupsViewModel);
                         break;
                     case ViewModelType.Meetings:
-                        MeetingsViewModel meetingsViewModel = new();
+                        MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
                         _viewModels.Add(type, meetingsViewModel);
                         break;
                     default:
@@ -88,7 +90,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                     _viewModels.Add(type, groupsViewModel);
                     break;
                 case ViewModelType.Meetings:
-                    MeetingsViewModel meetingsViewModel = new();
+                    MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
                     _viewModels.Add(type, meetingsViewModel);
                     break;
                 default:

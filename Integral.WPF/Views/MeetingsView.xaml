@@ -3,10 +3,194 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Integral.WPF.Views"
+             xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
+             d:Background="{StaticResource BrushPrimary5}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <controls:IntegralModal Panel.ZIndex="1000"
+                                IsOpen="{Binding CreateMeetingDialogOpen, Mode=TwoWay}"
+                                ModalHeaderString="Create Meeting"
+                                Command="{Binding CreateMeetingCommand, Mode=OneTime}">
+
+            <controls:IntegralModal.ModalContent>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="0"
+                               Text="Theme"/>
+
+                    <TextBox Grid.Column="1" 
+                             Grid.Row="0"
+                             Text="{Binding CreateMeetingTheme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="1"
+                               Text="Note"/>
+
+                    <TextBox Grid.Column="1" 
+                             Grid.Row="1"
+                             Text="{Binding CreateMeetingNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="2"
+                               Text="Date"/>
+
+                    <DatePicker Grid.Column="1"
+                                Grid.Row="2"
+                                SelectedDate="{Binding CreateMeetingDate, Mode=TwoWay}"/>
+                </Grid>
+            </controls:IntegralModal.ModalContent>
             
+        </controls:IntegralModal>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0"
+                       Orientation="Horizontal"
+                       HorizontalAlignment="Right">
+
+                <ToggleButton Grid.Column="3" 
+                              Content="Create"
+                              IsChecked="{Binding CreateMeetingDialogOpen, Mode=TwoWay}"/>
+                
+                <Button Grid.Column="4"
+                        Content="Delete"
+                        Command="{Binding DeleteMeetingCommand, Mode=OneTime}"/>
+            </WrapPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Row="0">
+                        <ComboBox ItemsSource="{Binding Grades, Mode=OneTime}"
+                                  SelectedValue="{Binding FilterGrade, Mode=TwoWay}"/>
+
+                        <ComboBox ItemsSource="{Binding GroupTypes, Mode=OneTime}"
+                                  SelectedValue="{Binding FilterGroupType, Mode=TwoWay}"/>
+
+                        <Button Content="Clear Search"
+                                Command="{Binding ClearMeetingSelectionCommand, Mode=OneTime}"/>
+                    </WrapPanel>
+
+                    <ListBox Grid.Row="1"
+                             ItemsSource="{Binding DisplayedGroups, Mode=OneWay}"
+                             SelectedValue="{Binding SelectedGroup, Mode=TwoWay}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                                    <TextBlock Text="{Binding Grade, Mode=OneWay}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </Grid>
+
+                <GridSplitter Grid.Column="1"
+                              Width="1"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Background="{StaticResource BrushPrimary3}"/>
+
+                <ListBox Grid.Column="2"
+                         ItemsSource="{Binding Meetings, Mode=OneWay}"
+                         SelectedValue="{Binding SelectedMeeting, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding MeetingDate}"/>
+                                <TextBlock Text="{Binding Theme}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <GridSplitter Grid.Column="3"
+                              Width="1"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Background="{StaticResource BrushPrimary3}"/>
+
+                <Grid Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" 
+                                   Grid.Row="0"
+                                   Text="Theme"/>
+
+                        <TextBox Grid.Column="1"
+                                 Grid.Row="0"
+                                 Text="{Binding SelectedMeeting.Theme}"/>
+
+                        <TextBlock Grid.Column="0" 
+                                   Grid.Row="1"
+                                   Text="Note"/>
+
+                        <TextBox Grid.Column="1"
+                                 Grid.Row="1"
+                                 Text="{Binding SelectedMeeting.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Grid.Column="0" 
+                                   Grid.Row="2"
+                                   Text="Date"/>
+
+                        <TextBox Grid.Column="1"
+                                 Grid.Row="2"
+                                 Text="{Binding SelectedMeeting.MeetingDate}"/>
+
+                    </Grid>
+
+                    <WrapPanel Grid.Row="1">
+                        <Button Content="Save Changes"
+                                Command="{Binding SaveChangesCommand, Mode=OneTime}"/>
+                    </WrapPanel>
+                </Grid>
+                
+            </Grid>
+        </Grid> 
     </Grid>
 </UserControl>
