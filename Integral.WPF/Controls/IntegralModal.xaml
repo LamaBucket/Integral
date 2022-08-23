@@ -67,8 +67,6 @@
                             Padding="9 3"
                             Margin="5 0 0 0"
                             x:Name="btnCancelModal"
-                            Command="{Binding Command, ElementName=root}"
-                            CommandParameter="{Binding CommandParameter, ElementName=root}"
                             Click="btnCancelModal_Click"/>
                 </Grid>
             </Grid>

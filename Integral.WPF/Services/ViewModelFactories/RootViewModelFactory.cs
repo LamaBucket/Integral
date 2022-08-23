@@ -47,7 +47,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                         _viewModels.Add(type, studentsViewModel);
                         break;
                     case ViewModelType.Groups:
-                        GroupsViewModel groupsViewModel = new(_groupWebDataService);
+                        GroupsViewModel groupsViewModel = new(_groupWebDataService, _studentWebDataService);
                         _viewModels.Add(type, groupsViewModel);
                         break;
                     case ViewModelType.Meetings:
@@ -84,7 +84,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                     _viewModels.Add(type, studentsViewModel);
                     break;
                 case ViewModelType.Groups:
-                    GroupsViewModel groupsViewModel = new(_groupWebDataService);
+                    GroupsViewModel groupsViewModel = new(_groupWebDataService, _studentWebDataService);
                     _viewModels.Add(type, groupsViewModel);
                     break;
                 case ViewModelType.Meetings:

@@ -3,10 +3,279 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Integral.WPF.Views"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
+             d:Background="{StaticResource BrushPrimary5}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+
+        <controls:IntegralModal Panel.ZIndex="1000" 
+                                IsOpen="{Binding CreateGroupDialogOpen, Mode=TwoWay}"
+                                ModalHeaderString="Create Group"
+                                Command="{Binding CreateGroupCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="0" 
+                               Text="Name"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="0"
+                             Text="{Binding CreateGroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="1" 
+                               Text="Grade"/>
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="1"
+                              ItemsSource="{Binding Grades, Mode=OneTime}"
+                              SelectedValue="{Binding CreateGroupGrade, Mode=TwoWay}"/>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="2" 
+                               Text="Type"/>
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="2"
+                              ItemsSource="{Binding GroupTypes, Mode=OneTime}"
+                              SelectedValue="{Binding CreateGroupGroupType, Mode=TwoWay}"/>
+
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="3" 
+                               Text="Leader"/>
+
+                    <StackPanel Grid.Column="1"
+                                Grid.Row="3"
+                                Orientation="Horizontal">
+                        
+                        <TextBlock Text="{Binding SetLeaderSelectedUser.Username, Mode=OneWay}"/>
+                        
+                        <ToggleButton Content="..."
+                                      IsChecked="{Binding SetLeaderDialogOpen, Mode=TwoWay}"/>
+                    </StackPanel>
+                    
+
+                </Grid>
+            </controls:IntegralModal.ModalContent>
+        </controls:IntegralModal>
+
+        <controls:IntegralModal Panel.ZIndex="1001" 
+                                IsOpen="{Binding SetLeaderDialogOpen, Mode=TwoWay}"
+                                ModalHeaderString="Change Leader"
+                                Command="{Binding SetLeaderCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <ListBox ItemsSource="{Binding SetLeaderUsers, Mode=OneWay}"
+                         SelectedValue="{Binding SetLeaderSelectedUser, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Username}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:IntegralModal.ModalContent>
+
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ModalOpen">
+                    <i:InvokeCommandAction Command="{Binding LoadSetLeaderDialogCommand, Mode=OneTime}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </controls:IntegralModal>
+
+        <controls:IntegralModal Panel.ZIndex="1002" 
+                                IsOpen="{Binding ModifyStudentsDialogOpen, Mode=TwoWay}"
+                                ModalHeaderString="Modify Students"
+                                Command="{Binding ModifyStudentsCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox Grid.Column="0" 
+                             ItemsSource="{Binding ModifyStudentsAssignedStudents, Mode=OneWay}"
+                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text="{Binding SecondName}"/>
+                                    <TextBlock Text="{Binding ThirdName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <StackPanel Grid.Column="1">
+                        <Button Content="Add" Command="{Binding AssignStudentCommand, Mode=OneTime}"/>
+                        <Button Content="Remove" Command="{Binding UnassignStudentCommand, Mode=OneTime}"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Column="2" 
+                             ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
+                             SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text="{Binding SecondName}"/>
+                                    <TextBlock Text="{Binding ThirdName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:IntegralModal.ModalContent>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ModalOpen">
+                    <i:InvokeCommandAction Command="{Binding LoadModifyStudentsDialogCommand, Mode=OneTime}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             
+        </controls:IntegralModal>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0" 
+                   Orientation="Horizontal"
+                   HorizontalAlignment="Right"
+                   Margin="2">
+                <ToggleButton Content="Create"
+                          Padding="9 3"
+                          IsChecked="{Binding CreateGroupDialogOpen, Mode=TwoWay}"/>
+                <Button Content="Delete"
+                    Padding="9 3"
+                    Margin="2 0 0 0"
+                    Command="{Binding DeleteGroupCommand}"
+                    CommandParameter="{Binding SelectedGroup.Id}"/>
+            </WrapPanel>
+
+            <Border Grid.Row="1"
+                BorderBrush="{StaticResource BrushPrimary1}"
+                BorderThickness="1">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox Grid.Column="0"
+                     ItemsSource="{Binding Groups, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedGroup, Mode=TwoWay}"
+                     BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"
+                                           Margin="5 0"/>
+                                    <TextBlock Text="{Binding Grade}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <GridSplitter Grid.Column="1"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch"
+                          Background="{StaticResource BrushPrimary1}"
+                          Width="1"/>
+
+                    <StackPanel Grid.Column="2">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" 
+                                   Grid.Row="0" 
+                                   Text="Name"/>
+
+                            <TextBlock Grid.Column="1" 
+                                   Grid.Row="0" 
+                                   Text="{Binding SelectedGroup.Name}"/>
+
+                            <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Text="Grade"/>
+
+                            <TextBlock Grid.Column="1"
+                                 Grid.Row="1"
+                                 Text="{Binding SelectedGroup.Grade}"/>
+
+                            <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   Text="Group Type"/>
+
+                            <TextBlock Grid.Column="1" 
+                                 Grid.Row="2"
+                                 Text="{Binding SelectedGroup.GroupType}"/>
+
+                            <TextBlock Grid.Column="0"
+                                   Grid.Row="3"
+                                   Text="Leader"/>
+
+                            <TextBlock Grid.Column="1" 
+                                 Grid.Row="3"
+                                 Text="{Binding SelectedGroup.Leader.Username}"/>
+                        </Grid>
+
+                        <ListBox ItemsSource="{Binding SelectedGroup.Students}"
+                             MinHeight="300">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding FirstName}"/>
+                                        <TextBlock Text="{Binding SecondName}"/>
+                                        <TextBlock Text="{Binding ThirdName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton Content="Change Leader"
+                                          IsChecked="{Binding SetLeaderDialogOpen, Mode=TwoWay}"/>
+                            <ToggleButton Content="Modify Students"
+                                          IsChecked="{Binding ModifyStudentsDialogOpen, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
+    
 </UserControl>

@@ -35,7 +35,7 @@ namespace Integral.WPF.Services
         {
             Uri uri = new(LeaderEndpoint + $"?groupId={groupId}&leaderId={leaderId}", UriKind.Relative);
 
-            return await SendRequest<bool>(uri, HttpMethod.Put);
+            return await SendRequest<bool>(uri, HttpMethod.Put, false);
         }
 
         public async Task<Group?> CreateGroup(string name, int grade, int leaderId, GroupType groupType)
@@ -54,7 +54,7 @@ namespace Integral.WPF.Services
 
         public async Task<IEnumerable<User>?> GetUsersThatCanOwnGroup(GroupType type)
         {
-            Uri uri = new(UsersEndpoint + $"?type={type}");
+            Uri uri = new(UsersEndpoint + $"?type={type}", UriKind.Relative);
 
             return await SendRequest<IEnumerable<User>>(uri, HttpMethod.Get);
         }
