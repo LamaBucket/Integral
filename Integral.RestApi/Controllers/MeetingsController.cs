@@ -43,7 +43,7 @@ namespace Integral.RestApi.Controllers
 
         [Authorize(Roles = "Admin, Teacher, ClassPrincipal")]
         [HttpPost("Group")]
-        public async Task<ActionResult> CreateMeeting(int groupId, string theme, string? note = null)
+        public async Task<ActionResult> CreateMeeting(int groupId, string theme, DateTime date, string? note = null)
         {
             Group? group = await _groupsDataService.Get(groupId);
 
@@ -59,7 +59,7 @@ namespace Integral.RestApi.Controllers
             }
 
 
-            Meeting entity = new(theme, note, DateTime.Now)
+            Meeting entity = new(theme, note, date)
             {
                 GroupId = groupId
             };
