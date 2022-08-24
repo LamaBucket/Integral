@@ -17,6 +17,38 @@
     <SolidColorBrush x:Key="BrushPrimary5" Color="{StaticResource ColorPrimary5}"/>
     <SolidColorBrush x:Key="BrushPrimary6" Color="{StaticResource ColorPrimary6}"/>
 
+    <!--ToggleButtons-->
+    <Style TargetType="ToggleButton">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Foreground" Value="{StaticResource BrushPrimary5}"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary3}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="{TemplateBinding Margin}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+    
     <!--Buttons-->    
     <Style TargetType="Button">
         <Setter Property="FontSize" Value="14"/>

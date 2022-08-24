@@ -18,7 +18,12 @@
 
         <Grid Grid.Row="0"
               Background="{StaticResource BrushPrimary1}">
-            
+            <Label Content="Integral"
+                   Foreground="{StaticResource BrushPrimary5}"
+                   FontSize="28"
+                   FontFamily="Roboto"
+                   HorizontalContentAlignment="Left"
+                   Margin="5 0"/>
         </Grid>
         
         <Grid Grid.Row="1"
@@ -33,11 +38,21 @@
             <ToggleButton Grid.Column="0"
                           Content="Menu"
                           IsChecked="{Binding NavigationMenuVisible, Mode=TwoWay}"
-                          IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"/>
+                          IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"
+                          Padding="10 5"
+                          Margin="2"/>
+
+            <Button Grid.Column="2"
+                    Content="Refresh"
+                    Command="{Binding Navigator.RefreshCurrentViewModelCommand, Mode=OneTime}"
+                    Padding="10 5"
+                    Margin="0 2 2 2"/>
 
             <Button Grid.Column="3" 
                     Content="Logout"
-                    Command="{Binding LogoutCommand, Mode=OneTime}"/>
+                    Command="{Binding LogoutCommand, Mode=OneTime}"
+                    Padding="10 5"
+                    Margin="0 2 2 2"/>
         </Grid>
 
         <ScrollViewer Grid.Row="2"
