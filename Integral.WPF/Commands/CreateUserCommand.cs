@@ -37,7 +37,15 @@ namespace Integral.WPF.Commands
 
             if(user is not null)
             {
-                ViewModel.Users?.Add(user);
+                if(ViewModel.Users is null)
+                {
+                    ViewModel.Users = new() { user };
+                }
+                else
+                {
+                    ViewModel.Users.Add(user);
+                }
+                
                 ViewModel.SelectedUser = user;
             }
         }

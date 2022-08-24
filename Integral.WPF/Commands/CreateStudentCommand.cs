@@ -36,7 +36,14 @@ namespace Integral.WPF.Commands
 
             if (student is not null)
             {
-                ViewModel.Students?.Add(student);
+                if(ViewModel.Students is null)
+                {
+                    ViewModel.Students = new() { student };
+                }
+                else
+                {
+                    ViewModel.Students.Add(student);
+                }
                 ViewModel.SelectedStudent = student;
             }
                 

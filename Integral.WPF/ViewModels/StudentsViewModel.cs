@@ -24,7 +24,7 @@ namespace Integral.WPF.ViewModels
 
             TryRefreshStudents();
 
-            DeleteStudentCommand = new DeleteItemCommand<Student>(_studentWebDataService);
+            DeleteStudentCommand = new DeleteStudentCommand(_studentWebDataService, this);
             ChangeStudentNamesCommand = new ChangeStudentNamesCommand(_studentWebDataService, this);
             CreateStudentCommand = new CreateStudentCommand(_studentWebDataService, this);
         }

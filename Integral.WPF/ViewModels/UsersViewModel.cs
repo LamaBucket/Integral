@@ -20,7 +20,7 @@ namespace Integral.WPF.ViewModels
 
             TryRefreshUsers();
 
-            DeleteUserCommand = new DeleteItemCommand<User>(_userWebDataService);
+            DeleteUserCommand = new DeleteUserCommand(_userWebDataService, this);
             AddUserRoleCommand = new AddUserRoleCommand(_userWebDataService, this);
             RemoveUserRoleCommand = new RemoveUserRoleCommand(_userWebDataService, this);
             CreateUserCommand = new CreateUserCommand(_userWebDataService, this);

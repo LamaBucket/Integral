@@ -1,4 +1,5 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.Domain.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,21 @@ namespace Integral.WPF.Commands
         {
             if(ViewModel.SelectedGroup is not null)
             {
-                await MeetingWebDataService.CreateMeeting(ViewModel.SelectedGroup.Id, ViewModel.CreateMeetingTheme, ViewModel.CreateMeetingDate, ViewModel.CreateMeetingNote);
+                Meeting? meeting = await MeetingWebDataService.CreateMeeting(ViewModel.SelectedGroup.Id, ViewModel.CreateMeetingTheme, ViewModel.CreateMeetingDate, ViewModel.CreateMeetingNote);
+
+                if(meeting is not null)
+                {
+                    if(ViewModel.Meetings is null)
+                    {
+                        ViewModel.Meetings = new() { meeting };
+                    }
+                    else
+                    {
+                        ViewModel.Meetings.Add(meeting);
+                    }
+                    
+                    ViewModel.SelectedMeeting = meeting;
+                }
             } 
         }
     }

@@ -30,7 +30,7 @@ namespace Integral.WPF.ViewModels
 
             TryRefreshGroups();
 
-            DeleteGroupCommand = new DeleteItemCommand<Group>(_groupWebDataService);
+            DeleteGroupCommand = new DeleteGroupCommand(_groupWebDataService, this);
             LoadSetLeaderDialogCommand = new LoadSetLeaderDialogCommand(_groupWebDataService, this);
             SetLeaderCommand = new SetLeaderCommand(_groupWebDataService, this);
             CreateGroupCommand = new CreateGroupCommand(_groupWebDataService, this);

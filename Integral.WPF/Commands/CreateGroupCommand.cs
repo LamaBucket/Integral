@@ -38,7 +38,15 @@ namespace Integral.WPF.Commands
 
                 if(group is not null)
                 {
-                    ViewModel.Groups?.Add(group);
+                    if(ViewModel.Groups is null)
+                    {
+                        ViewModel.Groups = new() { group };
+                    }
+                    else
+                    {
+                        ViewModel.Groups.Add(group);
+                    }
+                   
                     ViewModel.SelectedGroup = group;
                 }
             }

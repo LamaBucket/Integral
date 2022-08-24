@@ -19,7 +19,7 @@ namespace Integral.WPF.Commands
 
         public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object? parameter)
+        public virtual bool CanExecute(object? parameter)
         {
             return true;
         }
@@ -29,7 +29,14 @@ namespace Integral.WPF.Commands
             if(parameter is int id)
             {
                 await _webDataService.Delete(id);
+
+                UpdateLayout();
             }
+        }
+
+        protected virtual void UpdateLayout()
+        {
+            return;
         }
     }
 }

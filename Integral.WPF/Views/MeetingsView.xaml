@@ -83,7 +83,8 @@
                         Content="Delete"
                         Padding="9 3"
                         Margin="2 0 0 0"
-                        Command="{Binding DeleteMeetingCommand, Mode=OneTime}"/>
+                        Command="{Binding DeleteMeetingCommand, Mode=OneTime}"
+                        CommandParameter="{Binding SelectedMeeting.Id, Mode=OneWay}"/>
             </WrapPanel>
 
             <Border Grid.Row="1"

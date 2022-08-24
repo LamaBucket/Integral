@@ -134,9 +134,9 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        private IEnumerable<Meeting>? _meetings;
+        private ObservableCollection<Meeting>? _meetings;
 
-        public IEnumerable<Meeting>? Meetings
+        public ObservableCollection<Meeting>? Meetings
         {
             get => _meetings;
             set
@@ -238,7 +238,7 @@ namespace Integral.WPF.ViewModels
 
             lock(_meetingsLock)
             {
-                _meetings = meetings;
+                _meetings = new(meetings);
                 OnPropertyChanged(nameof(Meetings));
             }
         }
