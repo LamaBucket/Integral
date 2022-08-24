@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="RadioButton" x:Key="NavButton">
         <Setter Property="Foreground" Value="{StaticResource BrushPrimary4}"/>
-        <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
-        
-        <Setter Property="Padding" Value="10 5"/>
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary5}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+        <Setter Property="Padding" Value="20 5"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
 
         <Setter Property="Template">
@@ -20,7 +21,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="gridMain" Property="Background" Value="{StaticResource BrushPrimary1}"/>
+                            <Setter TargetName="gridMain" Property="Background" Value="{StaticResource BrushPrimary2}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -32,7 +33,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                        To="{StaticResource ColorPrimary1}" 
+                                        To="{StaticResource ColorPrimary2}" 
                                         Duration="0:0:0.1"/>
                     </Storyboard>
                 </BeginStoryboard>
@@ -42,7 +43,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                        To="{StaticResource ColorPrimary2}" 
+                                        To="{StaticResource ColorPrimary5}" 
                                         Duration="0:0:0.1"/>
                     </Storyboard>
                 </BeginStoryboard>

@@ -6,40 +6,64 @@
         xmlns:controls="clr-namespace:Integral.WPF.Controls"
         xmlns:local="clr-namespace:Integral.WPF"
         mc:Ignorable="d"
+        x:Name="root"
         Title="MainWindow" Height="675" Width="1200">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="50"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition MinHeight="1"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Background="{StaticResource BrushPrimary1}">
+            
+        </Grid>
+        
+        <Grid Grid.Row="1"
+              Background="{StaticResource BrushPrimary1}">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <controls:NavigationBar Grid.Column="0"
-                                        DataContext="{Binding Navigator}"/>
+            <ToggleButton Grid.Column="0"
+                          Content="Menu"
+                          IsChecked="{Binding NavigationMenuVisible, Mode=TwoWay}"
+                          IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"/>
 
-            <Button Grid.Column="1" 
+            <Button Grid.Column="3" 
                     Content="Logout"
-                    Padding="10"
                     Command="{Binding LogoutCommand, Mode=OneTime}"/>
         </Grid>
 
-        <ScrollViewer Grid.Row="1"
+        <ScrollViewer Grid.Row="2"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-            <Border CornerRadius="3"
-                    BorderBrush="{StaticResource BrushPrimary1}"
-                    BorderThickness="1"
-                    Margin="5">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <controls:NavigationMenu MenuVisible="{Binding DataContext.NavigationMenuVisible, ElementName=root, Mode=OneWay}" 
+                                         DataContext="{Binding Navigator}"/>
                 
-                <ContentControl Content="{Binding Navigator.CurrentViewModel}"/>
-            </Border>
-            
+
+                <Border Grid.Column="1"
+                        BorderBrush="{StaticResource BrushPrimary1}"
+                        BorderThickness="1"
+                        Margin="3">
+
+                    <ContentControl Content="{Binding Navigator.CurrentViewModel}"/>
+                </Border>
+
+            </Grid>
         </ScrollViewer>
 
     </Grid>

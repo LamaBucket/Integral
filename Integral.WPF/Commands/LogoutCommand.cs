@@ -1,6 +1,7 @@
 ﻿using Integral.WPF.Models.Enums;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.Services.Navigators;
+using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,18 @@ namespace Integral.WPF.Commands
 {
     public class LogoutCommand : ICommand
     {
-        public LogoutCommand(IAuthenticator authenticator, INavigator navigator)
+        public LogoutCommand(IAuthenticator authenticator, INavigator navigator, MainViewModel viewModel)
         {
             Authenticator = authenticator;
             Navigator = navigator;
+            ViewModel = viewModel;
         }
 
         public IAuthenticator Authenticator { get; set; }
 
         public INavigator Navigator { get; set; }
+
+        public MainViewModel ViewModel { get; set; }
 
 
         public event EventHandler? CanExecuteChanged;
@@ -42,6 +46,8 @@ namespace Integral.WPF.Commands
                 {
                     Navigator.ChangeCurrentViewModelCommand.Execute(ViewModelType.Session);
                 }
+
+                ViewModel.NavigationMenuVisible = false;
             }
         }
     }

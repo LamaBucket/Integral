@@ -24,13 +24,42 @@ namespace Integral.WPF.ViewModels
             }
         }
 
+
+        private IAuthenticator _authenticator;
+
+        public IAuthenticator Authenticator
+        {
+            get => _authenticator;
+            set
+            {
+                _authenticator = value;
+                OnPropertyChanged(nameof(Authenticator));
+            }
+        }
+
+
+        private bool _navigationMenuVisible;
+
+        public bool NavigationMenuVisible
+        {
+            get => _navigationMenuVisible;
+            set
+            {
+                _navigationMenuVisible = value;
+                OnPropertyChanged(nameof(NavigationMenuVisible));
+            }
+        }
+
+
+
         public ICommand LogoutCommand { get; set; }
 
         public MainViewModel(INavigator navigator, IAuthenticator authenticator)
         {
             _navigator = navigator;
+            _authenticator = authenticator;
 
-            LogoutCommand = new LogoutCommand(authenticator, navigator);
+            LogoutCommand = new LogoutCommand(authenticator, navigator, this);
         }
 
     }
