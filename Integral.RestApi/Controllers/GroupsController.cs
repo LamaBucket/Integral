@@ -100,7 +100,7 @@ namespace Integral.RestApi.Controllers
             switch (groupType)
             {
                 case GroupType.Class:
-                    requiredRole = Role.Admin;
+                    requiredRole = Role.ClassPrincipal;
                     break;
                 case GroupType.ElectiveGroup:
                     requiredRole = Role.Teacher;

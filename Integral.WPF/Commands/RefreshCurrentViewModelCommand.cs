@@ -32,10 +32,7 @@ namespace Integral.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            if(parameter is ViewModelType type)
-            {
-                Navigator.CurrentViewModel = ViewModelFactory.RecreateViewModel(type);
-            }
+            Navigator.CurrentViewModel = ViewModelFactory.RecreateViewModel(Navigator.CurrentViewModelType);  
         }
     }
 }

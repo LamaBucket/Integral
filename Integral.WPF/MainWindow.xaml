@@ -44,7 +44,7 @@
 
             <Button Grid.Column="2"
                     Content="Refresh"
-                    Command="{Binding Navigator.RefreshCurrentViewModelCommand, Mode=OneTime}"
+                    Command="{Binding Navigator.RefreshCurrentViewModelCommand, Mode=OneWay}"
                     Padding="10 5"
                     Margin="0 2 2 2"/>
 
