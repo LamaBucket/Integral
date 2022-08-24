@@ -20,7 +20,7 @@ namespace Integral.WPF.Services
         private string UsersEndpoint => ControllerName + "/Users";
 
 
-        public GroupWebDataService(HttpClient client) : base(client)
+        public GroupWebDataService(IIntegralHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 

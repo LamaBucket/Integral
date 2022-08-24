@@ -16,8 +16,22 @@ namespace Integral.WPF.ViewModels
         public static IEnumerable<Role> UserRoles => Enum.GetValues<Role>();
 
 
+        private IAuthenticator _authenticator;
+
+        public IAuthenticator Authenticator
+        {
+            get => _authenticator;
+            set
+            {
+                _authenticator = value;
+                OnPropertyChanged(nameof(Authenticator));
+            }
+        }
+
+
         public SessionViewModel(IAuthenticator authenticator)
         {
+            _authenticator = authenticator;
             _loginCommand = new LoginCommand(this, authenticator);
         }
 

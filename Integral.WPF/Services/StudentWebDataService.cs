@@ -13,7 +13,7 @@ namespace Integral.WPF.Services
     {
         protected override string ControllerName => "Students";
 
-        public StudentWebDataService(HttpClient client) : base(client)
+        public StudentWebDataService(IIntegralHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 

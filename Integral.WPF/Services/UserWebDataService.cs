@@ -12,7 +12,7 @@ namespace Integral.WPF.Services
 {
     public class UserWebDataService : CommonWebDataService<User>, IUserWebDataService
     {
-        public UserWebDataService(HttpClient client) : base(client)
+        public UserWebDataService(IIntegralHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 

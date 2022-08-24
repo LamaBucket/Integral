@@ -1,4 +1,5 @@
 ﻿using Integral.WPF.Commands;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.Services.Navigators;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,13 @@ namespace Integral.WPF.ViewModels
             }
         }
 
-        public MainViewModel(INavigator navigator)
+        public ICommand LogoutCommand { get; set; }
+
+        public MainViewModel(INavigator navigator, IAuthenticator authenticator)
         {
             _navigator = navigator;
+
+            LogoutCommand = new LogoutCommand(authenticator, navigator);
         }
 
     }

@@ -50,10 +50,14 @@ namespace Integral.WPF.Services.Navigators
 
         public ICommand RefreshCurrentViewModelCommand { get; init; }
 
+        public IRootViewModelFactory ViewModelFactory { get; init; }
+
         public Navigator(IRootViewModelFactory rootViewModelFactory)
         {
-            ChangeCurrentViewModelCommand = new ChangeCurrentViewModelCommand(this, rootViewModelFactory);
-            RefreshCurrentViewModelCommand = new RefreshCurrentViewModelCommand(this, rootViewModelFactory);
+            ViewModelFactory = rootViewModelFactory;
+
+            ChangeCurrentViewModelCommand = new ChangeCurrentViewModelCommand(this, ViewModelFactory);
+            RefreshCurrentViewModelCommand = new RefreshCurrentViewModelCommand(this, ViewModelFactory);
         }
 
     }

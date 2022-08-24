@@ -3,63 +3,103 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Integral.WPF.Views"
+             xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls" xmlns:converters="clr-namespace:Integral.WPF.Converters"
              mc:Ignorable="d" 
              Background="{StaticResource BrushPrimary5}"
              Padding="10">
 
-    <WrapPanel Orientation="Vertical">
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
 
-        <Label Content="Server Address"
-               HorizontalContentAlignment="Left"/>
+        <controls:IntegralModal Panel.ZIndex="1000" 
+                                ModalHeaderString="Login"
+                                Command="{Binding LoginCommand, Mode=OneTime}"
+                                IsOpen="{Binding Authenticator.IsLoggedIn, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
+                                HasButtons="False">
+            <controls:IntegralModal.ModalContent>
+                <Grid Grid.Column="1"
+              Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-        <TextBox Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Width="300"
-                     Margin="0 5 0 0"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
 
-        <Label Content="Username"
-                   Margin="0 15 0 0"
-               HorizontalContentAlignment="Left"/>
 
-        <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Width="300"
-                     Margin="0 5 0 0"/>
+                    <Label Grid.Column="0" 
+                   Grid.Row="0"
+                   Content="Server Address"
+                   Margin="0 0 0 7"
+                   HorizontalContentAlignment="Right"
+                   Padding="10 5"/>
+
+                    <TextBox Grid.Column="1" 
+                     Grid.Row="0" 
+                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0 0 0 7"/>
 
 
-        <Label Content="Password"
-                       Margin="0 5 0 0"
-               HorizontalContentAlignment="Left"/>
+                    <Label Grid.Column="0" 
+                   Grid.Row="1" 
+                   Content="Username"
+                   Margin="0 0 0 5"
+                   HorizontalContentAlignment="Right"
+                   Padding="10 5"/>
 
-        <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Width="300"
-                     Margin="0 5 0 0"/>
+                    <TextBox Grid.Column="1" 
+                     Grid.Row="1" 
+                     Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0 0 0 5"/>
 
-        <Label Content="Role"
-                   Margin="0 15 0 0"
-               HorizontalContentAlignment="Left"/>
 
-        <ComboBox SelectedItem="{Binding UserRole, Mode=TwoWay}"
+                    <Label Grid.Column="0" 
+                   Grid.Row="2" 
+                   Content="Password"
+                   Margin="0 0 0 7"
+                   HorizontalContentAlignment="Right"
+                   Padding="10 5"/>
+
+                    <TextBox Grid.Column="1" 
+                     Grid.Row="2" 
+                     Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0 0 0 7"/>
+
+                    <Label Grid.Column="0" 
+                   Grid.Row="3" 
+                   Content="Role"
+                   Margin="0 0 0 5"
+                   HorizontalContentAlignment="Right"
+                   Padding="10 5"/>
+
+                    <ComboBox Grid.Column="1" 
+                      Grid.Row="3" 
+                      SelectedItem="{Binding UserRole, Mode=TwoWay}"
                       ItemsSource="{Binding UserRoles, Mode=OneTime}"
-                      Width="300"
-                      Margin="0 5 0 0"/>
+                      Margin="0 0 0 5"/>
 
-
-        <WrapPanel Grid.Row="1"
-                Orientation="Horizontal"
-                HorizontalAlignment="Right"
-                Margin="0 15 0 0">
-
-            <Button Content="Logoff"
-                Padding="5"
-                Style="{StaticResource SecondaryButton}"/>
-
-            <Button Content="Logon"
-                    Padding="5"
-                    Margin="3 0 0 0"
-                    Command="{Binding LoginCommand}"/>
-        </WrapPanel>
-
-    </WrapPanel>
-
+                    <StackPanel Grid.Column="1" 
+                                Grid.Row="4"
+                                HorizontalAlignment="Right"
+                                Margin="0 0 0 5">
+                        <Button Content="Login"
+                                Padding="15 5"
+                                Command="{Binding LoginCommand, Mode=OneTime}"/>
+                    </StackPanel>
+                    
+                </Grid>
+            </controls:IntegralModal.ModalContent>
+        </controls:IntegralModal>
+        
+    </Grid>
 </UserControl>

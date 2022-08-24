@@ -13,5 +13,7 @@ namespace Integral.WPF.Services.ViewModelFactories
         BaseViewModel CreateViewModel(ViewModelType type);
 
         BaseViewModel RecreateViewModel(ViewModelType type);
+
+        void ClearCache();
     }
 }

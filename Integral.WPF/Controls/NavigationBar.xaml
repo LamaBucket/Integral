@@ -33,7 +33,6 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
@@ -58,12 +57,7 @@
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Meetings}"/>
 
-            <RadioButton Grid.Column="4"
-                         Content="Session"
-                         Command="{Binding ChangeCurrentViewModelCommand}"
-                         CommandParameter="{x:Static e:ViewModelType.Session}"/>
-
-            <Button Grid.Column="6"
+            <Button Grid.Column="5"
                     Content="Refresh"
                     Command="{Binding RefreshCurrentViewModelCommand}"
                     CommandParameter="{Binding CurrentViewModelType}"/>

@@ -1,5 +1,6 @@
 ﻿using Integral.WPF.Models.Enums;
 using Integral.WPF.Services;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.Services.Navigators;
 using Integral.WPF.Services.ViewModelFactories;
 using Integral.WPF.ViewModels;
@@ -30,15 +31,17 @@ namespace Integral.WPF
         {
             InitializeComponent();
 
-            HttpClient client = new();
+            IIntegralHttpClientFactory clientFactory = new IntegralHttpClientFactory(new());
 
-            client.Timeout = TimeSpan.FromSeconds(5);
+            clientFactory.Client.Timeout = TimeSpan.FromSeconds(5);
 
-            IRootViewModelFactory vmFactory = new RootViewModelFactory(new Authenticator(client), new UserWebDataService(client), new StudentWebDataService(client), new GroupWebDataService(client), new MeetingWebDataService(client));
+            Authenticator authenticator = new(clientFactory);
+
+            IRootViewModelFactory vmFactory = new RootViewModelFactory(authenticator, new UserWebDataService(clientFactory), new StudentWebDataService(clientFactory), new GroupWebDataService(clientFactory), new MeetingWebDataService(clientFactory));
 
             INavigator navigator = new Navigator(vmFactory);
 
-            MainViewModel vm = new(navigator);
+            MainViewModel vm = new(navigator, authenticator);
 
             vm.Navigator.ChangeCurrentViewModelCommand.Execute(ViewModelType.Session);
 

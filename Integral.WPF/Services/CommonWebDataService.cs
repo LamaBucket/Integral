@@ -14,7 +14,7 @@ namespace Integral.WPF.Services
 {
     public class CommonWebDataService<T> : ICommonWebDataService<T>
     {
-        public HttpClient Client { get; }
+        public IIntegralHttpClientFactory ClientFactory { get; }
 
         protected virtual string ControllerName => String.Empty;
 
@@ -59,7 +59,7 @@ namespace Integral.WPF.Services
                 Method = method
             };
 
-            var response = await Client.SendAsync(msg);
+            var response = await ClientFactory.Client.SendAsync(msg);
 
             switch (response.StatusCode)
             {
@@ -87,9 +87,9 @@ namespace Integral.WPF.Services
 
         protected async Task<TResult?> SendRequest<TResult>(Uri uri, HttpMethod method) => await SendRequest<TResult>(uri, method, true);
 
-        public CommonWebDataService(HttpClient client)
+        public CommonWebDataService(IIntegralHttpClientFactory clientFactory)
         {
-            Client = client;
+            ClientFactory = clientFactory;
         }
     }
 }

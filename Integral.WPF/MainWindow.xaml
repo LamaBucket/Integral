@@ -14,8 +14,20 @@
             <RowDefinition MinHeight="1"/>
         </Grid.RowDefinitions>
 
-        <controls:NavigationBar Grid.Row="0"
-                                DataContext="{Binding Navigator}"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <controls:NavigationBar Grid.Column="0"
+                                        DataContext="{Binding Navigator}"/>
+
+            <Button Grid.Column="1" 
+                    Content="Logout"
+                    Padding="10"
+                    Command="{Binding LogoutCommand, Mode=OneTime}"/>
+        </Grid>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"

@@ -13,7 +13,7 @@ namespace Integral.WPF.Services
     {
         protected override string ControllerName => "Meetings";
 
-        public MeetingWebDataService(HttpClient client) : base(client)
+        public MeetingWebDataService(IIntegralHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 

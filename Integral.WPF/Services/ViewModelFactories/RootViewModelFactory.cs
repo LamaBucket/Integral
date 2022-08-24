@@ -30,6 +30,11 @@ namespace Integral.WPF.Services.ViewModelFactories
             _meetingWebDataService = meetingWebDataService;
         }
 
+        public void ClearCache()
+        {
+            _viewModels = new();
+        }
+
         public BaseViewModel CreateViewModel(ViewModelType type)
         {
             if (!_viewModels.ContainsKey(type))
