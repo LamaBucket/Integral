@@ -44,7 +44,8 @@
                             Padding="10 5"
                             Content="x"
                             x:Name="btnCloseModal"
-                            Click="btnCloseModal_Click"/>
+                            Click="btnCloseModal_Click"
+                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 </Grid>
 
@@ -63,14 +64,16 @@
                             Padding="9 3"
                             x:Name="btnOkModal"
                             Width="50"
-                            Click="btnOkModal_Click"/>
+                            Click="btnOkModal_Click"
+                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <Button Grid.Column="2"
                             Content="Cancel"
                             Padding="9 3"
                             Margin="5 0 0 0"
                             x:Name="btnCancelModal"
-                            Click="btnCancelModal_Click"/>
+                            Click="btnCancelModal_Click"
+                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Grid>
             </Grid>
         </Border>

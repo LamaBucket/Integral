@@ -20,6 +20,19 @@ namespace Integral.WPF.Controls
     /// </summary>
     public partial class IntegralModal : UserControl
     {
+
+        public bool HasButtons
+        {
+            get { return (bool)GetValue(HasButtonsProperty); }
+            set { SetValue(HasButtonsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HasButtons.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HasButtonsProperty =
+            DependencyProperty.Register("HasButtons", typeof(bool), typeof(IntegralModal), new PropertyMetadata(true));
+
+
+
         public object ModalContent
         {
             get { return (object)GetValue(ModalContentProperty); }
