@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    internal class GroupDataManipulationService : DataManipulationServiceBase<Group>
+    public class GroupDataManipulationService : DataManipulationServiceBase<Group>
     {
         public GroupDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
