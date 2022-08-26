@@ -18,7 +18,7 @@ namespace Integral.EntityFramework.Services
         }
 
 
-        public abstract Task<IEnumerable<T>?> Extract(IEnumerable<T> items);
+        public abstract Task<IEnumerable<T>?> Extract();
 
         public abstract Task<DataLoadResult<T>> Load(IEnumerable<T> items);
         

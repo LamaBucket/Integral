@@ -14,7 +14,7 @@ namespace Integral.EntityFramework.Services
         {
         }
 
-        public async override Task<IEnumerable<Meeting>?> Extract(IEnumerable<Meeting> items)
+        public async override Task<IEnumerable<Meeting>?> Extract()
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {

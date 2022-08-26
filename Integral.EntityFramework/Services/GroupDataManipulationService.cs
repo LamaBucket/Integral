@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    internal class GroupsDataManipulationService : DataManipulationServiceBase<Group>
+    internal class GroupDataManipulationService : DataManipulationServiceBase<Group>
     {
-        public GroupsDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public GroupDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
-        public async override Task<IEnumerable<Group>?> Extract(IEnumerable<Group> items)
+        public async override Task<IEnumerable<Group>?> Extract()
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {

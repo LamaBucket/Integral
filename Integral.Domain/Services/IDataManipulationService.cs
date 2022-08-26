@@ -11,6 +11,6 @@ namespace Integral.Domain.Services
     {
         Task<DataLoadResult<T>> Load(IEnumerable<T> items);
 
-        Task<IEnumerable<T>?> Extract(IEnumerable<T> items);
+        Task<IEnumerable<T>?> Extract();
     }
 }

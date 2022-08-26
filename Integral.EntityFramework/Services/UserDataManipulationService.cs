@@ -15,7 +15,7 @@ namespace Integral.EntityFramework.Services
         {
         }
 
-        public async override Task<IEnumerable<User>?> Extract(IEnumerable<User> items)
+        public async override Task<IEnumerable<User>?> Extract()
         {
             using(IntegralDbContext context = _contextFactory.CreateDbContext())
             {

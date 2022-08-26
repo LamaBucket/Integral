@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public class StudentsDataManipulationService : DataManipulationServiceBase<Student>
+    public class StudentDataManipulationService : DataManipulationServiceBase<Student>
     {
-        public StudentsDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public StudentDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
-        public async override Task<IEnumerable<Student>?> Extract(IEnumerable<Student> items)
+        public async override Task<IEnumerable<Student>?> Extract()
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
