@@ -32,6 +32,11 @@ builder.Services.AddSingleton<IMeetingDataService, MeetingDataService>();
 builder.Services.AddSingleton<IGroupDataService, GroupDataService>();
 builder.Services.AddSingleton<IDataService<Student>, StudentDataService>();
 
+builder.Services.AddSingleton<IDataManipulationService<User>, UserDataManipulationService>();
+builder.Services.AddSingleton<IDataManipulationService<Meeting>, MeetingDataManipulationService>();
+builder.Services.AddSingleton<IDataManipulationService<Group>, GroupDataManipulationService>();
+builder.Services.AddSingleton<IDataManipulationService<Student>, StudentDataManipulationService>();
+
 builder.Services.AddSingleton<IntegralDbContextFactory>();
 
 builder.Services.AddSingleton<ILogger, FileLoggerService>();
