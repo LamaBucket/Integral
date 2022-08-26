@@ -12,6 +12,7 @@ namespace Integral.WPF.Models.Enums
         Users,
         Students,
         Groups,
-        Meetings
+        Meetings,
+        DataManipulation
     }
 }
