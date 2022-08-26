@@ -26,6 +26,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <RadioButton Grid.Row="0"
@@ -50,6 +51,12 @@
                          Content="Meetings"
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Meetings}"
+                     Margin="0 0 0 2"/>
+
+            <RadioButton Grid.Row="4"
+                         Content="Data Manipulation"
+                         Command="{Binding ChangeCurrentViewModelCommand}"
+                         CommandParameter="{x:Static e:ViewModelType.DataManipulation}"
                      Margin="0 0 0 2"/>
 
         </Grid>

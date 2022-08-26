@@ -39,31 +39,12 @@ namespace Integral.WPF.Services.ViewModelFactories
         {
             if (!_viewModels.ContainsKey(type))
             {
-                switch (type)
-                {
-                    case ViewModelType.Session:
-                        SessionViewModel sessionViewModel = new(_authenticator);
-                        _viewModels.Add(type, sessionViewModel);
-                        break;
-                    case ViewModelType.Users:
-                        UsersViewModel usersViewModel = new(_userWebDataService);
-                        _viewModels.Add(type, usersViewModel);
-                        break;
-                    case ViewModelType.Students:
-                        StudentsViewModel studentsViewModel = new(_studentWebDataService);
-                        _viewModels.Add(type, studentsViewModel);
-                        break;
-                    case ViewModelType.Groups:
-                        GroupsViewModel groupsViewModel = new(_groupWebDataService, _studentWebDataService);
-                        _viewModels.Add(type, groupsViewModel);
-                        break;
-                    case ViewModelType.Meetings:
-                        MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
-                        _viewModels.Add(type, meetingsViewModel);
-                        break;
-                    default:
-                        return new BaseViewModel();
-                }
+                BaseViewModel? vm = GetViewModel(type);
+
+                if (vm is null)
+                    return new BaseViewModel();
+
+                _viewModels.Add(type, vm);
             }
             
             return _viewModels[type];
@@ -76,33 +57,41 @@ namespace Integral.WPF.Services.ViewModelFactories
                 _viewModels.Remove(type);
             }
 
+            BaseViewModel? vm = GetViewModel(type);
+
+            if (vm is null)
+                return new BaseViewModel();
+
+            _viewModels.Add(type, vm);
+
+            return _viewModels[type];
+        }
+
+        private BaseViewModel? GetViewModel(ViewModelType type)
+        {
             switch (type)
             {
                 case ViewModelType.Session:
                     SessionViewModel sessionViewModel = new(_authenticator);
-                    _viewModels.Add(type, sessionViewModel);
-                    break;
+                    return sessionViewModel;
                 case ViewModelType.Users:
                     UsersViewModel usersViewModel = new(_userWebDataService);
-                    _viewModels.Add(type, usersViewModel);
-                    break;
+                    return usersViewModel;
                 case ViewModelType.Students:
                     StudentsViewModel studentsViewModel = new(_studentWebDataService);
-                    _viewModels.Add(type, studentsViewModel);
-                    break;
+                    return studentsViewModel;
                 case ViewModelType.Groups:
                     GroupsViewModel groupsViewModel = new(_groupWebDataService, _studentWebDataService);
-                    _viewModels.Add(type, groupsViewModel);
-                    break;
+                    return groupsViewModel;
                 case ViewModelType.Meetings:
                     MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
-                    _viewModels.Add(type, meetingsViewModel);
-                    break;
+                    return meetingsViewModel;
+                case ViewModelType.DataManipulation:
+                    DataManipulationViewModel dataManipulationViewModel = new();
+                    return dataManipulationViewModel;
                 default:
-                    return new BaseViewModel();
+                    return null;
             }
-
-            return _viewModels[type];
         }
     }
 }
