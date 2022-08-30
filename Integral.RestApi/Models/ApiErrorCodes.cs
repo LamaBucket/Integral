@@ -24,7 +24,6 @@
         public static readonly int MeetingNotExist = 501;
 
         public static readonly int InvalidData = 601;
-        public static readonly int InvalidTargetType = 602;
 
     }
 }

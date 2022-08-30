@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public class GroupDataManipulationService : DataManipulationServiceBase<Group>
+    public class LoadExtractGroupService : LoadExtractServiceBase<Group>
     {
-        public GroupDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public LoadExtractGroupService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Integral.EntityFramework.Services
             }
         }
 
-        public async override Task<DataLoadResult<Group>> Load(IEnumerable<Group> items)
+        public async override Task<IEnumerable<Group>?> Load(IEnumerable<Group> items)
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
@@ -47,11 +47,9 @@ namespace Integral.EntityFramework.Services
 
                 await context.SaveChangesAsync();
 
-                IEnumerable<Group>? skippedUsers = items.Count() == groupsToAdd.Count() ? null : items.Except(groupsToAdd);
+                IEnumerable<Group>? skippedGroups = items.Count() == groupsToAdd.Count() ? null : items.Except(groupsToAdd);
 
-                DataLoadResult<Group> result = new(skippedUsers);
-
-                return result;
+                return skippedGroups;
             }
         }
     }

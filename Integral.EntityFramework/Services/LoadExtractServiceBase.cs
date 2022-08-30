@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public abstract class DataManipulationServiceBase<T> : IDataManipulationService<T> where T : DomainObject
+    public abstract class LoadExtractServiceBase<T> : ILoadExtractService<T> where T : DomainObject
     {
         protected readonly IntegralDbContextFactory _contextFactory;
 
-        public DataManipulationServiceBase(IntegralDbContextFactory contextFactory)
+        public LoadExtractServiceBase(IntegralDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
@@ -20,7 +20,7 @@ namespace Integral.EntityFramework.Services
 
         public abstract Task<IEnumerable<T>?> Extract();
 
-        public abstract Task<DataLoadResult<T>> Load(IEnumerable<T> items);
+        public abstract Task<IEnumerable<T>?> Load(IEnumerable<T> items);
         
     }
 }

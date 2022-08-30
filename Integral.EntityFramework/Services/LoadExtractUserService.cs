@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public class UserDataManipulationService : DataManipulationServiceBase<User>
+    public class LoadExtractUserService : LoadExtractServiceBase<User>
     {
-        public UserDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public LoadExtractUserService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Integral.EntityFramework.Services
             }
         }
 
-        public async override Task<DataLoadResult<User>> Load(IEnumerable<User> items)
+        public async override Task<IEnumerable<User>?> Load(IEnumerable<User> items)
         {
             using(IntegralDbContext context = _contextFactory.CreateDbContext())
             {
@@ -42,9 +42,7 @@ namespace Integral.EntityFramework.Services
 
                 IEnumerable<User>? skippedUsers = items.Count() == usersToAdd.Count() ? null : items.Except(usersToAdd);
 
-                DataLoadResult<User> result = new(skippedUsers);
-
-                return result;
+                return skippedUsers;
             }
         }
     }

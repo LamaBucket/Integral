@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public class StudentDataManipulationService : DataManipulationServiceBase<Student>
+    public class LoadExtractStudentService : LoadExtractServiceBase<Student>
     {
-        public StudentDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public LoadExtractStudentService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
@@ -24,7 +24,7 @@ namespace Integral.EntityFramework.Services
             }
         }
 
-        public async override Task<DataLoadResult<Student>> Load(IEnumerable<Student> items)
+        public async override Task<IEnumerable<Student>?> Load(IEnumerable<Student> items)
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
@@ -35,9 +35,7 @@ namespace Integral.EntityFramework.Services
 
                 await context.SaveChangesAsync();
                 
-                DataLoadResult<Student> result = new(null);
-
-                return result;
+                return null;
             }
         }
     }

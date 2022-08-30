@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Integral.EntityFramework.Services
 {
-    public class MeetingDataManipulationService : DataManipulationServiceBase<Meeting>
+    public class LoadExtractMeetingService : LoadExtractServiceBase<Meeting>
     {
-        public MeetingDataManipulationService(IntegralDbContextFactory contextFactory) : base(contextFactory)
+        public LoadExtractMeetingService(IntegralDbContextFactory contextFactory) : base(contextFactory)
         {
         }
 
@@ -24,7 +24,7 @@ namespace Integral.EntityFramework.Services
             }
         }
 
-        public async override Task<DataLoadResult<Meeting>> Load(IEnumerable<Meeting> items)
+        public async override Task<IEnumerable<Meeting>?> Load(IEnumerable<Meeting> items)
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
@@ -39,11 +39,9 @@ namespace Integral.EntityFramework.Services
 
                 await context.SaveChangesAsync();
 
-                IEnumerable<Meeting>? skippedUsers = items.Count() == meetingsToAdd.Count() ? null : items.Except(meetingsToAdd);
+                IEnumerable<Meeting>? skippedMeetings = items.Count() == meetingsToAdd.Count() ? null : items.Except(meetingsToAdd);
 
-                DataLoadResult<Meeting> result = new(skippedUsers);
-
-                return result;
+                return skippedMeetings;
             }
         }
     }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Integral.Domain.Services
 {
-    public interface IDataManipulationService<T> where T : DomainObject
+    public interface ILoadExtractService<T> where T : DomainObject
     {
-        Task<DataLoadResult<T>> Load(IEnumerable<T> items);
+        Task<IEnumerable<T>?> Load(IEnumerable<T> items);
 
         Task<IEnumerable<T>?> Extract();
     }
