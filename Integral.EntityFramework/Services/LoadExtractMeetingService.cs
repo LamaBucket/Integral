@@ -28,9 +28,9 @@ namespace Integral.EntityFramework.Services
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
-                IEnumerable<int> ExistingGroups = await context.Groups.Select(x => x.Id).ToListAsync();
+                IEnumerable<Tuple<int, string>> ExistingGroups = await context.Groups.Select(x => Tuple.Create(x.Grade, x.Name)).ToListAsync();
 
-                IEnumerable<Meeting> meetingsToAdd = items.Where(x => ExistingGroups.Contains(x.GroupId));
+                IEnumerable<Meeting> meetingsToAdd = items.Where(x => ExistingGroups.Any(y => y.Item1 == x.Group?.Grade && y.Item2 == x.Group?.Name));
 
                 foreach (Meeting item in meetingsToAdd)
                 {

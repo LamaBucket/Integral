@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Integral.WPF.Views.DataManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <controls:IntegralModal Panel.ZIndex="1000"
+                                            ModalHeaderString="Select File"
+                                            IsOpen="{Binding SelectFileDialogOpen, Mode=TwoWay}"
+                                            Command="{Binding DataManagementProcessFileCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Path"/>
+                    <TextBox Text="{Binding SelectedFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="..."
+                            Command="{Binding SelectFilePathCommand, Mode=OneTime}"/>
+                </StackPanel>
+            </controls:IntegralModal.ModalContent>
+        </controls:IntegralModal>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox Grid.Column="0" 
+                          ItemsSource="{Binding LoadExtractTargetTypes, Mode=OneTime}"
+                          SelectedValue="{Binding SelectedTargetType, Mode=TwoWay}"/>
+
+                <ComboBox Grid.Column="1" 
+                          ItemsSource="{Binding DataManagementActionTypes, Mode=OneTime}"
+                          SelectedValue="{Binding SelectedActionType, Mode=TwoWay}"/>
+
+                <Button Grid.Column="3"
+                        Content="Load/Extract Data"
+                        Command="{Binding DataManagementProcessServerCommand, Mode=OneTime}"/>
+                
+                <ToggleButton Grid.Column="4"
+                              Content="Import/Export Data"
+                              IsChecked="{Binding SelectFileDialogOpen, Mode=TwoWay}"/>
+            </Grid>
+            
+            <DataGrid Grid.Row="1" 
+                      ItemsSource="{Binding DisplayedData, Mode=OneWay}"/>
+        </Grid>
+    </Grid>
+</UserControl>

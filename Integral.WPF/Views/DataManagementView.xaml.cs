@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Integral.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for DataManipulationView.xaml
+    /// Interaction logic for DataManagementView.xaml
     /// </summary>
-    public partial class DataManipulationView : UserControl
+    public partial class DataManagementView : UserControl
     {
-        public DataManipulationView()
+        public DataManagementView()
         {
             InitializeComponent();
         }

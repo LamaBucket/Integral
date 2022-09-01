@@ -1,8 +1,11 @@
-﻿using Integral.WPF.Models.Enums;
+﻿using Integral.Domain.Models;
+using Integral.Domain.Services;
+using Integral.WPF.Models.Enums;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,18 +19,63 @@ namespace Integral.WPF.Services.ViewModelFactories
         private IStudentWebDataService _studentWebDataService;
         private IGroupWebDataService _groupWebDataService;
         private IMeetingWebDataService _meetingWebDataService;
+       
+        public ILoadExtractWebService<User> UserLoadExtractService { get; set; }
+
+        public ILoadExtractWebService<Student> StudentLoadExtractService { get; set; }
+
+        public ILoadExtractWebService<Group> GroupLoadExtractService { get; set; }
+
+        public ILoadExtractWebService<Meeting> MeetingLoadExtractService { get; set; }
+
+
+        public IDataParserService<IEnumerable<User>, DataTable> UsersDataTableParser { get; set; }
+
+        public IDataParserService<IEnumerable<Student>, DataTable> StudentsDataTableParser { get; set; }
+
+        public IDataParserService<IEnumerable<Group>, DataTable> GroupsDataTableParser { get; set; }
+
+        public IDataParserService<IEnumerable<Meeting>, DataTable> MeetingsDataTableParser { get; set; }
+
+
+        public IDataParserService<string, DataTable> TextDataTableParser { get; set; }
+
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
 
-        public RootViewModelFactory(IAuthenticator authenticator, IUserWebDataService userWebDataService, IStudentWebDataService studentWebDataService, IGroupWebDataService groupWebDataService, IMeetingWebDataService meetingWebDataService)
+        public RootViewModelFactory(IAuthenticator authenticator,
+                                    IUserWebDataService userWebDataService,
+                                    IStudentWebDataService studentWebDataService,
+                                    IGroupWebDataService groupWebDataService,
+                                    IMeetingWebDataService meetingWebDataService,
+                                    IDataParserService<string, DataTable> textParser,
+                                    ILoadExtractWebService<User> userLoadExtractService,
+                                    ILoadExtractWebService<Student> studentLoadExtractService,
+                                    ILoadExtractWebService<Group> groupLoadExtractService,
+                                    ILoadExtractWebService<Meeting> meetingLoadExtractService,
+                                    IDataParserService<IEnumerable<User>, DataTable> usersDataTableParser,
+                                    IDataParserService<IEnumerable<Student>, DataTable> studentsDataTableParser,
+                                    IDataParserService<IEnumerable<Group>, DataTable> groupsDataTableParser,
+                                    IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser)
         {
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
-
-            _viewModels = new();
             _studentWebDataService = studentWebDataService;
             _groupWebDataService = groupWebDataService;
             _meetingWebDataService = meetingWebDataService;
+            TextDataTableParser = textParser;
+
+            UserLoadExtractService = userLoadExtractService;
+            StudentLoadExtractService = studentLoadExtractService;
+            GroupLoadExtractService = groupLoadExtractService;
+            MeetingLoadExtractService = meetingLoadExtractService;
+
+            UsersDataTableParser = usersDataTableParser;
+            StudentsDataTableParser = studentsDataTableParser;
+            GroupsDataTableParser = groupsDataTableParser;
+            MeetingsDataTableParser = meetingsDataTableParser;
+
+            _viewModels = new Dictionary<ViewModelType, BaseViewModel>();
         }
 
         public void ClearCache()
@@ -87,7 +135,15 @@ namespace Integral.WPF.Services.ViewModelFactories
                     MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
                     return meetingsViewModel;
                 case ViewModelType.DataManipulation:
-                    DataManipulationViewModel dataManipulationViewModel = new();
+                    DataManagementViewModel dataManipulationViewModel = new(TextDataTableParser,
+                                                                            UserLoadExtractService,
+                                                                            StudentLoadExtractService,
+                                                                            GroupLoadExtractService,
+                                                                            MeetingLoadExtractService,
+                                                                            UsersDataTableParser,
+                                                                            StudentsDataTableParser,
+                                                                            GroupsDataTableParser,
+                                                                            MeetingsDataTableParser);
                     return dataManipulationViewModel;
                 default:
                     return null;

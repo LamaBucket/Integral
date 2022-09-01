@@ -27,7 +27,16 @@ namespace Integral.Domain.Services
 
             for(int i = 1; i < rows.Length; i++)
             {
-                dt.Rows.Add(rows[i].Split(","));
+                DataRow rw = dt.NewRow();
+
+                string[] vals = rows[i].Split(",");
+
+                for(int a = 0; a < Math.Min(dt.Columns.Count, vals.Length); a++)
+                {
+                    rw[a] = vals[a];
+                }
+
+                dt.Rows.Add(rw);
             }
 
             return dt;

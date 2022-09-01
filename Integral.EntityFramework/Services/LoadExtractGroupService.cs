@@ -29,16 +29,16 @@ namespace Integral.EntityFramework.Services
         {
             using (IntegralDbContext context = _contextFactory.CreateDbContext())
             {
-                Dictionary<GroupType, IEnumerable<int>> potentialLeaders = new();
+                Dictionary<GroupType, IEnumerable<string>> potentialLeaders = new();
 
-                potentialLeaders.Add(GroupType.ElectiveGroup, context.Users.Include(x => x.UserRoles).Where(x => x.UserRoles != null && x.UserRoles.Any(y => y.Role == Role.Teacher)).Select(x => x.Id));
-                potentialLeaders.Add(GroupType.Class, context.Users.Include(x => x.UserRoles).Where(x => x.UserRoles != null && x.UserRoles.Any(y => y.Role == Role.ClassPrincipal)).Select(x => x.Id));
+                potentialLeaders.Add(GroupType.ElectiveGroup, context.Users.Include(x => x.UserRoles).Where(x => x.UserRoles != null && x.UserRoles.Any(y => y.Role == Role.Teacher)).Select(x => x.Username));
+                potentialLeaders.Add(GroupType.Class, context.Users.Include(x => x.UserRoles).Where(x => x.UserRoles != null && x.UserRoles.Any(y => y.Role == Role.ClassPrincipal)).Select(x => x.Username));
 
                 IEnumerable<Tuple<string, int>> ExistingGroups = await context.Groups.Select(x => new Tuple<string, int>(x.Name, x.Grade)).ToListAsync();
 
                 IEnumerable<Group> groupsToAdd = items.Where(x => !ExistingGroups.Any(y => y.Item1 == x.Name && y.Item2 == x.Grade));
 
-                groupsToAdd = groupsToAdd.Where(x => potentialLeaders[x.GroupType].Contains(x.LeaderId));
+                groupsToAdd = groupsToAdd.Where(x => potentialLeaders[x.GroupType].Contains(x?.Leader?.Username ?? String.Empty));
 
                 foreach(Group item in groupsToAdd)
                 {

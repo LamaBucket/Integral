@@ -34,8 +34,8 @@
                 <v:GroupsView DataContext="{Binding}"/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:DataManipulationViewModel}">
-                <v:DataManipulationView DataContext="{Binding}"/>
+            <DataTemplate DataType="{x:Type vm:DataManagementViewModel}">
+                <v:DataManagementView DataContext="{Binding}"/>
             </DataTemplate>
 
         </ResourceDictionary>

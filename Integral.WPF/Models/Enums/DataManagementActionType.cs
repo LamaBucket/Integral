@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Integral.WPF.ViewModels
+namespace Integral.WPF.Models.Enums
 {
-    public class DataManipulationViewModel : BaseViewModel
+    public enum DataManagementActionType
     {
+        Load,
+        Extract
     }
 }

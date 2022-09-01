@@ -48,16 +48,16 @@ namespace Integral.RestApi.Controllers
 
 
         [HttpPost("Users")]
-        public async Task<ActionResult> LoadUsers([FromBody] string json) => await LoadData<User>(UsersLoadExtractService, json);
+        public async Task<ActionResult> LoadUsers() => await LoadData<User>(UsersLoadExtractService);
 
         [HttpPost("Groups")]
-        public async Task<ActionResult> LoadGroups([FromBody] string json) => await LoadData<Group>(GroupsLoadExtractService, json);
+        public async Task<ActionResult> LoadGroups() => await LoadData<Group>(GroupsLoadExtractService);
 
         [HttpPost("Meetings")]
-        public async Task<ActionResult> LoadMeetings([FromBody] string json) => await LoadData<Meeting>(MeetingsLoadExtractService, json);
+        public async Task<ActionResult> LoadMeetings() => await LoadData<Meeting>(MeetingsLoadExtractService);
 
         [HttpPost("Students")]
-        public async Task<ActionResult> LoadStudents([FromBody] string json) => await LoadData<Student>(StudentsLoadExtractService, json);
+        public async Task<ActionResult> LoadStudents() => await LoadData<Student>(StudentsLoadExtractService);
 
 
 
@@ -68,9 +68,9 @@ namespace Integral.RestApi.Controllers
             return result is null ? NoContent() : Json(result);
         }
 
-        protected async virtual Task<ActionResult> LoadData<T>(ILoadExtractService<T> dataService, string json) where T : DomainObject
+        protected async virtual Task<ActionResult> LoadData<T>(ILoadExtractService<T> dataService) where T : DomainObject
         {
-            IEnumerable<T>? data = JsonConvert.DeserializeObject<IEnumerable<T>>(json);
+            IEnumerable<T>? data = await Request.ReadFromJsonAsync<IEnumerable<T>>();
 
             if (data is null)
                 return BadRequest(ApiErrorCodes.InvalidData);
