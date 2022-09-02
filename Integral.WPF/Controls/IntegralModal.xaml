@@ -10,7 +10,9 @@
              MaxWidth="800"
              x:Name="root"
              HorizontalContentAlignment="Center"
-             VerticalContentAlignment="Center">
+             VerticalContentAlignment="Center"
+             MouseDown="SuppressClickthroughHandler"
+             MouseUp="SuppressClickthroughHandler">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -18,41 +20,47 @@
 
     <Grid Visibility="{Binding IsOpen, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=root}">
 
-        <Border BorderBrush="{StaticResource BrushPrimary1}"
-                BorderThickness="1">
+    <Grid Background="{StaticResource BrushPrimary5}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-            <Grid Background="{StaticResource BrushPrimary5}">
+        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary3}"
+                    RenderOptions.EdgeMode="Aliased">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                        Content="{Binding ModalHeaderString, ElementName=root}"
+                        Foreground="{StaticResource BrushPrimary5}"/>
+
+            <Button Grid.Column="2" 
+                    Padding="10 5"
+                    Content="x"
+                    x:Name="btnCloseModal"
+                    Click="btnCloseModal_Click"
+                    Style="{StaticResource ButtonDefault2}"
+                    Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        </Grid>
+
+        <Border Grid.Row="1"
+                BorderBrush="{StaticResource BrushPrimary1}"
+                BorderThickness="1 0 1 1">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
                     <RowDefinition/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Background="{StaticResource BrushPrimary3}"
-                      RenderOptions.EdgeMode="Aliased">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+                <ContentControl Grid.Row="0" Content="{Binding ModalContent, ElementName=root}"/>
 
-                    <Label Grid.Column="0"
-                           Content="{Binding ModalHeaderString, ElementName=root}"
-                           Foreground="{StaticResource BrushPrimary5}"/>
-
-                    <Button Grid.Column="2" 
-                            Padding="10 5"
-                            Content="x"
-                            x:Name="btnCloseModal"
-                            Click="btnCloseModal_Click"
-                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                </Grid>
-
-                <ContentControl Grid.Row="1" Content="{Binding ModalContent, ElementName=root}"/>
-
-                <Grid Grid.Row="2"
-                      Margin="5">
+                <Grid Grid.Row="1"
+                            Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="auto"/>
@@ -60,23 +68,27 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="1"
-                            Content="Ok"
-                            Padding="9 3"
-                            x:Name="btnOkModal"
-                            Width="50"
-                            Click="btnOkModal_Click"
-                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Content="Ok"
+                        Padding="9 3"
+                        x:Name="btnOkModal"
+                        Width="50"
+                        Click="btnOkModal_Click"
+                        Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <Button Grid.Column="2"
-                            Content="Cancel"
-                            Padding="9 3"
-                            Margin="5 0 0 0"
-                            x:Name="btnCancelModal"
-                            Click="btnCancelModal_Click"
-                            Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Content="Cancel"
+                        Padding="9 3"
+                        Margin="5 0 0 0"
+                        x:Name="btnCancelModal"
+                        Click="btnCancelModal_Click"
+                        Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Grid>
+
             </Grid>
         </Border>
+
+
+    </Grid>
 
     </Grid>
 </UserControl>

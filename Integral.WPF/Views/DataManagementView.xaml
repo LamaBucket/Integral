@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="5">
         <controls:IntegralModal Panel.ZIndex="1000"
                                             ModalHeaderString="Select File"
                                             IsOpen="{Binding SelectFileDialogOpen, Mode=TwoWay}"
@@ -28,7 +28,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0"
+                  Margin="0 0 0 2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
@@ -38,24 +39,36 @@
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Grid.Column="0" 
-                          ItemsSource="{Binding LoadExtractTargetTypes, Mode=OneTime}"
-                          SelectedValue="{Binding SelectedTargetType, Mode=TwoWay}"/>
+                          ItemsSource="{Binding DataManagementActionTypes, Mode=OneTime}"
+                          SelectedValue="{Binding SelectedActionType, Mode=TwoWay}"
+                          MinWidth="100"
+                          Padding="9 3"/>
 
                 <ComboBox Grid.Column="1" 
-                          ItemsSource="{Binding DataManagementActionTypes, Mode=OneTime}"
-                          SelectedValue="{Binding SelectedActionType, Mode=TwoWay}"/>
+                          ItemsSource="{Binding LoadExtractTargetTypes, Mode=OneTime}"
+                          SelectedValue="{Binding SelectedTargetType, Mode=TwoWay}"
+                          MinWidth="100"
+                          Padding="9 3"
+                          Margin="2 0 0 0"/>
 
                 <Button Grid.Column="3"
                         Content="Load/Extract Data"
-                        Command="{Binding DataManagementProcessServerCommand, Mode=OneTime}"/>
+                        Command="{Binding DataManagementProcessServerCommand, Mode=OneTime}"
+                        Padding="9 3"
+                        Margin="2 0 0 0"/>
                 
                 <ToggleButton Grid.Column="4"
                               Content="Import/Export Data"
-                              IsChecked="{Binding SelectFileDialogOpen, Mode=TwoWay}"/>
+                              IsChecked="{Binding SelectFileDialogOpen, Mode=TwoWay}"
+                              Padding="9 3"
+                              Margin="2 0 0 0"/>
             </Grid>
-            
+
             <DataGrid Grid.Row="1" 
-                      ItemsSource="{Binding DisplayedData, Mode=OneWay}"/>
+                      ItemsSource="{Binding DisplayedData, Mode=OneWay}"
+                      FontSize="14"
+                      FontFamily="Roboto"/>
+
         </Grid>
     </Grid>
 </UserControl>

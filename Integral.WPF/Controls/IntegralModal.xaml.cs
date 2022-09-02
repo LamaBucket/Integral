@@ -158,5 +158,10 @@ namespace Integral.WPF.Controls
 
             e.Handled = true;
         }
+
+        private void SuppressClickthroughHandler(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

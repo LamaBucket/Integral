@@ -93,11 +93,16 @@
                 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition MinWidth="200"
+                                          MaxWidth="600"
+                                          Width="*"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition MinWidth="200" 
+                                          Width="2*"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition MinWidth="200"  
+                                          MaxWidth="600"
+                                          Width="4*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
@@ -115,13 +120,18 @@
                             </Grid.ColumnDefinitions>
                             
                             <ComboBox Grid.Column="0" ItemsSource="{Binding Grades, Mode=OneTime}"
-                                  SelectedValue="{Binding FilterGrade, Mode=TwoWay}"/>
+                                      MinWidth="25"
+                                      SelectedValue="{Binding FilterGrade, Mode=TwoWay}"/>
 
                             <ComboBox Grid.Column="1" ItemsSource="{Binding GroupTypes, Mode=OneTime}"
-                                  SelectedValue="{Binding FilterGroupType, Mode=TwoWay}"/>
+                                      SelectedValue="{Binding FilterGroupType, Mode=TwoWay}"
+                                      MinWidth="75"
+                                      Margin="2 0 0 0"/>
 
                             <Button Grid.Column="2" Content="Clear Search"
-                                Command="{Binding ClearMeetingSelectionCommand, Mode=OneTime}"/>
+                                    Command="{Binding ClearMeetingSelectionCommand, Mode=OneTime}"
+                                    Padding="9 3"
+                                    Margin="2 0 0 0"/>
                         </Grid>
 
                         <ListBox Grid.Row="1"

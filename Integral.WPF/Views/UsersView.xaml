@@ -69,9 +69,8 @@
             </WrapPanel>
 
             <Border Grid.Row="1"
-                BorderBrush="{StaticResource BrushPrimary1}"
-                BorderThickness="1"
-                    Margin="2 0 2 2">
+                    BorderBrush="{StaticResource BrushPrimary1}"
+                    BorderThickness="0 1 0 0">
                 <Grid>
 
                     <Grid.ColumnDefinitions>

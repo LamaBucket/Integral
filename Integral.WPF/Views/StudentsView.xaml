@@ -85,7 +85,7 @@
 
             <Border Grid.Row="1"
                 BorderBrush="{StaticResource BrushPrimary1}"
-                BorderThickness="1">
+                BorderThickness="0 1 0 0">
                 <Grid>
 
                     <Grid.ColumnDefinitions>
