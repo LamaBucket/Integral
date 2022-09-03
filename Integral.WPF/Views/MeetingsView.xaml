@@ -142,8 +142,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Content = "{Binding Name, Mode=OneWay}"/>
                                         <Label Content = "{Binding Grade, Mode=OneWay}"/>
+                                        <Label Content = "{Binding Name, Mode=OneWay}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -191,7 +191,8 @@
                               Background="{StaticResource BrushPrimary3}"/>
 
                     <Grid Grid.Column="4"
-                          Background="{StaticResource BrushPrimary2}">
+                          Background="{StaticResource BrushPrimary2}"
+                          Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition/>
