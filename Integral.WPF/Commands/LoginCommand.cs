@@ -1,4 +1,6 @@
-﻿using Integral.WPF.Services.Interfaces;
+﻿using Integral.WPF.Exceptions;
+using Integral.WPF.Models;
+using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -30,9 +32,12 @@ namespace Integral.WPF.Commands
             return true;
         }
 
-        public void Execute(object? parameter)
+        public async void Execute(object? parameter)
         {
-            Authenticator.Login(new Uri(ViewModel.ServerAddress), ViewModel.Login, ViewModel.Password, ViewModel.UserRole);
+            if (!Uri.TryCreate(ViewModel.ServerAddress, UriKind.Absolute, out Uri? res) || String.IsNullOrEmpty(ViewModel.Login) || String.IsNullOrEmpty(ViewModel.Password))
+                throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
+
+            await Authenticator.Login(new Uri(ViewModel.ServerAddress), ViewModel.Login, ViewModel.Password, ViewModel.UserRole);
         }
     }
 }

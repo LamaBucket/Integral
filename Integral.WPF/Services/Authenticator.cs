@@ -1,4 +1,5 @@
 ﻿using Integral.Domain.Models.Enums;
+using Integral.WPF.Exceptions;
 using Integral.WPF.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
@@ -57,6 +58,9 @@ namespace Integral.WPF.Services
             HttpRequestMessage msg = new(HttpMethod.Post, uri);
 
             var response = await ClientFactory.Client.SendAsync(msg);
+
+            if (!response.IsSuccessStatusCode)
+                throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
 
             lock (_clientLock)
             {

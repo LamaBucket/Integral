@@ -146,8 +146,8 @@ namespace Integral.WPF.Controls
 
         private void btnOkModal_Click(object sender, RoutedEventArgs e)
         {
-            if (Command.CanExecute(CommandParameter))
-                Command.Execute(CommandParameter);
+            if (Command?.CanExecute(CommandParameter) ?? false)
+                Command?.Execute(CommandParameter);
 
             IsOpen = false;
         }

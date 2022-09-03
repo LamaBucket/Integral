@@ -1,4 +1,6 @@
-﻿using Integral.Domain.Models;
+﻿ using Integral.Domain.Models;
+using Integral.WPF.Exceptions;
+using Integral.WPF.Models;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
@@ -34,6 +36,12 @@ namespace Integral.WPF.Commands
         {
             if(ViewModel.SelectedGroup is not null)
             {
+                ViewModel.CreateMeetingTheme = ViewModel.CreateMeetingTheme.Trim();
+                ViewModel.CreateMeetingNote = ViewModel.CreateMeetingNote?.Trim();
+
+                if (String.IsNullOrEmpty(ViewModel.CreateMeetingTheme))
+                    throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
+
                 Meeting? meeting = await MeetingWebDataService.CreateMeeting(ViewModel.SelectedGroup.Id, ViewModel.CreateMeetingTheme, ViewModel.CreateMeetingDate, ViewModel.CreateMeetingNote);
 
                 if(meeting is not null)

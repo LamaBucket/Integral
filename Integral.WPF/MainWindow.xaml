@@ -10,76 +10,92 @@
         Title="MainWindow" Height="675" Width="1200">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="50"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition MinHeight="1"/>
-        </Grid.RowDefinitions>
+        <controls:IntegralModal Panel.ZIndex="1000"
+                                ModalHeaderString="{Binding ExceptionDialogHeader, Mode=OneWay}"
+                                IsOpen="{Binding ExceptionDialogShown, Mode=TwoWay}">
+            
+            <controls:IntegralModal.ModalContent>
+                <Border Margin="5"
+                        BorderBrush="{StaticResource BrushPrimary1}"
+                        BorderThickness="1">
+                    <Label Content="{Binding ExceptionContent, Mode=OneWay}"/>
+                </Border>
+            </controls:IntegralModal.ModalContent>
+            
+        </controls:IntegralModal>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" MinHeight="50"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition MinHeight="1"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"
+            <Grid Grid.Row="0"
               Background="{StaticResource BrushPrimary1}">
-            <Label Content="Integral"
+                <Label Content="Integral"
                    Foreground="{StaticResource BrushPrimary5}"
                    FontSize="28"
                    FontFamily="Roboto"
                    HorizontalContentAlignment="Left"
                    Margin="5 0"/>
-        </Grid>
-        
-        <Grid Grid.Row="1"
-              Background="{StaticResource BrushPrimary1}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+            </Grid>
 
-            <ToggleButton Grid.Column="0"
+            <Grid Grid.Row="1"
+              Background="{StaticResource BrushPrimary1}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ToggleButton Grid.Column="0"
                           Content="Menu"
                           IsChecked="{Binding NavigationMenuVisible, Mode=TwoWay}"
                           IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"
                           Padding="10 5"
                           Margin="2"/>
 
-            <Button Grid.Column="2"
+                <Button Grid.Column="2"
                     Content="Refresh"
                     Command="{Binding Navigator.RefreshCurrentViewModelCommand, Mode=OneWay}"
                     Padding="10 5"
                     Margin="0 2 2 2"/>
 
-            <Button Grid.Column="3" 
+                <Button Grid.Column="3" 
                     Content="Logout"
                     Command="{Binding LogoutCommand, Mode=OneTime}"
                     Padding="10 5"
                     Margin="0 2 2 2"/>
-        </Grid>
+            </Grid>
 
-        <ScrollViewer Grid.Row="2"
+            <ScrollViewer Grid.Row="2"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
 
-                <controls:NavigationMenu MenuVisible="{Binding DataContext.NavigationMenuVisible, ElementName=root, Mode=OneWay}" 
+                    <controls:NavigationMenu MenuVisible="{Binding DataContext.NavigationMenuVisible, ElementName=root, Mode=OneWay}" 
                                          DataContext="{Binding Navigator}"/>
-                
 
-                <Border Grid.Column="1"
+
+                    <Border Grid.Column="1"
                         BorderBrush="{StaticResource BrushPrimary1}"
                         BorderThickness="1"
                         Margin="3">
 
-                    <ContentControl Content="{Binding Navigator.CurrentViewModel}"/>
-                </Border>
+                        <ContentControl Content="{Binding Navigator.CurrentViewModel}"/>
+                    </Border>
 
-            </Grid>
-        </ScrollViewer>
+                </Grid>
+            </ScrollViewer>
 
+        </Grid>
     </Grid>
 </Window>

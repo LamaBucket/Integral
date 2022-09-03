@@ -1,4 +1,6 @@
 ﻿using Integral.Domain.Models;
+using Integral.WPF.Exceptions;
+using Integral.WPF.Models;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
@@ -34,6 +36,13 @@ namespace Integral.WPF.Commands
         {
             if(ViewModel.SelectedStudent is not null)
             {
+                ViewModel.SelectedStudent.FirstName = ViewModel.SelectedStudent.FirstName.Trim();
+                ViewModel.SelectedStudent.SecondName = ViewModel.SelectedStudent.SecondName.Trim();
+                ViewModel.SelectedStudent.ThirdName = ViewModel.SelectedStudent.ThirdName?.Trim();
+
+                if (String.IsNullOrEmpty(ViewModel.CreateStudentFirstName) || string.IsNullOrEmpty(ViewModel.CreateStudentSecondName) || string.IsNullOrEmpty(ViewModel.CreateStudentThirdName))
+                    throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
+
                 Student? student = await StudentWebDataService.UpdateStudent(ViewModel.SelectedStudent.Id, ViewModel.SelectedStudent.FirstName, ViewModel.SelectedStudent.SecondName, ViewModel.SelectedStudent.ThirdName);
 
                 if(student is not null)

@@ -1,4 +1,6 @@
 ﻿using Integral.Domain.Models;
+using Integral.WPF.Exceptions;
+using Integral.WPF.Models;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.ViewModels;
 using System;
@@ -32,24 +34,28 @@ namespace Integral.WPF.Commands
 
         public async void Execute(object? parameter)
         {
-            if(ViewModel.SetLeaderSelectedUser is not null)
-            {
-                Group? group = await GroupWebDataService.CreateGroup(ViewModel.CreateGroupName, ViewModel.CreateGroupGrade, ViewModel.SetLeaderSelectedUser.Id, ViewModel.CreateGroupGroupType);
 
-                if(group is not null)
+            ViewModel.CreateGroupName = ViewModel.CreateGroupName.Trim();
+
+            if(String.IsNullOrEmpty(ViewModel.CreateGroupName) || ViewModel.SetLeaderSelectedUser is null)
+                throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
+
+            Group? group = await GroupWebDataService.CreateGroup(ViewModel.CreateGroupName, ViewModel.CreateGroupGrade, ViewModel.SetLeaderSelectedUser.Id, ViewModel.CreateGroupGroupType);
+
+            if(group is not null)
+            {
+                if(ViewModel.Groups is null)
                 {
-                    if(ViewModel.Groups is null)
-                    {
-                        ViewModel.Groups = new() { group };
-                    }
-                    else
-                    {
-                        ViewModel.Groups.Add(group);
-                    }
-                   
-                    ViewModel.SelectedGroup = group;
+                    ViewModel.Groups = new() { group };
                 }
+                else
+                {
+                    ViewModel.Groups.Add(group);
+                }
+                   
+                ViewModel.SelectedGroup = group;
             }
+            
         }
     }
 }
