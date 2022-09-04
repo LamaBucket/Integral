@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
+             xmlns:local="clr-namespace:Integral.WPF.Views" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
+             xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:Background="{StaticResource BrushPrimary5}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <controls:IntegralModal Panel.ZIndex="1000"
                                 IsOpen="{Binding CreateDialogOpen, Mode=TwoWay}"
-                                ModalHeaderString="Create User"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Users_CreateUser}"
                                 Command="{Binding CreateUserCommand}">
             <controls:IntegralModal.ModalContent>
                 <Grid Margin="10">
@@ -26,7 +28,7 @@
 
                     <Label Grid.Column="0"
                            Grid.Row="0"
-                           Content="Username"
+                           Content="{x:Static p:Resources.Label_Common_Username}"
                            Style="{StaticResource LabelDefault2}"
                            Margin="0 0 0 10"/>
 
@@ -37,7 +39,7 @@
 
                     <Label Grid.Column="0"
                            Grid.Row="1"
-                           Content="Password"
+                           Content="{x:Static p:Resources.Label_Common_Password}"
                            Style="{StaticResource LabelDefault2}"/>
 
                     <TextBox Grid.Column="1"
@@ -58,10 +60,10 @@
                    Orientation="Horizontal"
                    HorizontalAlignment="Right"
                    Margin="2">
-                <ToggleButton Content="Create"
+                <ToggleButton Content="{x:Static p:Resources.Button_Common_Create}"
                               Padding="9 3"
                               IsChecked="{Binding CreateDialogOpen, Mode=TwoWay}"/>
-                <Button Content="Delete"
+                <Button Content="{x:Static p:Resources.Button_Common_Delete}"
                     Padding="9 3"
                     Margin="2 0 0 0"
                     Command="{Binding DeleteUserCommand}"
@@ -119,7 +121,7 @@
                             <Label Grid.Column="0"
                                    Style="{StaticResource LabelDefault2}"
                                    IsEnabled="False"
-                                   Content="Username"/>
+                                   Content="{x:Static p:Resources.Label_Common_Username}"/>
                             
                             <Label Grid.Column="1" 
                                    IsEnabled="False"
@@ -142,8 +144,8 @@
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                
-                                <Label Grid.Row="0" Content="User`s Roles"/>
+
+                                <Label Grid.Row="0" Content="{x:Static p:Resources.Label_Users_UserRoles}"/>
 
                                 <ListBox Grid.Row="1" 
                                          ItemsSource="{Binding UserRoles}"
@@ -181,7 +183,7 @@
                                 </Grid.RowDefinitions>
                                 
                                 <Label Grid.Row="0" 
-                                       Content="Non User`s Roles"/>
+                                       Content="{x:Static p:Resources.Label_Users_NonUserRoles}"/>
 
                                 <ListBox Grid.Row="1" 
                                          ItemsSource="{Binding NonUserRoles}"

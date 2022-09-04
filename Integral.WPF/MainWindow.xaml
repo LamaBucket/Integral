@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Integral.WPF.Controls"
+        xmlns:p="clr-namespace:Integral.WPF.Properties"
         xmlns:local="clr-namespace:Integral.WPF"
         mc:Ignorable="d"
         x:Name="root"
@@ -51,20 +52,20 @@
                 </Grid.ColumnDefinitions>
 
                 <ToggleButton Grid.Column="0"
-                          Content="Menu"
+                          Content="{x:Static p:Resources.Button_Common_Menu}"
                           IsChecked="{Binding NavigationMenuVisible, Mode=TwoWay}"
                           IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"
                           Padding="10 5"
                           Margin="2"/>
 
                 <Button Grid.Column="2"
-                    Content="Refresh"
+                    Content="{x:Static p:Resources.Button_Common_Refresh}"
                     Command="{Binding Navigator.RefreshCurrentViewModelCommand, Mode=OneWay}"
                     Padding="10 5"
                     Margin="0 2 2 2"/>
 
                 <Button Grid.Column="3" 
-                    Content="Logout"
+                    Content="{x:Static p:Resources.Button_Common_Logout}"
                     Command="{Binding LogoutCommand, Mode=OneTime}"
                     Padding="10 5"
                     Margin="0 2 2 2"/>

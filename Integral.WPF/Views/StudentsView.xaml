@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:Background="{StaticResource BrushPrimary5}"
@@ -10,7 +11,7 @@
     <Grid>
         <controls:IntegralModal Panel.ZIndex="1000"
                                 IsOpen="{Binding CreateDialogOpen, Mode=TwoWay}"
-                                ModalHeaderString="Create Student"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Students_CreateStudent}"
                                 Command="{Binding CreateStudentCommand}">
             
             <controls:IntegralModal.ModalContent>
@@ -28,7 +29,7 @@
 
                     <Label Grid.Column="0" 
                            Grid.Row="0" 
-                           Content="First Name"
+                           Content="{x:Static p:Resources.Label_Students_FirstName}"
                            Margin="0 0 0 10"
                            Style="{StaticResource LabelDefault2}"/>
 
@@ -39,7 +40,7 @@
 
                     <Label Grid.Column="0"
                            Grid.Row="1"
-                           Content="Second Name"
+                           Content="{x:Static p:Resources.Label_Students_SecondName}"
                            Margin="0 0 0 10"
                            Style="{StaticResource LabelDefault2}"/>
 
@@ -50,7 +51,7 @@
 
                     <Label Grid.Column="0"
                            Grid.Row="2"
-                           Content="Third Name"
+                           Content="{x:Static p:Resources.Label_Students_ThirdName}"
                            Margin="0 0 0 10"
                            Style="{StaticResource LabelDefault2}"/>
 
@@ -73,10 +74,10 @@
                    Orientation="Horizontal"
                    HorizontalAlignment="Right"
                    Margin="2">
-                <ToggleButton Content="Create"
+                <ToggleButton Content="{x:Static p:Resources.Button_Common_Create}"
                           Padding="9 3"
                           IsChecked="{Binding CreateDialogOpen, Mode=TwoWay}"/>
-                <Button Content="Delete"
+                <Button Content="{x:Static p:Resources.Button_Common_Delete}"
                     Padding="9 3"
                     Margin="2 0 0 0"
                     Command="{Binding DeleteStudentCommand}"
@@ -141,7 +142,7 @@
 
                             <Label Grid.Column="0" 
                                    Grid.Row="0" 
-                                   Content="First Name"
+                                   Content="{x:Static p:Resources.Label_Students_FirstName}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 5 0 2"/>
 
@@ -153,7 +154,7 @@
 
                             <Label Grid.Column="0"
                                    Grid.Row="1"
-                                   Content="Second Name"
+                                   Content="{x:Static p:Resources.Label_Students_SecondName}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 0 0 2"/>
 
@@ -165,7 +166,7 @@
 
                             <Label Grid.Column="0"
                                    Grid.Row="2"
-                                   Content="Third Name"
+                                   Content="{x:Static p:Resources.Label_Students_ThirdName}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 0 0 5"/>
 
@@ -183,7 +184,7 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0"
-                                   Content="Student`s Groups:" 
+                                   Content="{x:Static p:Resources.Label_Students_Groups}" 
                                    Style="{StaticResource LabelDefault2}"
                                    HorizontalContentAlignment="Center"/>
 
@@ -202,7 +203,7 @@
                         </Grid>
 
                         <Button Grid.Row="2" 
-                                Content="Save Changes"
+                                Content="{x:Static p:Resources.Button_Common_SaveChanges}"
                                 Command="{Binding ChangeStudentNamesCommand}"
                                 HorizontalAlignment="Right"
                                 Padding="5"

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls" xmlns:converters="clr-namespace:Integral.WPF.Converters"
              mc:Ignorable="d" 
              Background="{StaticResource BrushPrimary5}"
@@ -15,7 +16,7 @@
     <Grid>
 
         <controls:IntegralModal Panel.ZIndex="1000" 
-                                ModalHeaderString="Login"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Session_Login}"
                                 Command="{Binding LoginCommand, Mode=OneTime}"
                                 IsOpen="{Binding Authenticator.IsLoggedIn, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
                                 HasButtons="False">
@@ -39,7 +40,7 @@
 
                     <Label Grid.Column="0" 
                    Grid.Row="0"
-                   Content="Server Address"
+                   Content="{x:Static p:Resources.Label_Session_ServerAddress}"
                    Margin="0 0 0 7"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
@@ -52,7 +53,7 @@
 
                     <Label Grid.Column="0" 
                    Grid.Row="1" 
-                   Content="Username"
+                   Content="{x:Static p:Resources.Label_Common_Username}"
                    Margin="0 0 0 5"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
@@ -65,7 +66,7 @@
 
                     <Label Grid.Column="0" 
                    Grid.Row="2" 
-                   Content="Password"
+                   Content="{x:Static p:Resources.Label_Common_Password}"
                    Margin="0 0 0 7"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
@@ -77,7 +78,7 @@
 
                     <Label Grid.Column="0" 
                    Grid.Row="3" 
-                   Content="Role"
+                   Content="{x:Static p:Resources.Label_Session_Role}"
                    Margin="0 0 0 5"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
@@ -92,7 +93,7 @@
                                 Grid.Row="4"
                                 HorizontalAlignment="Right"
                                 Margin="0 0 0 5">
-                        <Button Content="Login"
+                        <Button Content="{x:Static p:Resources.Button_Session_Login}"
                                 Padding="15 5"
                                 Command="{Binding LoginCommand, Mode=OneTime}"/>
                     </StackPanel>

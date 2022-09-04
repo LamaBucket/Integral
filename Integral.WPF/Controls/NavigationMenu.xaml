@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:e="clr-namespace:Integral.WPF.Models.Enums"
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              x:Name="root"
@@ -30,31 +31,31 @@
             </Grid.RowDefinitions>
 
             <RadioButton Grid.Row="0"
-                     Content="Users"
+                     Content="{x:Static p:Resources.RadioButton_Navigation_Users}"
                      Command="{Binding ChangeCurrentViewModelCommand}"
                      CommandParameter="{x:Static e:ViewModelType.Users}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="1"
-                         Content="Students"
+                         Content="{x:Static p:Resources.RadioButton_Navigation_Students}"
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Students}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="2"
-                         Content="Groups"
+                         Content="{x:Static p:Resources.RadioButton_Navigation_Groups}"
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Groups}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="3"
-                         Content="Meetings"
+                         Content="{x:Static p:Resources.RadioButton_Navigation_Meetings}"
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Meetings}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="4"
-                         Content="Data Manipulation"
+                         Content="{x:Static p:Resources.RadioButton_Navigation_DataManagement}"
                          Command="{Binding ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.DataManipulation}"
                      Margin="0 0 0 2"/>

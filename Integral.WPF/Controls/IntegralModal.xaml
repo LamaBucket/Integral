@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="225" d:DesignWidth="400"
@@ -68,7 +69,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="1"
-                        Content="Ok"
+                        Content="{x:Static p:Resources.ModalButton_Ok}"
                         Padding="9 3"
                         x:Name="btnOkModal"
                         Width="50"
@@ -76,7 +77,7 @@
                         Visibility="{Binding HasButtons, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <Button Grid.Column="2"
-                        Content="Cancel"
+                        Content="{x:Static p:Resources.ModalButton_Cancel}"
                         Padding="9 3"
                         Margin="5 0 0 0"
                         x:Name="btnCancelModal"

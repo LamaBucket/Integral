@@ -3,17 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="5">
         <controls:IntegralModal Panel.ZIndex="1000"
-                                            ModalHeaderString="Select File"
+                                            ModalHeaderString="{x:Static p:Resources.ModalHeader_DataManagement_SelectFile}"
                                             IsOpen="{Binding SelectFileDialogOpen, Mode=TwoWay}"
                                             Command="{Binding DataManagementProcessFileCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Path"/>
+                    <Label Content="{x:Static p:Resources.Label_DataManagement_Path}"/>
                     <TextBox Text="{Binding SelectedFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Content="..."
                             Command="{Binding SelectFilePathCommand, Mode=OneTime}"/>
@@ -52,13 +53,13 @@
                           Margin="2 0 0 0"/>
 
                 <Button Grid.Column="3"
-                        Content="Load/Extract Data"
+                        Content="{x:Static p:Resources.Button_DataManagement_LoadExtractData}"
                         Command="{Binding DataManagementProcessServerCommand, Mode=OneTime}"
                         Padding="9 3"
                         Margin="2 0 0 0"/>
                 
                 <ToggleButton Grid.Column="4"
-                              Content="Import/Export Data"
+                              Content="{x:Static p:Resources.Button_DataManagement_ImportExportData}"
                               IsChecked="{Binding SelectFileDialogOpen, Mode=TwoWay}"
                               Padding="9 3"
                               Margin="2 0 0 0"/>

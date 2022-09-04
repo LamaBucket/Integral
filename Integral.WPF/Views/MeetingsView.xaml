@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:Background="{StaticResource BrushPrimary5}"
@@ -10,7 +11,7 @@
     <Grid>
         <controls:IntegralModal Panel.ZIndex="1000"
                                 IsOpen="{Binding CreateMeetingDialogOpen, Mode=TwoWay}"
-                                ModalHeaderString="Create Meeting"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Meetings_CreateMeeting}"
                                 Command="{Binding CreateMeetingCommand, Mode=OneTime}">
 
             <controls:IntegralModal.ModalContent>
@@ -28,7 +29,7 @@
 
                     <Label Grid.Column="0" 
                                Grid.Row="0"
-                               Content="Theme"
+                               Content="{x:Static p:Resources.Label_Meetings_Theme}"
                            Style="{StaticResource LabelDefault2}"
                            Margin="0 0 0 10"/>
 
@@ -39,7 +40,7 @@
 
                     <Label Grid.Column="0" 
                                Grid.Row="1"
-                               Content="Note"
+                               Content="{x:Static p:Resources.Label_Meetings_Note}"
                            Style="{StaticResource LabelDefault2}"
                            Margin="0 0 0 10"/>
 
@@ -50,7 +51,7 @@
 
                     <Label Grid.Column="0" 
                                Grid.Row="2"
-                               Content="Date"
+                               Content="{x:Static p:Resources.Label_Meetings_Date}"
                            Style="{StaticResource LabelDefault2}"
                            Margin="0 0 0 10"/>
 
@@ -75,12 +76,12 @@
                        Margin="2">
 
                 <ToggleButton Grid.Column="3" 
-                              Content="Create"
+                              Content="{x:Static p:Resources.Button_Common_Create}"
                               Padding="9 3"
                               IsChecked="{Binding CreateMeetingDialogOpen, Mode=TwoWay}"/>
                 
                 <Button Grid.Column="4"
-                        Content="Delete"
+                        Content="{x:Static p:Resources.Button_Common_Delete}"
                         Padding="9 3"
                         Margin="2 0 0 0"
                         Command="{Binding DeleteMeetingCommand, Mode=OneTime}"
@@ -128,7 +129,7 @@
                                       MinWidth="75"
                                       Margin="2 0 0 0"/>
 
-                            <Button Grid.Column="2" Content="Clear Search"
+                            <Button Grid.Column="2" Content="{x:Static p:Resources.Button_Meetings_ClearSearch}"
                                     Command="{Binding ClearMeetingSelectionCommand, Mode=OneTime}"
                                     Padding="9 3"
                                     Margin="2 0 0 0"/>
@@ -164,7 +165,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Label Content="Group`s Meetings"/>
+                        <Label Content="{x:Static p:Resources.Label_Meetings_GroupsMeetings}"/>
 
                         <ListBox Grid.Row="1"
                                  ItemsSource="{Binding Meetings, Mode=OneWay}"
@@ -212,7 +213,7 @@
 
                             <Label Grid.Column="0" 
                                    Grid.Row="0"
-                                   Content="Date"
+                                   Content="{x:Static p:Resources.Label_Meetings_Date}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 0 0 2"
                                    IsEnabled="False"/>
@@ -226,7 +227,7 @@
                             
                             <Label Grid.Column="0" 
                                    Grid.Row="1"
-                                   Content="Theme"
+                                   Content="{x:Static p:Resources.Label_Meetings_Theme}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 0 0 2"
                                    IsEnabled="False"/>
@@ -240,7 +241,7 @@
 
                             <Label Grid.Column="0" 
                                    Grid.Row="2"
-                                   Content="Note"
+                                   Content="{x:Static p:Resources.Label_Meetings_Note}"
                                    Style="{StaticResource LabelDefault2}"
                                    Margin="0 0 0 2"/>
 
@@ -256,7 +257,7 @@
                         <WrapPanel Grid.Row="1" 
                                    HorizontalAlignment="Right"
                                    Margin="0 0 4 4">
-                            <Button Content="Save Changes"
+                            <Button Content="{x:Static p:Resources.Button_Common_SaveChanges}"
                                     Command="{Binding SaveChangesCommand, Mode=OneTime}"
                                     Padding="5"/>
                         </WrapPanel>
