@@ -8,7 +8,11 @@
         xmlns:local="clr-namespace:Integral.WPF"
         mc:Ignorable="d"
         x:Name="root"
-        Title="MainWindow" Height="675" Width="1200">
+        Height="675" Width="1200"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip" 
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <controls:IntegralModal Panel.ZIndex="1000"
@@ -27,19 +31,47 @@
         
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" MinHeight="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition MinHeight="1"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0"
-              Background="{StaticResource BrushPrimary1}">
-                <Label Content="Integral"
-                   Foreground="{StaticResource BrushPrimary5}"
-                   FontSize="28"
-                   FontFamily="Roboto"
-                   HorizontalContentAlignment="Left"
-                   Margin="5 0"/>
+              Background="{StaticResource BrushPrimary1}"
+                  MouseDown="Header_MouseDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+               
+
+                <Button Grid.Column="2"
+                        Content="🗕"
+                        VerticalAlignment="Top"
+                        Width="45"
+                        Height="30"
+                        Style="{StaticResource ButtonDefault3}"
+                        Click="Button_Minimize_Click"/>
+
+                <Button Grid.Column="3"
+                        Content="+"
+                        VerticalAlignment="Top"
+                        Width="45"
+                        Height="30"
+                        Style="{StaticResource ButtonDefault3}"
+                        Click="Button_Maximize_Click"/>
+
+                <Button Grid.Column="4"
+                        Content="✕"
+                        VerticalAlignment="Top"
+                        Width="45"
+                        Height="30"
+                        Style="{StaticResource ButtonDefault3}"
+                        Click="Button_Close_Click"/>
             </Grid>
 
             <Grid Grid.Row="1"

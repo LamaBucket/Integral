@@ -40,8 +40,11 @@ namespace Integral.WPF.Services.ViewModelFactories
 
         public IDataParserService<string, DataTable> TextDataTableParser { get; set; }
 
+        public IAppConfigManagementService AppConfigManagementService { get; set; }
+
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
+
 
         public RootViewModelFactory(IAuthenticator authenticator,
                                     IUserWebDataService userWebDataService,
@@ -56,7 +59,8 @@ namespace Integral.WPF.Services.ViewModelFactories
                                     IDataParserService<IEnumerable<User>, DataTable> usersDataTableParser,
                                     IDataParserService<IEnumerable<Student>, DataTable> studentsDataTableParser,
                                     IDataParserService<IEnumerable<Group>, DataTable> groupsDataTableParser,
-                                    IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser)
+                                    IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser,
+                                    IAppConfigManagementService appConfigManagementService)
         {
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
@@ -74,6 +78,8 @@ namespace Integral.WPF.Services.ViewModelFactories
             StudentsDataTableParser = studentsDataTableParser;
             GroupsDataTableParser = groupsDataTableParser;
             MeetingsDataTableParser = meetingsDataTableParser;
+
+            AppConfigManagementService = appConfigManagementService;
 
             _viewModels = new Dictionary<ViewModelType, BaseViewModel>();
         }
@@ -120,7 +126,7 @@ namespace Integral.WPF.Services.ViewModelFactories
             switch (type)
             {
                 case ViewModelType.Session:
-                    SessionViewModel sessionViewModel = new(_authenticator);
+                    SessionViewModel sessionViewModel = new(_authenticator, AppConfigManagementService);
                     return sessionViewModel;
                 case ViewModelType.Users:
                     UsersViewModel usersViewModel = new(_userWebDataService);

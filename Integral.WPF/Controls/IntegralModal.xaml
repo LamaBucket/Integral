@@ -7,8 +7,6 @@
              xmlns:local="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="225" d:DesignWidth="400"
-             MaxHeight="450"
-             MaxWidth="800"
              x:Name="root"
              HorizontalContentAlignment="Center"
              VerticalContentAlignment="Center"
@@ -27,8 +25,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary3}"
-                    RenderOptions.EdgeMode="Aliased">
+        <Grid Grid.Row="0" 
+              Background="{StaticResource BrushPrimary3}"
+              RenderOptions.EdgeMode="Aliased">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>

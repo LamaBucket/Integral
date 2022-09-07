@@ -150,8 +150,17 @@
   <data name="Button_Meetings_ClearSearch" xml:space="preserve">
     <value>Clear Search</value>
   </data>
+  <data name="Button_Session_AddAddress" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Button_Session_Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="Button_Users_AddRole" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Button_Users_RemoveRole" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="Label_Common_Password" xml:space="preserve">
     <value>Password</value>
@@ -188,6 +197,12 @@
   </data>
   <data name="Label_Meetings_Theme" xml:space="preserve">
     <value>Theme</value>
+  </data>
+  <data name="Label_Session_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Label_Session_Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Label_Session_Role" xml:space="preserve">
     <value>Role</value>
@@ -234,8 +249,14 @@
   <data name="ModalHeader_Meetings_CreateMeeting" xml:space="preserve">
     <value>Create Meeting</value>
   </data>
+  <data name="ModalHeader_Session_AddAddress" xml:space="preserve">
+    <value>Add Address</value>
+  </data>
   <data name="ModalHeader_Session_Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="ModalHeader_Session_SelectAddressDialog" xml:space="preserve">
+    <value>Select Address</value>
   </data>
   <data name="ModalHeader_Students_CreateStudent" xml:space="preserve">
     <value>Create Student</value>

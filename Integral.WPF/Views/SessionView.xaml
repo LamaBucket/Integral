@@ -34,52 +34,56 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-
-
 
                     <Label Grid.Column="0" 
                    Grid.Row="0"
                    Content="{x:Static p:Resources.Label_Session_ServerAddress}"
-                   Margin="0 0 0 7"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
 
                     <TextBox Grid.Column="1" 
                      Grid.Row="0" 
-                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0 0 0 7"/>
+                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <ToggleButton Grid.Column="2"
+                                  Grid.Row="0"
+                                  Content="..."
+                                  IsChecked="{Binding ModifyAddressesDialogOpen, Mode=TwoWay}"
+                                  Padding="6 3"
+                                  Margin="2 0 0 0"
+                                  VerticalAlignment="Center"/>
 
                     <Label Grid.Column="0" 
                    Grid.Row="1" 
                    Content="{x:Static p:Resources.Label_Common_Username}"
-                   Margin="0 0 0 5"
+                   Margin="0 5 0 0"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
 
                     <TextBox Grid.Column="1" 
                      Grid.Row="1" 
                      Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0 0 0 5"/>
+                     Margin="0 5 0 0"/>
 
 
                     <Label Grid.Column="0" 
                    Grid.Row="2" 
                    Content="{x:Static p:Resources.Label_Common_Password}"
-                   Margin="0 0 0 7"
+                   Margin="0 7 0 0"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
 
                     <TextBox Grid.Column="1" 
                      Grid.Row="2" 
                      Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0 0 0 7"/>
+                     Margin="0 5 0 0"/>
 
                     <Label Grid.Column="0" 
                    Grid.Row="3" 
                    Content="{x:Static p:Resources.Label_Session_Role}"
-                   Margin="0 0 0 5"
+                   Margin="0 5 0 0"
                    HorizontalContentAlignment="Right"
                    Padding="10 5"/>
 
@@ -87,12 +91,12 @@
                       Grid.Row="3" 
                       SelectedItem="{Binding UserRole, Mode=TwoWay}"
                       ItemsSource="{Binding UserRoles, Mode=OneTime}"
-                      Margin="0 0 0 5"/>
+                      Margin="0 5 0 0"/>
 
                     <StackPanel Grid.Column="1" 
                                 Grid.Row="4"
                                 HorizontalAlignment="Right"
-                                Margin="0 0 0 5">
+                                Margin="0 5 0 0">
                         <Button Content="{x:Static p:Resources.Button_Session_Login}"
                                 Padding="15 5"
                                 Command="{Binding LoginCommand, Mode=OneTime}"/>
@@ -101,6 +105,78 @@
                 </Grid>
             </controls:IntegralModal.ModalContent>
         </controls:IntegralModal>
-        
+
+        <controls:IntegralModal Panel.ZIndex="1001"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Session_SelectAddressDialog}"
+                                IsOpen="{Binding ModifyAddressesDialogOpen, Mode=TwoWay}"
+                                Command="{Binding SelectAddressCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <Grid Margin="5 5 5 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.Row="0"
+                             ItemsSource="{Binding AddressNames, Mode=OneWay}"
+                             MinHeight="150"
+                             SelectedValue="{Binding SelectedAddress, Mode=TwoWay}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Item1}"/>
+                                    <Label Content="-"/>
+                                    <Label Content="{Binding Item2}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <StackPanel Grid.Row="1"
+                                Margin="0 2 0 0">
+                        <ToggleButton Content="{x:Static p:Resources.Button_Session_AddAddress}"
+                                      IsChecked="{Binding AddAddressDialogOpen, Mode=TwoWay}"
+                                      Padding="10 5"/>
+                    </StackPanel>
+                </Grid>
+            </controls:IntegralModal.ModalContent>
+        </controls:IntegralModal>
+
+        <controls:IntegralModal Panel.ZIndex="1002"
+                                ModalHeaderString="{x:Static p:Resources.ModalHeader_Session_AddAddress}"
+                                IsOpen="{Binding AddAddressDialogOpen, Mode=TwoWay}"
+                                Command="{Binding AddAddressCommand, Mode=OneTime}">
+            <controls:IntegralModal.ModalContent>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" 
+                           Grid.Row="0" 
+                           Content="{x:Static p:Resources.Label_Session_Name}"
+                           Margin="0 0 0 2"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="0"
+                             Text="{Binding AddAddressName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 2"/>
+
+                    <Label Grid.Column="0" 
+                           Grid.Row="1" 
+                           Content="{x:Static p:Resources.Label_Session_Address}"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="1"
+                             Text="{Binding AddAddressAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </controls:IntegralModal.ModalContent>
+        </controls:IntegralModal>
     </Grid>
 </UserControl>

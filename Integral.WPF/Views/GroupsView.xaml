@@ -99,9 +99,10 @@
                                 Command="{Binding SetLeaderCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
                 <ListBox ItemsSource="{Binding SetLeaderUsers, Mode=OneWay}"
-                         SelectedValue="{Binding SetLeaderSelectedUser, Mode=TwoWay}"
-                         BorderThickness="0"
-                         Margin="10">
+                        SelectedValue="{Binding SetLeaderSelectedUser, Mode=TwoWay}"
+                        BorderThickness="0"
+                        Margin="10"
+                         MinHeight="150">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Username}"/>

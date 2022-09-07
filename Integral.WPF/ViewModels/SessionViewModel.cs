@@ -1,5 +1,6 @@
 ﻿using Integral.Domain.Models.Enums;
 using Integral.WPF.Commands;
+using Integral.WPF.Models;
 using Integral.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,20 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        public SessionViewModel(IAuthenticator authenticator)
+        public SessionViewModel(IAuthenticator authenticator, IAppConfigManagementService configManagementService)
         {
             _authenticator = authenticator;
             _loginCommand = new LoginCommand(this, authenticator);
+
+            _config = configManagementService.GetConfig();
+
+            AddAddressCommand = new AddAddressToConfigCommand(this, configManagementService);
+            SelectAddressCommand = new SelectAddressCommand(this);
         }
+
+        public ICommand AddAddressCommand { get; set; }
+
+        public ICommand SelectAddressCommand { get; set; }
 
 
         private ICommand _loginCommand;
@@ -97,6 +107,88 @@ namespace Integral.WPF.ViewModels
             {
                 _userRole = value;
                 OnPropertyChanged(nameof(UserRole));
+            }
+        }
+
+
+
+        private AppConfig _config;
+
+        public AppConfig Config
+        {
+            get => _config;
+            set
+            {
+                _config = value;
+                OnPropertyChanged(nameof(Config));
+                OnPropertyChanged(nameof(AddressNames));
+            }
+        }
+
+
+        private bool _modifyAddressesDialogOpen;
+
+        public bool ModifyAddressesDialogOpen
+        {
+            get => _modifyAddressesDialogOpen;
+            set
+            {
+                _modifyAddressesDialogOpen = value;
+                OnPropertyChanged(nameof(ModifyAddressesDialogOpen));
+            }
+        }
+
+
+        private bool _addAddressDialogOpen;
+
+        public bool AddAddressDialogOpen
+        {
+            get => _addAddressDialogOpen;
+            set
+            {
+                _addAddressDialogOpen = value;
+                OnPropertyChanged(nameof(AddAddressDialogOpen));
+            }
+        }
+
+
+        private string _addAddressAddress = String.Empty;
+
+        public string AddAddressAddress
+        {
+            get => _addAddressAddress;
+            set
+            {
+                _addAddressAddress = value;
+                OnPropertyChanged(nameof(AddAddressAddress));
+            }
+        }
+
+
+        private string _addAddressName = String.Empty;
+
+        public string AddAddressName
+        {
+            get => _addAddressName;
+            set
+            {
+                _addAddressName = value;
+                OnPropertyChanged(nameof(AddAddressName));
+            }
+        }
+
+        public IEnumerable<Tuple<string, string>> AddressNames => Config.SavedServerAddresses.Select(x => new Tuple<string, string>(x.Key, x.Value));
+
+
+        private Tuple<string, string>? _selectedAddress;
+
+        public Tuple<string, string>? SelectedAddress
+        {
+            get => _selectedAddress;
+            set
+            {
+                _selectedAddress = value;
+                OnPropertyChanged(nameof(SelectedAddress));
             }
         }
 

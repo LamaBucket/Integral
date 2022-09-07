@@ -150,8 +150,17 @@
   <data name="Button_Meetings_ClearSearch" xml:space="preserve">
     <value>Очистить Поиск</value>
   </data>
+  <data name="Button_Session_AddAddress" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
   <data name="Button_Session_Login" xml:space="preserve">
     <value>Войти</value>
+  </data>
+  <data name="Button_Users_AddRole" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Button_Users_RemoveRole" xml:space="preserve">
+    <value>Удалить</value>
   </data>
   <data name="Label_Common_Password" xml:space="preserve">
     <value>Пароль</value>
@@ -188,6 +197,12 @@
   </data>
   <data name="Label_Meetings_Theme" xml:space="preserve">
     <value>Тема</value>
+  </data>
+  <data name="Label_Session_Address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="Label_Session_Name" xml:space="preserve">
+    <value>Название</value>
   </data>
   <data name="Label_Session_Role" xml:space="preserve">
     <value>Роль</value>
@@ -234,8 +249,14 @@
   <data name="ModalHeader_Meetings_CreateMeeting" xml:space="preserve">
     <value>Создание Занятия</value>
   </data>
+  <data name="ModalHeader_Session_AddAddress" xml:space="preserve">
+    <value>Добавление Адреса</value>
+  </data>
   <data name="ModalHeader_Session_Login" xml:space="preserve">
     <value>Вход</value>
+  </data>
+  <data name="ModalHeader_Session_SelectAddressDialog" xml:space="preserve">
+    <value>Выбор Адреса</value>
   </data>
   <data name="ModalHeader_Students_CreateStudent" xml:space="preserve">
     <value>Создание Ученика</value>

@@ -160,11 +160,38 @@ namespace Integral.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Button_Session_AddAddress {
+            get {
+                return ResourceManager.GetString("Button_Session_AddAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Button_Session_Login {
             get {
                 return ResourceManager.GetString("Button_Session_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Button_Users_AddRole {
+            get {
+                return ResourceManager.GetString("Button_Users_AddRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Button_Users_RemoveRole {
+            get {
+                return ResourceManager.GetString("Button_Users_RemoveRole", resourceCulture);
             }
         }
         
@@ -273,6 +300,24 @@ namespace Integral.WPF.Properties {
         public static string Label_Meetings_Theme {
             get {
                 return ResourceManager.GetString("Label_Meetings_Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Label_Session_Address {
+            get {
+                return ResourceManager.GetString("Label_Session_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Label_Session_Name {
+            get {
+                return ResourceManager.GetString("Label_Session_Name", resourceCulture);
             }
         }
         
@@ -412,11 +457,29 @@ namespace Integral.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Address.
+        /// </summary>
+        public static string ModalHeader_Session_AddAddress {
+            get {
+                return ResourceManager.GetString("ModalHeader_Session_AddAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string ModalHeader_Session_Login {
             get {
                 return ResourceManager.GetString("ModalHeader_Session_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Address.
+        /// </summary>
+        public static string ModalHeader_Session_SelectAddressDialog {
+            get {
+                return ResourceManager.GetString("ModalHeader_Session_SelectAddressDialog", resourceCulture);
             }
         }
         
