@@ -174,5 +174,11 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     
+   <!--Textblocks-->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
     
 </ResourceDictionary>

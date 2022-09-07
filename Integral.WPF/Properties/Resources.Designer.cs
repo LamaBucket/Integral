@@ -196,6 +196,27 @@ namespace Integral.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        /// &quot;101&quot;:&quot;Incorrect Password.&quot;,
+        /// &quot;102&quot;:&quot;User Does Not Exist.&quot;,
+        /// &quot;103&quot;:&quot;User Does Not Have That Role.&quot;,
+        /// &quot;201&quot;:&quot;User With That Id Does Not Exist.&quot;,
+        /// &quot;202&quot;:&quot;User With That Username Already Exists.&quot;,
+        /// &quot;203&quot;:&quot;That User Already Has That Role.&quot;,
+        /// &quot;204&quot;:&quot;That User Does Not Have Any Roles.&quot;,
+        /// &quot;205&quot;:&quot;That User Does Not Have That Role.&quot;,
+        /// &quot;206&quot;:&quot;That User Has Groups.&quot;,
+        /// &quot;301&quot;:&quot;Student With That Id Does Not Exist&quot;,
+        /// &quot;401&quot;:&quot;Group With That Id Does Not Exist&quot;,
+        /// &quot;402&quot;:&quot;Group With That Combination Of Grade And [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ErrorStrings {
+            get {
+                return ResourceManager.GetString("ErrorStrings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Label_Common_Password {
@@ -543,6 +564,15 @@ namespace Integral.WPF.Properties {
         public static string RadioButton_Navigation_Users {
             get {
                 return ResourceManager.GetString("RadioButton_Navigation_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorStrings_US.txt.
+        /// </summary>
+        public static string Resources_ErrorStringsDictionary_Name {
+            get {
+                return ResourceManager.GetString("Resources_ErrorStringsDictionary_Name", resourceCulture);
             }
         }
     }

@@ -1,0 +1,21 @@
+{
+ "101":"Incorrect Password.",
+ "102":"User Does Not Exist.",
+ "103":"User Does Not Have That Role.",
+ "201":"User With That Id Does Not Exist.",
+ "202":"User With That Username Already Exists.",
+ "203":"That User Already Has That Role.",
+ "204":"That User Does Not Have Any Roles.",
+ "205":"That User Does Not Have That Role.",
+ "206":"That User Has Groups.",
+ "301":"Student With That Id Does Not Exist",
+ "401":"Group With That Id Does Not Exist",
+ "402":"Group With That Combination Of Grade And Name Already Exist.",
+ "403":"That Group Has No Students.",
+ "404":"That Student Is Already In That Group.",
+ "405":"That Student Is Not In That Group.",
+ "501":"Meeting With That Id Does Not Exist.",
+ "601":"Data That You Have Sent Is Invalid.",
+ "1001":"You Have Missed Some Of The Required Form Places. Validate Entered Data.",
+ "1002":"Unable To Get AppConfig."
+}

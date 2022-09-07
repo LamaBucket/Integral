@@ -22,8 +22,11 @@
             <controls:IntegralModal.ModalContent>
                 <Border Margin="5"
                         BorderBrush="{StaticResource BrushPrimary1}"
-                        BorderThickness="1">
-                    <Label Content="{Binding ExceptionContent, Mode=OneWay}"/>
+                        BorderThickness="1"
+                        MaxWidth="300">
+                    <TextBlock Text="{Binding ExceptionContent, Mode=OneWay}" 
+                               TextWrapping="Wrap"
+                               Margin="5"/>
                 </Border>
             </controls:IntegralModal.ModalContent>
             

@@ -2,8 +2,10 @@
 using Integral.WPF.Exceptions;
 using Integral.WPF.Services.Interfaces;
 using Integral.WPF.Services.Navigators;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,29 +109,40 @@ namespace Integral.WPF.ViewModels
 
         private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            if(e.Exception is WebRequestException _ex)
+            Exception _ex = e.Exception;
+
+            TryParseErrorCode(ref _ex);
+
+            ExceptionContent = _ex.Message;
+            ExceptionDialogHeader = "Exception";
+
+            if (e.Exception is WebRequestException _webEx)
             {
-                string message = _ex.Message;
-
-                if(Int32.TryParse(_ex.Message, out int code))
-                {
-                    //Parse Code To message Logic
-                }
-
-                ExceptionContent = message;
-                ExceptionDialogHeader = _ex.StatusCode.ToString();
-
-                ExceptionDialogShown = true;
+                ExceptionDialogHeader = _webEx.StatusCode.ToString();
             }
-            else
-            {
-                ExceptionContent = e.Exception.GetBaseException().Message;
-                ExceptionDialogHeader = "Exception";
 
-                ExceptionDialogShown = true;
-            }
+            ExceptionDialogShown = true;
 
             e.Handled = true;
+        }
+
+        private void TryParseErrorCode(ref Exception e)
+        {
+            if(Int32.TryParse(e.Message, out int code))
+            {
+                
+                string text = Properties.Resources.ErrorStrings;
+
+                var dict = JsonConvert.DeserializeObject<Dictionary<int, string>>(text);
+
+                if(dict is not null && dict.ContainsKey(code))
+                {
+                    e = new(dict[code]);
+                }
+                
+            }
+
+            e = e.GetBaseException();
         }
     }
 }
