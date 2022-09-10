@@ -42,11 +42,14 @@ namespace Integral.WPF.Services.ViewModelFactories
 
         public IAppConfigManagementService AppConfigManagementService { get; set; }
 
+        public IApplicationStateService ApplicationStateService { get; set; }
+
 
         private Dictionary<ViewModelType, BaseViewModel> _viewModels;
 
 
-        public RootViewModelFactory(IAuthenticator authenticator,
+        public RootViewModelFactory(IApplicationStateService applicationStateService,
+                                    IAuthenticator authenticator,
                                     IUserWebDataService userWebDataService,
                                     IStudentWebDataService studentWebDataService,
                                     IGroupWebDataService groupWebDataService,
@@ -62,6 +65,8 @@ namespace Integral.WPF.Services.ViewModelFactories
                                     IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser,
                                     IAppConfigManagementService appConfigManagementService)
         {
+            ApplicationStateService = applicationStateService;
+
             _authenticator = authenticator;
             _userWebDataService = userWebDataService;
             _studentWebDataService = studentWebDataService;
@@ -96,7 +101,7 @@ namespace Integral.WPF.Services.ViewModelFactories
                 BaseViewModel? vm = GetViewModel(type);
 
                 if (vm is null)
-                    return new BaseViewModel();
+                    return new BaseViewModel(ApplicationStateService);
 
                 _viewModels.Add(type, vm);
             }
@@ -114,7 +119,7 @@ namespace Integral.WPF.Services.ViewModelFactories
             BaseViewModel? vm = GetViewModel(type);
 
             if (vm is null)
-                return new BaseViewModel();
+                return new BaseViewModel(ApplicationStateService);
 
             _viewModels.Add(type, vm);
 
@@ -126,22 +131,23 @@ namespace Integral.WPF.Services.ViewModelFactories
             switch (type)
             {
                 case ViewModelType.Session:
-                    SessionViewModel sessionViewModel = new(_authenticator, AppConfigManagementService);
+                    SessionViewModel sessionViewModel = new(ApplicationStateService, _authenticator, AppConfigManagementService);
                     return sessionViewModel;
                 case ViewModelType.Users:
-                    UsersViewModel usersViewModel = new(_userWebDataService);
+                    UsersViewModel usersViewModel = new(ApplicationStateService, _userWebDataService);
                     return usersViewModel;
                 case ViewModelType.Students:
-                    StudentsViewModel studentsViewModel = new(_studentWebDataService);
+                    StudentsViewModel studentsViewModel = new(ApplicationStateService, _studentWebDataService);
                     return studentsViewModel;
                 case ViewModelType.Groups:
-                    GroupsViewModel groupsViewModel = new(_groupWebDataService, _studentWebDataService);
+                    GroupsViewModel groupsViewModel = new(ApplicationStateService, _groupWebDataService, _studentWebDataService);
                     return groupsViewModel;
                 case ViewModelType.Meetings:
-                    MeetingsViewModel meetingsViewModel = new(_groupWebDataService, _meetingWebDataService);
+                    MeetingsViewModel meetingsViewModel = new(ApplicationStateService, _groupWebDataService, _meetingWebDataService);
                     return meetingsViewModel;
                 case ViewModelType.DataManipulation:
-                    DataManagementViewModel dataManipulationViewModel = new(TextDataTableParser,
+                    DataManagementViewModel dataManipulationViewModel = new(ApplicationStateService, 
+                                                                            TextDataTableParser,
                                                                             UserLoadExtractService,
                                                                             StudentLoadExtractService,
                                                                             GroupLoadExtractService,

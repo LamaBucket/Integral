@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:p="clr-namespace:Integral.WPF.Properties"
+             xmlns:vm="clr-namespace:Integral.WPF.ViewModels"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:GroupsViewModel}"
              d:Background="{StaticResource BrushPrimary5}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -200,12 +202,14 @@
                    Margin="2">
                 <ToggleButton Content="{x:Static p:Resources.Button_Common_Create}"
                           Padding="9 3"
+                              Visibility="{Binding ApplicationStateService.CurrentPermissions.CanCreateGroup, Converter={StaticResource BooleanToVisibilityConverter}}"
                           IsChecked="{Binding CreateGroupDialogOpen, Mode=TwoWay}"/>
                 <Button Content="{x:Static p:Resources.Button_Common_Delete}"
                     Padding="9 3"
                     Margin="2 0 0 0"
                     Command="{Binding DeleteGroupCommand}"
-                    CommandParameter="{Binding SelectedGroup.Id}"/>
+                    CommandParameter="{Binding SelectedGroup.Id}"
+                        Visibility="{Binding ApplicationStateService.CurrentPermissions.CanDeleteGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </WrapPanel>
 
             <Border Grid.Row="1"
@@ -360,10 +364,12 @@
                             <ToggleButton Content="{x:Static p:Resources.Button_Group_ChangeLeader}"
                                           IsChecked="{Binding SetLeaderDialogOpen, Mode=TwoWay}"
                                           Margin="0 0 3 0"
-                                          Padding="5"/>
+                                          Padding="5"
+                                          Visibility="{Binding ApplicationStateService.CurrentPermissions.CanChangeLeaderGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <ToggleButton Content="{x:Static p:Resources.Button_Group_ModifyStudents}"
                                           IsChecked="{Binding ModifyStudentsDialogOpen, Mode=TwoWay}"
-                                          Padding="5"/>
+                                          Padding="5"
+                                          Visibility="{Binding ApplicationStateService.CurrentPermissions.CanModifyStudentsGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
                         
                     </Grid>

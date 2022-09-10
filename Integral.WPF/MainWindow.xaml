@@ -6,6 +6,8 @@
         xmlns:controls="clr-namespace:Integral.WPF.Controls"
         xmlns:p="clr-namespace:Integral.WPF.Properties"
         xmlns:local="clr-namespace:Integral.WPF"
+        xmlns:vm="clr-namespace:Integral.WPF.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
         x:Name="root"
         Height="675" Width="1200"
@@ -89,7 +91,7 @@
                 <ToggleButton Grid.Column="0"
                           Content="{x:Static p:Resources.Button_Common_Menu}"
                           IsChecked="{Binding NavigationMenuVisible, Mode=TwoWay}"
-                          IsEnabled="{Binding Authenticator.IsLoggedIn, Mode=OneWay}"
+                          IsEnabled="{Binding Authenticator.ApplicationStateService.IsLoggedIn, Mode=OneWay}"
                           Padding="10 5"
                           Margin="2"/>
 
@@ -118,7 +120,7 @@
 
 
                     <controls:NavigationMenu MenuVisible="{Binding DataContext.NavigationMenuVisible, ElementName=root, Mode=OneWay}" 
-                                         DataContext="{Binding Navigator}"/>
+                                             DataContext="{Binding}"/>
 
 
                     <Border Grid.Column="1"

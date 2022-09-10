@@ -18,7 +18,7 @@ namespace Integral.WPF.ViewModels
 
         private IStudentWebDataService _studentWebDataService;
 
-        public StudentsViewModel(IStudentWebDataService studentWebDataService)
+        public StudentsViewModel(IApplicationStateService applicationStateService, IStudentWebDataService studentWebDataService) : base(applicationStateService)
         {
             _studentWebDataService = studentWebDataService;
 

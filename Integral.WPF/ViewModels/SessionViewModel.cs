@@ -30,7 +30,7 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        public SessionViewModel(IAuthenticator authenticator, IAppConfigManagementService configManagementService)
+        public SessionViewModel(IApplicationStateService applicationStateService, IAuthenticator authenticator, IAppConfigManagementService configManagementService) : base(applicationStateService)
         {
             _authenticator = authenticator;
             _loginCommand = new LoginCommand(this, authenticator);

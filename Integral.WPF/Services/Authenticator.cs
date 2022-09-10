@@ -17,30 +17,19 @@ namespace Integral.WPF.Services
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public IIntegralHttpClientFactory ClientFactory { get; private set; }
+        
+        public IApplicationStateService ApplicationStateService { get; init; }
+
 
         private object _clientLock = new();
 
-        public bool IsLoggedIn => CurrentRole is not null; 
-           
 
-        private Role? _currentRole;
-
-        public Role? CurrentRole
-        {
-            get => _currentRole;
-            set
-            {
-                _currentRole = value;
-                PropertyChanged?.Invoke(this, new(nameof(CurrentRole)));
-                PropertyChanged?.Invoke(this, new(nameof(IsLoggedIn)));
-            }
-        }
-
-
-        public Authenticator(IIntegralHttpClientFactory clientFactory)
+        public Authenticator(IIntegralHttpClientFactory clientFactory, IApplicationStateService applicationStateService)
         {
             ClientFactory = clientFactory;
+            ApplicationStateService = applicationStateService;
         }
+
 
         public async Task<bool> Login(Uri serverAddress, string username, string password, Role role)
         {
@@ -69,7 +58,7 @@ namespace Integral.WPF.Services
                     ClientFactory.Client.DefaultRequestHeaders.Add("Cookie", vals);
                 }
 
-                CurrentRole = role;
+                ApplicationStateService.CurrentRole = role;
             }            
 
             msg.Dispose();
@@ -88,7 +77,7 @@ namespace Integral.WPF.Services
             {
                 lock (_clientLock)
                 {
-                    CurrentRole = null;
+                    ApplicationStateService.CurrentRole = null;
 
                     ClientFactory.ClearCache();
                 }

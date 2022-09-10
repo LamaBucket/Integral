@@ -13,11 +13,7 @@ namespace Integral.WPF.Services.Interfaces
     {
         IIntegralHttpClientFactory ClientFactory { get; }
 
-
-        bool IsLoggedIn { get; }
-
-        Role? CurrentRole { get; }
-
+        IApplicationStateService ApplicationStateService { get; init; }
 
         Task<bool> Login(Uri serverAddress, string username, string password, Role role);
 

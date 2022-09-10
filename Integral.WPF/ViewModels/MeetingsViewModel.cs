@@ -14,7 +14,7 @@ namespace Integral.WPF.ViewModels
 {
     public class MeetingsViewModel : BaseViewModel
     {
-        public MeetingsViewModel(IGroupWebDataService groupWebDataService, IMeetingWebDataService meetingWebDataService)
+        public MeetingsViewModel(IApplicationStateService applicationStateService, IGroupWebDataService groupWebDataService, IMeetingWebDataService meetingWebDataService) : base(applicationStateService)
         {
             GroupWebDataService = groupWebDataService;
             MeetingWebDataService = meetingWebDataService;

@@ -38,6 +38,7 @@ namespace Integral.WPF.Commands
                 throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
 
             await Authenticator.Login(new Uri(ViewModel.ServerAddress), ViewModel.Login, ViewModel.Password, ViewModel.UserRole);
+
         }
     }
 }

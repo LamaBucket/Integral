@@ -48,6 +48,9 @@ namespace Integral.WPF.Commands
                 }
 
                 ViewModel.NavigationMenuVisible = false;
+
+                ViewModel.ApplicationStateService.CurrentRole = null;
+                ViewModel.ApplicationStateService.CurrentUser = null;
             }
         }
     }

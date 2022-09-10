@@ -39,11 +39,14 @@ namespace Integral.WPF
 
             IIntegralHttpClientFactory clientFactory = new IntegralHttpClientFactory(new());
 
+            IApplicationStateService applicationStateService = new ApplicationStateService();
+
             clientFactory.Client.Timeout = TimeSpan.FromSeconds(5);
 
-            Authenticator authenticator = new(clientFactory);
+            Authenticator authenticator = new(clientFactory, applicationStateService);
 
-            IRootViewModelFactory vmFactory = new RootViewModelFactory(authenticator,
+            IRootViewModelFactory vmFactory = new RootViewModelFactory(applicationStateService,
+                                                                       authenticator,
                                                                        new UserWebDataService(clientFactory),
                                                                        new StudentWebDataService(clientFactory),
                                                                        new GroupWebDataService(clientFactory),
@@ -61,7 +64,7 @@ namespace Integral.WPF
 
             INavigator navigator = new Navigator(vmFactory);
 
-            MainViewModel vm = new(navigator, authenticator);
+            MainViewModel vm = new(applicationStateService, navigator, authenticator);
 
             vm.Navigator.ChangeCurrentViewModelCommand.Execute(ViewModelType.Session);
 

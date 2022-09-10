@@ -6,6 +6,8 @@
              xmlns:e="clr-namespace:Integral.WPF.Models.Enums"
              xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Controls"
+             xmlns:vm="clr-namespace:Integral.WPF.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
              mc:Ignorable="d" 
              x:Name="root"
              d:DesignHeight="450" d:DesignWidth="800"
@@ -31,32 +33,37 @@
             </Grid.RowDefinitions>
 
             <RadioButton Grid.Row="0"
+                         Visibility="{Binding ApplicationStateService.CurrentPermissions.CanOpenUsersTab, Converter={StaticResource BooleanToVisibilityConverter}}"
                      Content="{x:Static p:Resources.RadioButton_Navigation_Users}"
-                     Command="{Binding ChangeCurrentViewModelCommand}"
+                     Command="{Binding Navigator.ChangeCurrentViewModelCommand}"
                      CommandParameter="{x:Static e:ViewModelType.Users}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="1"
+                         Visibility="{Binding ApplicationStateService.CurrentPermissions.CanOpenStudentsTab, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Content="{x:Static p:Resources.RadioButton_Navigation_Students}"
-                         Command="{Binding ChangeCurrentViewModelCommand}"
+                         Command="{Binding Navigator.ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Students}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="2"
+                         Visibility="{Binding ApplicationStateService.CurrentPermissions.CanOpenGroupsTab, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Content="{x:Static p:Resources.RadioButton_Navigation_Groups}"
-                         Command="{Binding ChangeCurrentViewModelCommand}"
+                         Command="{Binding Navigator.ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Groups}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="3"
+                         Visibility="{Binding ApplicationStateService.CurrentPermissions.CanOpenMeetingsTab, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Content="{x:Static p:Resources.RadioButton_Navigation_Meetings}"
-                         Command="{Binding ChangeCurrentViewModelCommand}"
+                         Command="{Binding Navigator.ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.Meetings}"
                      Margin="0 0 0 2"/>
 
             <RadioButton Grid.Row="4"
+                         Visibility="{Binding ApplicationStateService.CurrentPermissions.CanOpenDataManagementTab, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Content="{x:Static p:Resources.RadioButton_Navigation_DataManagement}"
-                         Command="{Binding ChangeCurrentViewModelCommand}"
+                         Command="{Binding Navigator.ChangeCurrentViewModelCommand}"
                          CommandParameter="{x:Static e:ViewModelType.DataManipulation}"
                      Margin="0 0 0 2"/>
 

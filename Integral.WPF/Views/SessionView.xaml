@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:Integral.WPF.Properties"
              xmlns:local="clr-namespace:Integral.WPF.Views" xmlns:controls="clr-namespace:Integral.WPF.Controls" xmlns:converters="clr-namespace:Integral.WPF.Converters"
+             xmlns:vm="clr-namespace:Integral.WPF.ViewModels"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:SessionViewModel}"
              Background="{StaticResource BrushPrimary5}"
              Padding="10">
 
@@ -18,7 +20,7 @@
         <controls:IntegralModal Panel.ZIndex="1000" 
                                 ModalHeaderString="{x:Static p:Resources.ModalHeader_Session_Login}"
                                 Command="{Binding LoginCommand, Mode=OneTime}"
-                                IsOpen="{Binding Authenticator.IsLoggedIn, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
+                                IsOpen="{Binding Authenticator.ApplicationStateService.IsLoggedIn, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
                                 HasButtons="False">
             <controls:IntegralModal.ModalContent>
                 <Grid Grid.Column="1"

@@ -36,7 +36,8 @@ namespace Integral.WPF.ViewModels
         public IDataParserService<string, DataTable> TextDataTableParser { get; set; }
 
 
-        public DataManagementViewModel(IDataParserService<string, DataTable> textParser,
+        public DataManagementViewModel(IApplicationStateService applicationStateService, 
+                                       IDataParserService<string, DataTable> textParser,
                                        ILoadExtractWebService<User> userLoadExtractService,
                                        ILoadExtractWebService<Student> studentLoadExtractService,
                                        ILoadExtractWebService<Group> groupLoadExtractService,
@@ -44,7 +45,7 @@ namespace Integral.WPF.ViewModels
                                        IDataParserService<IEnumerable<User>, DataTable> usersDataTableParser,
                                        IDataParserService<IEnumerable<Student>, DataTable> studentsDataTableParser,
                                        IDataParserService<IEnumerable<Group>, DataTable> groupsDataTableParser,
-                                       IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser)
+                                       IDataParserService<IEnumerable<Meeting>, DataTable> meetingsDataTableParser) : base(applicationStateService)
         {
             TextDataTableParser = textParser;
 
@@ -62,9 +63,9 @@ namespace Integral.WPF.ViewModels
             SelectFilePathCommand = new SelectFilePathCommand(this);
             DataManagementProcessFileCommand = new DataManagementProcessFileCommand(this);
             DataManagementProcessServerCommand = new DataManagementProcessServerCommand(this);
-        }
 
-        public static IEnumerable<LoadExtractTargetType> LoadExtractTargetTypes => Enum.GetValues<LoadExtractTargetType>();
+            LoadExtractTargetTypes = ApplicationStateService.CurrentPermissions.AvailableTargetTypesForLoad;
+        }
 
         public static IEnumerable<DataManagementActionType> DataManagementActionTypes => Enum.GetValues<DataManagementActionType>();
 
@@ -132,7 +133,7 @@ namespace Integral.WPF.ViewModels
         }
 
 
-        private DataManagementActionType _selectedActionType;
+        private DataManagementActionType _selectedActionType = DataManagementActionType.Load;
 
         public DataManagementActionType SelectedActionType
         {
@@ -141,8 +142,24 @@ namespace Integral.WPF.ViewModels
             {
                 _selectedActionType = value;
                 OnPropertyChanged(nameof(SelectedActionType));
+
+                LoadExtractTargetTypes = value == DataManagementActionType.Load ? ApplicationStateService.CurrentPermissions.AvailableTargetTypesForLoad : ApplicationStateService.CurrentPermissions.AvailableTargetTypesForExtract;
             }
         }
+
+
+        private IEnumerable<LoadExtractTargetType>? _loadExtractTargetTypes;
+
+        public IEnumerable<LoadExtractTargetType>? LoadExtractTargetTypes
+        {
+            get => _loadExtractTargetTypes;
+            set
+            {
+                _loadExtractTargetTypes = value;
+                OnPropertyChanged(nameof(LoadExtractTargetTypes));
+            }
+        }
+
 
     }
 }

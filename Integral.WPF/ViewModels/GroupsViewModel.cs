@@ -24,7 +24,7 @@ namespace Integral.WPF.ViewModels
         public static GroupType[] GroupTypes => Enum.GetValues<GroupType>();
 
 
-        public GroupsViewModel(IGroupWebDataService groupWebDataService, IStudentWebDataService studentsWebDataService)
+        public GroupsViewModel(IApplicationStateService applicationStateService, IGroupWebDataService groupWebDataService, IStudentWebDataService studentsWebDataService) : base(applicationStateService)
         {
             _groupWebDataService = groupWebDataService;
 

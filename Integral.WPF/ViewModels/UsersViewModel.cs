@@ -14,7 +14,7 @@ namespace Integral.WPF.ViewModels
 {
     public class UsersViewModel : BaseViewModel
     {
-        public UsersViewModel(IUserWebDataService userWebDataService)
+        public UsersViewModel(IApplicationStateService applicationStateService, IUserWebDataService userWebDataService) : base(applicationStateService)
         {
             _userWebDataService = userWebDataService;
 

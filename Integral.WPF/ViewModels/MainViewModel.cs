@@ -97,7 +97,7 @@ namespace Integral.WPF.ViewModels
 
         public ICommand LogoutCommand { get; set; }
 
-        public MainViewModel(INavigator navigator, IAuthenticator authenticator)
+        public MainViewModel(IApplicationStateService applicationStateService, INavigator navigator, IAuthenticator authenticator) : base(applicationStateService)
         {
             _navigator = navigator;
             _authenticator = authenticator;

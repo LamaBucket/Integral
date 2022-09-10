@@ -40,13 +40,13 @@
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Grid.Column="0" 
-                          ItemsSource="{Binding DataManagementActionTypes, Mode=OneTime}"
+                          ItemsSource="{Binding DataManagementActionTypes, Mode=OneWay}"
                           SelectedValue="{Binding SelectedActionType, Mode=TwoWay}"
                           MinWidth="100"
                           Padding="9 3"/>
 
                 <ComboBox Grid.Column="1" 
-                          ItemsSource="{Binding LoadExtractTargetTypes, Mode=OneTime}"
+                          ItemsSource="{Binding LoadExtractTargetTypes, Mode=OneWay}"
                           SelectedValue="{Binding SelectedTargetType, Mode=TwoWay}"
                           MinWidth="100"
                           Padding="9 3"
