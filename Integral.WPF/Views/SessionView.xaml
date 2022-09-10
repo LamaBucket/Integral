@@ -111,7 +111,7 @@
                                 IsOpen="{Binding ModifyAddressesDialogOpen, Mode=TwoWay}"
                                 Command="{Binding SelectAddressCommand, Mode=OneTime}">
             <controls:IntegralModal.ModalContent>
-                <Grid Margin="5 5 5 0">
+                <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="auto"/>
