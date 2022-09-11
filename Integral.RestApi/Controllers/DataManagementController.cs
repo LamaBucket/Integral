@@ -10,9 +10,9 @@ namespace Integral.RestApi.Controllers
 {
     [Authorize]
     [Route("[controller]")]
-    public class DataManagement : Controller
+    public class DataManagementController : Controller
     {
-        public DataManagement(ILoadExtractService<User> usersLoadExtractService,
+        public DataManagementController(ILoadExtractService<User> usersLoadExtractService,
                               ILoadExtractService<Meeting> meetingsLoadExtractService,
                               ILoadExtractService<Group> groupsLoadExtractService,
                               ILoadExtractService<Student> studentsLoadExtractService)
@@ -34,29 +34,41 @@ namespace Integral.RestApi.Controllers
 
 
         [HttpGet("Users")]
+        [Authorize(Roles = "Admin, Authority")]
         public async Task<ActionResult> ExtractUsers() => await ExtractData<User>(UsersLoadExtractService);
 
+
         [HttpGet("Meetings")]
+        [Authorize(Roles = "Admin, Authority, ClassPrincipal, Teacher")]
         public async Task<ActionResult> ExtractMeetings() => await ExtractData<Meeting>(MeetingsLoadExtractService);
 
+
         [HttpGet("Groups")]
+        [Authorize(Roles = "Admin, Authority, ClassPrincipal, Teacher")]
         public async Task<ActionResult> ExtractGroups() => await ExtractData<Group>(GroupsLoadExtractService);
 
+
         [HttpGet("Students")]
+        [Authorize(Roles = "Admin, Authority, Teacher")]
         public async Task<ActionResult> ExtractStudents() => await ExtractData<Student>(StudentsLoadExtractService);
 
 
 
         [HttpPost("Users")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> LoadUsers() => await LoadData<User>(UsersLoadExtractService);
 
         [HttpPost("Groups")]
+        [Authorize(Roles = "Admin, Teacher")]
         public async Task<ActionResult> LoadGroups() => await LoadData<Group>(GroupsLoadExtractService);
 
+
         [HttpPost("Meetings")]
+        [Authorize(Roles = "Admin, Teacher, ClassPrincipal")]
         public async Task<ActionResult> LoadMeetings() => await LoadData<Meeting>(MeetingsLoadExtractService);
 
         [HttpPost("Students")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> LoadStudents() => await LoadData<Student>(StudentsLoadExtractService);
 
 
