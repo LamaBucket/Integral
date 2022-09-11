@@ -198,8 +198,8 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding Name}"/>
                                             <Label Content="{Binding Grade}"/>
+                                            <Label Content="{Binding Name}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

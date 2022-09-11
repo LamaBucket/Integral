@@ -14,7 +14,9 @@
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip" 
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Title="Integral"
+        Icon="{Binding Source={x:Static p:Resources.integral_icon}}">
 
     <Grid>
         <controls:IntegralModal Panel.ZIndex="1000"
@@ -51,32 +53,56 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                
-               
+
+                <StackPanel Grid.Column="0" 
+                            Orientation="Horizontal"
+                            Margin="5 0">
+
+                    <Image Source="{Binding Source={x:Static p:Resources.integral_icon_image}}"/>
+
+                    <Label Content="Integral"
+                           Foreground="{StaticResource BrushPrimary5}"
+                           FontFamily="Roboto"
+                           FontSize="14"/>
+
+                </StackPanel>
+
 
                 <Button Grid.Column="2"
-                        Content="🗕"
                         VerticalAlignment="Top"
                         Width="45"
                         Height="30"
                         Style="{StaticResource ButtonDefault3}"
-                        Click="Button_Minimize_Click"/>
+                        Click="Button_Minimize_Click">
+                    <Button.Content>
+                        <Image Margin="5" 
+                               Source="{Binding Source={x:Static p:Resources.btn_minimize}}"/>
+                    </Button.Content>
+                </Button>
 
                 <Button Grid.Column="3"
-                        Content="+"
                         VerticalAlignment="Top"
                         Width="45"
                         Height="30"
                         Style="{StaticResource ButtonDefault3}"
-                        Click="Button_Maximize_Click"/>
+                        Click="Button_Maximize_Click">
+                    <Button.Content>
+                        <Image Margin="7"
+                               Source="{Binding Source={x:Static p:Resources.btn_maximize}}"/>
+                    </Button.Content>
+                </Button>
 
                 <Button Grid.Column="4"
-                        Content="✕"
                         VerticalAlignment="Top"
                         Width="45"
                         Height="30"
                         Style="{StaticResource ButtonDefault3}"
-                        Click="Button_Close_Click"/>
+                        Click="Button_Close_Click">
+                    <Button.Content>
+                        <Image Margin="7" 
+                               Source="{Binding Source={x:Static p:Resources.btn_close}}"/>
+                    </Button.Content>
+                </Button>
             </Grid>
 
             <Grid Grid.Row="1"
