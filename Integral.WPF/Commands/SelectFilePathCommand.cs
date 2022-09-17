@@ -1,11 +1,12 @@
 ﻿using Integral.WPF.ViewModels;
-using Microsoft.Win32;
-using System;
+using Integral.WPF.Models.Enums;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System;
 
 namespace Integral.WPF.Commands
 {
@@ -28,11 +29,25 @@ namespace Integral.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() ?? false)
+            if (ViewModel.SelectedActionType == DataManagementActionType.Load)
             {
-                ViewModel.SelectedFilePath = openFileDialog.FileName;
+                var openFileDialog = new OpenFileDialog();
+
+                openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ViewModel.SelectedFilePath = openFileDialog.FileName;
+                }
+            }
+            else if(ViewModel.SelectedActionType == DataManagementActionType.Extract)
+            {
+                var openFileDialog = new FolderBrowserDialog();
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ViewModel.SelectedFilePath = openFileDialog.SelectedPath + $"IntegralDataExtract-{ViewModel.SelectedTargetType}-{DateTime.Now:yyyy:MM:dd-hh:mm}";
+                }
             }
         }
     }
