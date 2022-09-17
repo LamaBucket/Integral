@@ -1,0 +1,52 @@
+
+
+body{
+    margin: 0;
+    min-height: 100vh;
+}
+
+.main{
+    align-self: stretch;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    align-self: stretch;
+    min-height: 100vh;
+}
+
+.header{
+    grid-row: 1;
+    background-color: #9fa8da;
+}
+
+.title{
+    font-size: 45px;
+    margin: 0 20;
+    padding: 10;
+    color: white;
+    font-family: 'Roboto';
+}
+
+
+.body{
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.image-button{
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    width: 50%;
+}
+
+.image-button-text{
+    align-self: center;
+    font-size: 25;
+    text-align: center;
+}
+
+.image-button-image{
+    width: 100%;
+}
