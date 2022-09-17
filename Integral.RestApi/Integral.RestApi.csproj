@@ -31,12 +31,26 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\download-app.svg" />
-    <None Include="wwwroot\images\get-help.svg" />
-    <None Include="wwwroot\scripts\jquery.js" />
-    <None Include="wwwroot\scripts\script.js" />
-    <None Include="wwwroot\styles\style.css" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="wwwroot\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="wwwroot\images\download-app.svg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\get-help.svg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\scripts\jquery.js">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\scripts\script.js">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\styles\style.css">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 </Project>
