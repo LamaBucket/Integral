@@ -37,7 +37,9 @@ namespace Integral.WPF.Commands
             if (!Uri.TryCreate(ViewModel.ServerAddress, UriKind.Absolute, out Uri? res) || String.IsNullOrEmpty(ViewModel.Login) || String.IsNullOrEmpty(ViewModel.Password))
                 throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
 
-            await Authenticator.Login(new Uri(ViewModel.ServerAddress), ViewModel.Login, ViewModel.Password, ViewModel.UserRole);
+            if(!await Authenticator.Login(new Uri(ViewModel.ServerAddress), ViewModel.Login, ViewModel.Password, ViewModel.UserRole))
+                throw new Exception("Login Failed. Call Sys Admin.");
+            
 
         }
     }

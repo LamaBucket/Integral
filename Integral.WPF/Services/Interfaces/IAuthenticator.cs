@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Integral.WPF.Services.Interfaces
 {
-    public interface IAuthenticator : INotifyPropertyChanged, IDisposable
+    public interface IAuthenticator : IDisposable
     {
         IIntegralHttpClientFactory ClientFactory { get; }
 

@@ -1,7 +1,9 @@
-﻿using Integral.Domain.Models.Enums;
+﻿using Integral.Domain.Models;
+using Integral.Domain.Models.Enums;
 using Integral.WPF.Exceptions;
 using Integral.WPF.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +16,7 @@ namespace Integral.WPF.Services
 {
     public class Authenticator : IAuthenticator
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
+        
         public IIntegralHttpClientFactory ClientFactory { get; private set; }
         
         public IApplicationStateService ApplicationStateService { get; init; }
@@ -51,6 +52,10 @@ namespace Integral.WPF.Services
             if (!response.IsSuccessStatusCode)
                 throw new WebRequestException(await response.Content.ReadAsStringAsync(), response.StatusCode);
 
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            User? user = JsonConvert.DeserializeObject<User>(responseContent);
+
             lock (_clientLock)
             {
                 if (response.Headers.TryGetValues("set-cookie", out IEnumerable<string>? vals))
@@ -59,6 +64,7 @@ namespace Integral.WPF.Services
                 }
 
                 ApplicationStateService.CurrentRole = role;
+                ApplicationStateService.CurrentUser = user;
             }            
 
             msg.Dispose();
@@ -78,6 +84,7 @@ namespace Integral.WPF.Services
                 lock (_clientLock)
                 {
                     ApplicationStateService.CurrentRole = null;
+                    ApplicationStateService.CurrentUser = null;
 
                     ClientFactory.ClearCache();
                 }

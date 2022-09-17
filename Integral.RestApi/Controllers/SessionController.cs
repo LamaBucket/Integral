@@ -9,6 +9,8 @@ using System.Security.Claims;
 using AuthorizationResult = Integral.Domain.Models.Enums.AuthorizationResult;
 using IAuthenticationService = Integral.Domain.Services.IAuthenticationService;
 using IAuthorizationService = Integral.Domain.Services.IAuthorizationService;
+using Integral.Domain.Services;
+using Integral.Domain.Models;
 
 namespace Integral.RestApi.Controllers
 {
@@ -18,11 +20,13 @@ namespace Integral.RestApi.Controllers
     {
         private IAuthenticationService _authenticationService;
         private IAuthorizationService _authorizationService;
+        private IUserDataService _userDataService;
 
-        public SessionController(IAuthenticationService authenticationService, IAuthorizationService authorizationService)
+        public SessionController(IAuthenticationService authenticationService, IAuthorizationService authorizationService, IUserDataService userDataService)
         {
             _authenticationService = authenticationService;
             _authorizationService = authorizationService;
+            _userDataService = userDataService;
         }
 
         [HttpPost]
@@ -45,7 +49,7 @@ namespace Integral.RestApi.Controllers
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new(claimsIdentity));
 
-                    return Ok();
+                    return Json(await _userDataService.Get(username));
                 }
 
                 switch (result2)

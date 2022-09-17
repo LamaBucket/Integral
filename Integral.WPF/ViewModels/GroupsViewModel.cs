@@ -21,8 +21,7 @@ namespace Integral.WPF.ViewModels
 
         public static int[] Grades => new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
-        public static GroupType[] GroupTypes => Enum.GetValues<GroupType>();
-
+        public GroupType[] GroupTypes { get; init; }
 
         public GroupsViewModel(IApplicationStateService applicationStateService, IGroupWebDataService groupWebDataService, IStudentWebDataService studentsWebDataService) : base(applicationStateService)
         {
@@ -40,6 +39,17 @@ namespace Integral.WPF.ViewModels
 
             ModifyStudentsCommand = new ModifyStudentsCommand(_groupWebDataService, this);
             LoadModifyStudentsDialogCommand = new LoadModifyStudentsDialogCommand(studentsWebDataService, this);
+
+
+            GroupTypes = Enum.GetValues<GroupType>();
+            CreateGroupSelectLeaderDisplayed = true;
+
+            if(applicationStateService.CurrentRole is Role.Teacher)
+            {
+                CreateGroupSelectLeaderDisplayed = false;
+                SetLeaderSelectedUser = applicationStateService.CurrentUser;
+                GroupTypes = new GroupType[] { GroupType.ElectiveGroup };
+            }
         }
 
         public ICommand DeleteGroupCommand { get; init; }
@@ -143,6 +153,9 @@ namespace Integral.WPF.ViewModels
                 OnPropertyChanged(nameof(CreateGroupGroupType));
             }
         }
+
+        public bool CreateGroupSelectLeaderDisplayed { get; init; }
+
 
 
 
