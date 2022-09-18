@@ -5,11 +5,14 @@ namespace Integral.EntityFramework
 {
     public class IntegralDbContextFactory : IDesignTimeDbContextFactory<IntegralDbContext>
     {
-        public const string ConnString = "Data Source=localhost;Initial Catalog=Integral_App4;Integrated Security=True";
+        public static string? ConnString;
 
         public IntegralDbContext CreateDbContext(string[] args = null!)
         {
-            DbContextOptionsBuilder options = new();
+            if (String.IsNullOrEmpty(ConnString))
+                throw new Exception("Connection String Is Null!");
+
+            DbContextOptionsBuilder options = new();            
 
             options.UseSqlServer(ConnString);
 

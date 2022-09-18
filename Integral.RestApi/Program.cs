@@ -59,4 +59,23 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
 
+SetupDbConnection();
+
+
 app.Run();
+
+
+void SetupDbConnection()
+{
+    string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Integral");
+
+    if (!Directory.Exists(dir))
+        Directory.CreateDirectory(dir);
+
+    string filePath = Path.Combine(dir, "IntegralDbConnectionString.txt");
+
+    if (!File.Exists(filePath))
+        File.Create(filePath).Close();
+
+    IntegralDbContextFactory.ConnString = File.ReadAllText(filePath);
+}

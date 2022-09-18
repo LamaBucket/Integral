@@ -1,8 +1,7 @@
 ﻿using Integral.Domain.Services;
-using Microsoft.AspNetCore.Identity;
 using System.Text;
 
-namespace Integral.RestApi.Services
+namespace Integral.EntityFramework.Services
 {
     public class PasswordHashService : IPasswordHashService
     {
