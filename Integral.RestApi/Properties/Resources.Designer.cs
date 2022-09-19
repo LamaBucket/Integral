@@ -97,9 +97,9 @@ namespace Integral.RestApi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Integral_Client_v1_0 {
+        internal static byte[] Integral_Client {
             get {
-                object obj = ResourceManager.GetObject("Integral-Client-v1.0", resourceCulture);
+                object obj = ResourceManager.GetObject("Integral_Client", resourceCulture);
                 return ((byte[])(obj));
             }
         }

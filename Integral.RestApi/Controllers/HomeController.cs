@@ -16,7 +16,7 @@ namespace Integral.RestApi.Controllers
         [HttpGet("Download")]
         public IActionResult DownloadApp()
         {
-            return File(Resources.Integral_Client_v1_0, "application/zip", "Integral-Client-v1.0.zip");
+            return File(Resources.Integral_Client, "application/zip", "Integral-Client-v1.0.zip");
         }
 
         [HttpGet("Help")]
