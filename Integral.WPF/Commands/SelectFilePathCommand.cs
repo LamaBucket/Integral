@@ -46,7 +46,7 @@ namespace Integral.WPF.Commands
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ViewModel.SelectedFilePath = openFileDialog.SelectedPath + $"IntegralDataExtract-{ViewModel.SelectedTargetType}-{DateTime.Now:yyyy:MM:dd-hh:mm}";
+                    ViewModel.SelectedFilePath = openFileDialog.SelectedPath + $"IntegralDataExtract-{ViewModel.SelectedTargetType}-{DateTime.Now:yyyy:MM:dd-hh:mm}.csv";
                 }
             }
         }

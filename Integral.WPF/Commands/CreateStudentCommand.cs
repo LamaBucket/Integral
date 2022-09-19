@@ -34,9 +34,10 @@ namespace Integral.WPF.Commands
 
         public async void Execute(object? parameter)
         {
-            ViewModel.SelectedStudent.FirstName = ViewModel.SelectedStudent.FirstName.Trim();
-            ViewModel.SelectedStudent.SecondName = ViewModel.SelectedStudent.SecondName.Trim();
-            ViewModel.SelectedStudent.ThirdName = ViewModel.SelectedStudent.ThirdName?.Trim();
+            ViewModel.CreateStudentFirstName = ViewModel.CreateStudentFirstName.Trim();
+            ViewModel.CreateStudentSecondName = ViewModel.CreateStudentSecondName.Trim();
+            ViewModel.CreateStudentThirdName = ViewModel.CreateStudentThirdName.Trim();
+
 
             if (String.IsNullOrEmpty(ViewModel.CreateStudentFirstName) || string.IsNullOrEmpty(ViewModel.CreateStudentSecondName) || string.IsNullOrEmpty(ViewModel.CreateStudentThirdName))
                 throw new ClientException(ClientErrorCodes.InvalidForm.ToString());

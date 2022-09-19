@@ -40,7 +40,7 @@ namespace Integral.WPF.Commands
                 ViewModel.SelectedStudent.SecondName = ViewModel.SelectedStudent.SecondName.Trim();
                 ViewModel.SelectedStudent.ThirdName = ViewModel.SelectedStudent.ThirdName?.Trim();
 
-                if (String.IsNullOrEmpty(ViewModel.CreateStudentFirstName) || string.IsNullOrEmpty(ViewModel.CreateStudentSecondName) || string.IsNullOrEmpty(ViewModel.CreateStudentThirdName))
+                if (String.IsNullOrEmpty(ViewModel.SelectedStudent.FirstName) || string.IsNullOrEmpty(ViewModel.SelectedStudent.SecondName) || string.IsNullOrEmpty(ViewModel.SelectedStudent.ThirdName))
                     throw new ClientException(ClientErrorCodes.InvalidForm.ToString());
 
                 Student? student = await StudentWebDataService.UpdateStudent(ViewModel.SelectedStudent.Id, ViewModel.SelectedStudent.FirstName, ViewModel.SelectedStudent.SecondName, ViewModel.SelectedStudent.ThirdName);
