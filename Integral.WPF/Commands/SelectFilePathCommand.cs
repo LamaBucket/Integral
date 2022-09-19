@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System;
+using System.IO;
 
 namespace Integral.WPF.Commands
 {
@@ -46,7 +47,7 @@ namespace Integral.WPF.Commands
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ViewModel.SelectedFilePath = openFileDialog.SelectedPath + $"IntegralDataExtract-{ViewModel.SelectedTargetType}-{DateTime.Now:yyyy:MM:dd-hh:mm}.csv";
+                    ViewModel.SelectedFilePath = Path.Combine(openFileDialog.SelectedPath, $"IntegralDataExtract-{ViewModel.SelectedTargetType}-{DateTime.Now:yyyy-MM-dd_hh-mm}.csv");
                 }
             }
         }

@@ -48,6 +48,9 @@ namespace Integral.WPF.Commands
             {
                 string? text = ViewModel.TextDataTableParser.ParseBack(ViewModel.DisplayedData);
 
+                if (!File.Exists(ViewModel.SelectedFilePath))
+                    File.Create(ViewModel.SelectedFilePath).Close();
+
                 await File.WriteAllTextAsync(ViewModel.SelectedFilePath, text);
             }
         }
