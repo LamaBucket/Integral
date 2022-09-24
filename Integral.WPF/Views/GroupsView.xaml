@@ -137,51 +137,49 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <ScrollViewer Grid.Column="0"
-                                  VerticalScrollBarVisibility="Auto">
-                        <ListBox ItemsSource="{Binding ModifyStudentsAssignedStudents, Mode=OneWay}"
+
+                    <ListBox Grid.Column="0" 
+                             ItemsSource="{Binding ModifyStudentsAssignedStudents, Mode=OneWay}"
                              SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}"
                              Style="{StaticResource ListboxDefault2}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding FirstName}"/>
-                                        <Label Content="{Binding SecondName}"/>
-                                        <Label Content="{Binding ThirdName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </ScrollViewer>
-                    
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding FirstName}"/>
+                                    <Label Content="{Binding SecondName}"/>
+                                    <Label Content="{Binding ThirdName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
 
                     <StackPanel Grid.Column="1"
                                 Margin="5 0"
                                 VerticalAlignment="Center">
-                        <Button Content="Add" Command="{Binding AssignStudentCommand, Mode=OneTime}"
+                        <Button Content="{x:Static p:Resources.Button_Common_Add}" Command="{Binding AssignStudentCommand, Mode=OneTime}"
                                 Padding="9 3"
                                 Margin="0 0 0 5"/>
-                        <Button Content="Remove" Command="{Binding UnassignStudentCommand, Mode=OneTime}"
+                        <Button Content="{x:Static p:Resources.Button_Common_Remove}" Command="{Binding UnassignStudentCommand, Mode=OneTime}"
                                 Padding="9 3"/>
                     </StackPanel>
 
-                    <ScrollViewer Grid.Column="2" 
-                                  VerticalScrollBarVisibility="Auto">
-                        <ListBox ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
+
+                    <ListBox Grid.Column="2" 
+                             ItemsSource="{Binding ModifyStudentsNonAssignedStudents, Mode=OneWay}"
                              SelectedValue="{Binding ModifyStudentsSelectedStudent, Mode=TwoWay}"
                                  Style="{StaticResource ListboxDefault2}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding FirstName}"/>
-                                        <Label Content="{Binding SecondName}"/>
-                                        <Label Content="{Binding ThirdName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </ScrollViewer>
-                    
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding FirstName}"/>
+                                    <Label Content="{Binding SecondName}"/>
+                                    <Label Content="{Binding ThirdName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
                 </Grid>
             </controls:IntegralModal.ModalContent>
 

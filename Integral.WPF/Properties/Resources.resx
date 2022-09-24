@@ -127,6 +127,9 @@
   <data name="btn_minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_minimize.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Button_Common_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Button_Common_Create" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -141,6 +144,9 @@
   </data>
   <data name="Button_Common_Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="Button_Common_Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="Button_Common_SaveChanges" xml:space="preserve">
     <value>Save Changes</value>

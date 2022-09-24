@@ -91,6 +91,15 @@ namespace Integral.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Button_Common_Add {
+            get {
+                return ResourceManager.GetString("Button_Common_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Button_Common_Create {
@@ -132,6 +141,15 @@ namespace Integral.WPF.Properties {
         public static string Button_Common_Refresh {
             get {
                 return ResourceManager.GetString("Button_Common_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Button_Common_Remove {
+            get {
+                return ResourceManager.GetString("Button_Common_Remove", resourceCulture);
             }
         }
         
